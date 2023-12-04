@@ -1,0 +1,15 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-nervelivestream-staging-45424-authRole",
+      "UnauthRoleArn": "arn:aws:iam::450904514466:role/amplify-nervelivestream-staging-45424-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::450904514466:role/amplify-nervelivestream-staging-45424-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-nervelivestream-staging-45424-deployment",
+      "UnauthRoleName": "amplify-nervelivestream-staging-45424-unauthRole",
+      "StackName": "amplify-nervelivestream-staging-45424",
+      "StackId": "arn:aws:cloudformation:us-east-1:450904514466:stack/amplify-nervelivestream-staging-45424/b3037ad0-9005-11ee-96ce-0a5e4b9a0735",
+      "AmplifyAppId": "d1monhddi0qk95"
+    }
+  }
+}

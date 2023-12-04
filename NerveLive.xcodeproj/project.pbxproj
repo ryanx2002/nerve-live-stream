@@ -3,11 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		8A2A36586AA3B1CBAC447CCF /* Pods_NerveLive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F64514B9262E4B6EFD859F2 /* Pods_NerveLive.framework */; };
+		8BEAD253F9D4B4A846FCE879 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 54E299A29CD8D8C9F2D2F54C /* awsconfiguration.json */; };
+		AFEE0F872F6DF53DA8095968 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A7D55A780F6296D630C8AE2 /* amplifyconfiguration.json */; };
 		B63F5C302B1B5361000D6642 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63F5C2F2B1B5361000D6642 /* AppDelegate.swift */; };
 		B63F5C322B1B5361000D6642 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63F5C312B1B5361000D6642 /* SceneDelegate.swift */; };
 		B63F5C342B1B5361000D6642 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63F5C332B1B5361000D6642 /* ViewController.swift */; };
@@ -19,6 +21,8 @@
 /* Begin PBXFileReference section */
 		2F96828DC90321A5548651E8 /* Pods-NerveLive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NerveLive.debug.xcconfig"; path = "Target Support Files/Pods-NerveLive/Pods-NerveLive.debug.xcconfig"; sourceTree = "<group>"; };
 		4F64514B9262E4B6EFD859F2 /* Pods_NerveLive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NerveLive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		54E299A29CD8D8C9F2D2F54C /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+		9A7D55A780F6296D630C8AE2 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		A31C752DFE34621310DEFFC4 /* Pods-NerveLive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NerveLive.release.xcconfig"; path = "Target Support Files/Pods-NerveLive/Pods-NerveLive.release.xcconfig"; sourceTree = "<group>"; };
 		B63F5C2C2B1B5361000D6642 /* NerveLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NerveLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63F5C2F2B1B5361000D6642 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,8 +52,16 @@
 				2F96828DC90321A5548651E8 /* Pods-NerveLive.debug.xcconfig */,
 				A31C752DFE34621310DEFFC4 /* Pods-NerveLive.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		7E7B8642D3EDB42A70BEF800 /* AmplifyConfig */ = {
+			isa = PBXGroup;
+			children = (
+				54E299A29CD8D8C9F2D2F54C /* awsconfiguration.json */,
+				9A7D55A780F6296D630C8AE2 /* amplifyconfiguration.json */,
+			);
+			name = AmplifyConfig;
 			sourceTree = "<group>";
 		};
 		84AE6A0D2151899775C870E9 /* Frameworks */ = {
@@ -67,6 +79,7 @@
 				B63F5C2D2B1B5361000D6642 /* Products */,
 				424509208EB6DE2968DC448C /* Pods */,
 				84AE6A0D2151899775C870E9 /* Frameworks */,
+				7E7B8642D3EDB42A70BEF800 /* AmplifyConfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,7 +143,7 @@
 				};
 			};
 			buildConfigurationList = B63F5C272B1B5361000D6642 /* Build configuration list for PBXProject "NerveLive" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -155,6 +168,8 @@
 				B63F5C3C2B1B5363000D6642 /* LaunchScreen.storyboard in Resources */,
 				B63F5C392B1B5363000D6642 /* Assets.xcassets in Resources */,
 				B63F5C372B1B5361000D6642 /* Main.storyboard in Resources */,
+				8BEAD253F9D4B4A846FCE879 /* awsconfiguration.json in Resources */,
+				AFEE0F872F6DF53DA8095968 /* amplifyconfiguration.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,9 +206,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NerveLive/Pods-NerveLive-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NerveLive/Pods-NerveLive-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -363,6 +382,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KC37C9ZJH4;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NerveLive/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -393,6 +413,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KC37C9ZJH4;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NerveLive/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
