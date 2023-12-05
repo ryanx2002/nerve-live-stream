@@ -10,6 +10,11 @@
       "StackName": "amplify-nervelivestream-staging-45424",
       "StackId": "arn:aws:cloudformation:us-east-1:450904514466:stack/amplify-nervelivestream-staging-45424/b3037ad0-9005-11ee-96ce-0a5e4b9a0735",
       "AmplifyAppId": "d1monhddi0qk95"
+    },
+    "categories": {
+      "auth": {
+        "nervelivestream": {}
+      }
     }
   }
 }

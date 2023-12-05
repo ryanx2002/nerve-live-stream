@@ -16,8 +16,10 @@ class PhoneInputViewController: BaseViewController {
         self.DescTitle.attributedText = StringUtils.TextWithBorder(font: 20, text: "What’s your phone number?")
         self.CountryCodeInputText.attributedPlaceholder = StringUtils.PlaceholderAttributeText(contentText: "+1")
         self.CountryCodeInputText.delegate = self;
-        self.PhoneNumberInputText.attributedPlaceholder = StringUtils.PlaceholderAttributeText(contentText: "000000")
+        self.PhoneNumberInputText.attributedPlaceholder = StringUtils.PlaceholderAttributeText(contentText: "(610)555-0123")
         self.PhoneNumberInputText.delegate = self
+
+//        VerificationCodeManager.shared.getVerificationCode(for: "+8618538069868")
     }
 }
 
@@ -26,6 +28,8 @@ extension PhoneInputViewController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if(!StringUtils.isBlank(value: self.CountryCodeInputText.text) &&
            !StringUtils.isBlank(value: self.PhoneNumberInputText.text)) {
+            RegisterCache.sharedTools.countryCode = CountryCodeInputText.text ?? ""
+            RegisterCache.sharedTools.phone = PhoneNumberInputText.text ?? ""
             let vc = ConfirmationCodeViewController()
             self.navigationController?.pushViewController(vc, animated: true)
         }

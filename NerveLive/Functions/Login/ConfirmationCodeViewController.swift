@@ -16,15 +16,20 @@ class ConfirmationCodeViewController: BaseViewController {
     @IBOutlet weak var YourPhoneTitle:UILabel!
     @IBOutlet weak var CodeArea:UIView!
     var CodeValue:String?
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        UIViewSetFrameWidth(view: DescTitle, width: 260)
+        UIViewSetFrameCenterX(view: DescTitle, x: K_SCREEN_WIDTH / 2.0)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         self.DescTitle.attributedText = StringUtils.TextWithBorder(font: 20, text: "Enter the code we just texted")
-        
-        
+
         // 创建一个NSMutableAttributedString
-        let attributedString = NSMutableAttributedString(string: "you at 1853221568125")
+        let attributedString = NSMutableAttributedString(string: "you at \(RegisterCache.sharedTools.countryCode)\(RegisterCache.sharedTools.phone)")
 
         // 添加红色边框
         let redBorderColor = UIColor.red
@@ -59,44 +64,35 @@ class ConfirmationCodeViewController: BaseViewController {
         return editView
     }()
 
-    /*
-     // MARK: - Navigation
-
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     func login(){
         let name = NameInputViewController()
         navigationController?.pushViewController(name, animated: true)
-//        SVProgressHUD.show()
-//        LoginBackend.shared.confirmSignUp(for: RegisterCache.sharedTools.email, with: self.CodeValue ?? "") {
-//            LoginBackend.shared.login(userName: RegisterCache.sharedTools.email, pwd: RegisterCache.sharedTools.password) {
-//                DispatchQueue.main.async {
-//                    SVProgressHUD.dismiss()
+        SVProgressHUD.show()
+        LoginBackend.shared.confirmSignUp(for: RegisterCache.sharedTools.phone, with: self.CodeValue ?? "") {
+            LoginBackend.shared.login(userName: RegisterCache.sharedTools.phone, pwd: RegisterCache.sharedTools.verificationCode) {
+                DispatchQueue.main.async {
+                    SVProgressHUD.dismiss()
 //                    let homeVC:SignUpSucViewController = SignUpSucViewController()
 //                    let nav = UINavigationController(rootViewController: homeVC)
 //                    nav.isNavigationBarHidden = true
 //                    self.changeRootController(controller: nav)
-//                }
-//                print("登录成功")
-//            } fail: { error in
-//                print(error)
-//                DispatchQueue.main.async {
-//                    SVProgressHUD.dismiss()
-//                }
-//            } confirmSignUp: {
-//                DispatchQueue.main.async {
-//                    SVProgressHUD.dismiss()
-//                }
-//            }
-//        } fail: { error in
-//            DispatchQueue.main.async {
-//                SVProgressHUD.dismiss()
-//            }
-//        }
+                }
+                print("登录成功")
+            } fail: { error in
+                print(error)
+                DispatchQueue.main.async {
+                    SVProgressHUD.dismiss()
+                }
+            } confirmSignUp: {
+                DispatchQueue.main.async {
+                    SVProgressHUD.dismiss()
+                }
+            }
+        } fail: { error in
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+            }
+        }
     }
 
 }
