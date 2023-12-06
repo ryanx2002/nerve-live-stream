@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Amplify
+import SVProgressHUD
 
 class PhoneInputViewController: BaseViewController {
     @IBOutlet weak var DescTitle:UILabel!
@@ -18,8 +20,6 @@ class PhoneInputViewController: BaseViewController {
         self.CountryCodeInputText.delegate = self;
         self.PhoneNumberInputText.attributedPlaceholder = StringUtils.PlaceholderAttributeText(contentText: "(610)555-0123")
         self.PhoneNumberInputText.delegate = self
-
-//        VerificationCodeManager.shared.getVerificationCode(for: "+8618538069868")
     }
 }
 
@@ -29,11 +29,37 @@ extension PhoneInputViewController:UITextFieldDelegate{
         if(!StringUtils.isBlank(value: self.CountryCodeInputText.text) &&
            !StringUtils.isBlank(value: self.PhoneNumberInputText.text)) {
             RegisterCache.sharedTools.countryCode = CountryCodeInputText.text ?? ""
-            RegisterCache.sharedTools.phone = PhoneNumberInputText.text ?? ""
-            let vc = ConfirmationCodeViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
+            RegisterCache.sharedTools.phone = "+8618538069868"//PhoneNumberInputText.text ?? ""
+            LoginBackend.shared.signUp(for: RegisterCache.sharedTools.phone, password: RegisterCache.sharedTools.phone) {
+                DispatchQueue.main.async {
+                    let vc = ConfirmationCodeViewController()
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            } suc: {
+                print("send code success")
+            } fail: { error in
+                print("signUp fail \(error)")
+                DispatchQueue.main.async {
+                    self.showFail()
+                }
+            }
         }
         textField.resignFirstResponder()
         return true
+    }
+
+    func showFail() {
+        let alert = UIAlertController(title: "Tips", message: "Failed to send the verification code.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Resend", style: .default, handler: { _ in
+            alert.dismiss(animated: true)
+            LoginBackend.shared.resendCodeForSignUp(username: RegisterCache.sharedTools.phone) {
+                print("send code success")
+            } fail: { msg in
+                self.showFail()
+            }
+
+        }))
+        present(alert, animated: true)
     }
 }
