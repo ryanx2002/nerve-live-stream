@@ -15,6 +15,47 @@ class LoginBackend: NSObject {
 
     }
 
+    func signUp(for phone: String,
+                password: String,
+                needConfirm: @escaping () -> Void,
+                suc: @escaping () -> Void,
+                fail: @escaping (_ msg: String) -> Void ) {
+        let attributes = [
+            AuthUserAttribute(.familyName, value: RegisterCache.sharedTools.firstName),
+            AuthUserAttribute(.givenName, value: RegisterCache.sharedTools.lastName),
+            AuthUserAttribute(.phoneNumber, value: phone)
+        ]
+        let options = AuthSignUpRequest.Options(userAttributes: attributes)
+        Amplify.Auth.signUp(username: phone, password: password, options: options) { result in
+            switch result {
+            case .success(let signUpResult):
+                if case let .confirmUser(deliveryDetails, _) = signUpResult.nextStep {
+                    print("Delivery details \(String(describing: deliveryDetails))")
+                    needConfirm()
+                } else {
+                    print("SignUp Complete")
+                    suc()
+                }
+            case .failure(let error):
+                print("An error occurred while registering a user \(error)")
+                fail("\(error)")
+            }
+        }
+    }
+
+    func resendCodeForSignUp(username: String,suc:@escaping ()->Void,fail:@escaping (_ msg:String)->Void) {
+        Amplify.Auth.resendSignUpCode(for: username){ result in
+            switch result {
+            case .success:
+                print("Confirm signUp succeeded")
+                suc()
+            case .failure(let error):
+                print("An error occurred while confirming sign up \(error)")
+                fail("\(error)")
+            }
+        }
+    }
+
     // confirmSignUp
     func confirmSignUp(for phone: String,
                        with confirmationCode: String,
