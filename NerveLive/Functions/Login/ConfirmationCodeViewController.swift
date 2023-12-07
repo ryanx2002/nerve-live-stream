@@ -51,6 +51,7 @@ class ConfirmationCodeViewController: BaseViewController {
             print("当前输入内容:\(value)")
             if(value.count == 6){
                 self.CodeValue = value
+                RegisterCache.sharedTools.verificationCode = value
                 self.login()
             }
         }
