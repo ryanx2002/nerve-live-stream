@@ -19,3 +19,7 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
+/Pods
+xcuserdata/
+NerveLive.xcworkspace/contents.xcworkspacedata
+NerveLive.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
