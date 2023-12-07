@@ -26,6 +26,7 @@ class LoginBackend: NSObject {
             AuthUserAttribute(.phoneNumber, value: phone)
         ]
         let options = AuthSignUpRequest.Options(userAttributes: attributes)
+        print("注册手机号:\(phone), 密码:\(password)")
         Amplify.Auth.signUp(username: phone, password: password, options: options) { result in
             switch result {
             case .success(let signUpResult):

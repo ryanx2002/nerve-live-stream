@@ -29,8 +29,8 @@ extension PhoneInputViewController:UITextFieldDelegate{
         if(!StringUtils.isBlank(value: self.CountryCodeInputText.text) &&
            !StringUtils.isBlank(value: self.PhoneNumberInputText.text)) {
             RegisterCache.sharedTools.countryCode = CountryCodeInputText.text ?? ""
-            RegisterCache.sharedTools.phone = "+8618538069868"//PhoneNumberInputText.text ?? ""
-            LoginBackend.shared.signUp(for: RegisterCache.sharedTools.phone, password: RegisterCache.sharedTools.phone) {
+            RegisterCache.sharedTools.phone = "+17048901338"//PhoneNumberInputText.text ?? ""
+            LoginBackend.shared.signUp(for: RegisterCache.sharedTools.phone, password: RegisterCache.sharedTools.password) {
                 DispatchQueue.main.async {
                     let vc = ConfirmationCodeViewController()
                     self.navigationController?.pushViewController(vc, animated: true)
