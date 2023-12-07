@@ -55,6 +55,10 @@ extension PhoneInputViewController:UITextFieldDelegate{
             alert.dismiss(animated: true)
             LoginBackend.shared.resendCodeForSignUp(username: RegisterCache.sharedTools.phone) {
                 print("send code success")
+                DispatchQueue.main.async {
+                    let vc = ConfirmationCodeViewController()
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
             } fail: { msg in
                 self.showFail()
             }

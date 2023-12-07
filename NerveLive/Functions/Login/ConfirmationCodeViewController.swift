@@ -49,7 +49,7 @@ class ConfirmationCodeViewController: BaseViewController {
         }
         editView.venmoEditFinished = { value in
             print("当前输入内容:\(value)")
-            if(value.count == 4){
+            if(value.count == 6){
                 self.CodeValue = value
                 self.login()
             }
@@ -59,14 +59,14 @@ class ConfirmationCodeViewController: BaseViewController {
     lazy var editView: VenmoEditConfirmationView = {
         let editView = VenmoEditConfirmationView()
         editView.frame = CGRect(x: 50, y: 0, width: K_SCREEN_WIDTH - 50 * 2, height: 80)
-        editView.itemCount = 4
-        editView.itemSize = CGSize(width: 60, height: 80)
+        editView.itemCount = 6
+        editView.itemSize = CGSize(width: 50, height: 80)
         return editView
     }()
 
     func login(){
-        let name = NameInputViewController()
-        navigationController?.pushViewController(name, animated: true)
+//        let name = NameInputViewController()
+//        navigationController?.pushViewController(name, animated: true)
         SVProgressHUD.show()
         LoginBackend.shared.confirmSignUp(for: RegisterCache.sharedTools.phone, with: self.CodeValue ?? "") {
             LoginBackend.shared.login(userName: RegisterCache.sharedTools.phone, pwd: RegisterCache.sharedTools.verificationCode) {
