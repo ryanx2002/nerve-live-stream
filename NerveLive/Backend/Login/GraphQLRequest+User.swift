@@ -54,7 +54,7 @@ extension GraphQLRequest {
             }
         """
         return GraphQLRequest<JSONValue>(apiName: "nervelivestream", document: document,
-                                         variables: ["id": subId,"FirstName":firstName,"LastName":lastName],
+                                         variables: ["id": subId,"FirstName":firstName,"LastName":lastName,"Phone": phone],
                                     responseType: JSONValue.self)
     }
 }
