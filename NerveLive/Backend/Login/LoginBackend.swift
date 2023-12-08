@@ -80,6 +80,7 @@ class LoginBackend: NSObject {
                       suc: @escaping ()-> Void,
                       fail: @escaping (_ msg: String) -> Void,
                       confirmSignUp: @escaping () -> Void ) {
+        print("登录手机号:\(userName ?? ""), 密码:\(pwd ?? "")")
         _ = Amplify.Auth.signIn(username: userName, password: pwd) { result in
             do {
                 let signinResult = try result.get()

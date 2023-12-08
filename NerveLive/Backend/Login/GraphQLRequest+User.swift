@@ -36,7 +36,7 @@ extension GraphQLRequest {
                               lastName: String,
                               phone: String) -> GraphQLRequest<JSONValue>{
         let document = """
-            mutation MyMutation($FirstName: String, $LastName: String, $Phone: String, $id: ID, $Email: String) {
+            mutation MyMutation($FirstName: String, $LastName: String, $Phone: String, $id: ID) {
               createUser(
                 input: {id: $id, firstName: $FirstName, lastName: $LastName, phone: $Phone}
               ) {
