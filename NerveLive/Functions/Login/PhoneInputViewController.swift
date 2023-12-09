@@ -21,17 +21,18 @@ class PhoneInputViewController: BaseViewController {
         self.PhoneNumberInputText.attributedPlaceholder = StringUtils.PlaceholderAttributeText(contentText: "(610)555-0123")
         self.PhoneNumberInputText.delegate = self
 
-        Amplify.Auth.signOut { _ in
-            print("退出登录成功")
-
-            LoginBackend.shared.login(userName: "+17048901338", pwd: RegisterCache.sharedTools.password) {
-
-            } fail: { msg in
-
-            } confirmSignUp: {
-
-            }
-        }
+//        Amplify.Auth.signOut { _ in
+//            print("退出登录成功")
+//
+//            LoginBackend.shared.login(userName: "+17048901338", pwd: RegisterCache.sharedTools.password) {
+//                let user = LoginTools.sharedTools.userInfo()
+//                print("==-->\(user)")
+//            } fail: { msg in
+//
+//            } confirmSignUp: {
+//
+//            }
+//        }
     }
 }
 

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class NameInputViewController: BaseViewController{
 
@@ -63,8 +64,22 @@ extension NameInputViewController:UITextFieldDelegate{
            !StringUtils.isBlank(value: self.LastNameInputText.text)){
             RegisterCache.sharedTools.firstName = self.FisrtNameInputText.text ?? "";
             RegisterCache.sharedTools.lastName = self.LastNameInputText.text ?? "";
-//            let vc = EmailViewController()
-//            self.navigationController?.pushViewController(vc, animated: true)
+            var user = LoginTools.sharedTools.userInfo()
+            user.firstName = RegisterCache.sharedTools.firstName
+            user.lastName = RegisterCache.sharedTools.lastName
+            SVProgressHUD.show()
+            LoginBackend.shared.updateUser(user: user) {
+                print("111222====\(user)")
+                DispatchQueue.main.async {
+                    SVProgressHUD.dismiss()
+                    getAppDelegate().changeRootViewController()
+                }
+            } fail: { msg in
+                DispatchQueue.main.async {
+                    SVProgressHUD.dismiss()
+                    SVProgressHUD.showError(withStatus: msg)
+                }
+            }
         }
     }
 }

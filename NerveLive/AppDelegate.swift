@@ -19,12 +19,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func changeRootViewController() {
-        let firstVC = PhoneInputViewController()
-        let navVC: UINavigationController  = UINavigationController(rootViewController: firstVC)
-        navVC.isNavigationBarHidden = true
-        self.window?.rootViewController = navVC
-        self.window?.backgroundColor = .white
-        self.window?.makeKeyAndVisible()
+        let user = LoginTools.sharedTools.userInfo()
+        var rootViewController: UIViewController?
+        if user.id.isEmpty { // 未注册
+            rootViewController = PhoneInputViewController()
+        } else {
+            if (user.firstName ?? "").isEmpty || (user.lastName ?? "").isEmpty { // 未补充姓名
+                rootViewController = NameInputViewController()
+            } else {
+                rootViewController = ViewController()
+            }
+        }
+        if let root = rootViewController {
+            let navVC: UINavigationController  = UINavigationController(rootViewController: root)
+            navVC.isNavigationBarHidden = true
+            self.window?.rootViewController = navVC
+            self.window?.backgroundColor = .white
+            self.window?.makeKeyAndVisible()
+        }
     }
 }
 
