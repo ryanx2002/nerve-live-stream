@@ -47,6 +47,13 @@
 		6A3FEE4E2B2758A7006D63D0 /* WebRTCClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3FEE492B2758A7006D63D0 /* WebRTCClient.swift */; };
 		6A3FEE4F2B2758A7006D63D0 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3FEE4A2B2758A7006D63D0 /* Event.swift */; };
 		6AB59FC32B24ACF700B2F5A1 /* LoginBackend+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB59FC22B24ACF700B2F5A1 /* LoginBackend+User.swift */; };
+		6AEE5EA02B29D7A600D1D084 /* LiveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE5E9F2B29D7A600D1D084 /* LiveManager.swift */; };
+		6AEE5EA22B29DC8300D1D084 /* LiveManager+SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE5EA12B29DC8300D1D084 /* LiveManager+SignIn.swift */; };
+		6AEE5EA42B29DDF400D1D084 /* LiveManager+Connect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE5EA32B29DDF400D1D084 /* LiveManager+Connect.swift */; };
+		6AEE5EA62B29DFE100D1D084 /* LiveManager+Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE5EA52B29DFE100D1D084 /* LiveManager+Channel.swift */; };
+		6AEE5EA82B29E24F00D1D084 /* LiveManager+WebRTCClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE5EA72B29E24F00D1D084 /* LiveManager+WebRTCClient.swift */; };
+		6AEE5EAA2B29E2D000D1D084 /* LiveManager+SignalClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE5EA92B29E2D000D1D084 /* LiveManager+SignalClient.swift */; };
+		6AEE5EAC2B29E44300D1D084 /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE5EAB2B29E44300D1D084 /* LiveViewController.swift */; };
 		8A2A36586AA3B1CBAC447CCF /* Pods_NerveLive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F64514B9262E4B6EFD859F2 /* Pods_NerveLive.framework */; };
 		8BEAD253F9D4B4A846FCE879 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 54E299A29CD8D8C9F2D2F54C /* awsconfiguration.json */; };
 		AFEE0F872F6DF53DA8095968 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A7D55A780F6296D630C8AE2 /* amplifyconfiguration.json */; };
@@ -101,6 +108,13 @@
 		6A3FEE492B2758A7006D63D0 /* WebRTCClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRTCClient.swift; sourceTree = "<group>"; };
 		6A3FEE4A2B2758A7006D63D0 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		6AB59FC22B24ACF700B2F5A1 /* LoginBackend+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginBackend+User.swift"; sourceTree = "<group>"; };
+		6AEE5E9F2B29D7A600D1D084 /* LiveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveManager.swift; sourceTree = "<group>"; };
+		6AEE5EA12B29DC8300D1D084 /* LiveManager+SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LiveManager+SignIn.swift"; sourceTree = "<group>"; };
+		6AEE5EA32B29DDF400D1D084 /* LiveManager+Connect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LiveManager+Connect.swift"; sourceTree = "<group>"; };
+		6AEE5EA52B29DFE100D1D084 /* LiveManager+Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LiveManager+Channel.swift"; sourceTree = "<group>"; };
+		6AEE5EA72B29E24F00D1D084 /* LiveManager+WebRTCClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LiveManager+WebRTCClient.swift"; sourceTree = "<group>"; };
+		6AEE5EA92B29E2D000D1D084 /* LiveManager+SignalClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LiveManager+SignalClient.swift"; sourceTree = "<group>"; };
+		6AEE5EAB2B29E44300D1D084 /* LiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
 		8E096ABA1FBB541FB145D91D /* User+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "User+Schema.swift"; path = "amplify/generated/models/User+Schema.swift"; sourceTree = "<group>"; };
 		9A7D55A780F6296D630C8AE2 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		A31C752DFE34621310DEFFC4 /* Pods-NerveLive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NerveLive.release.xcconfig"; path = "Target Support Files/Pods-NerveLive/Pods-NerveLive.release.xcconfig"; sourceTree = "<group>"; };
@@ -251,7 +265,9 @@
 		6A3FEE402B275735006D63D0 /* Live */ = {
 			isa = PBXGroup;
 			children = (
+				6AEE5E9E2B29D79100D1D084 /* Manager */,
 				6A3FEE412B275735006D63D0 /* Tool */,
+				6AEE5EAB2B29E44300D1D084 /* LiveViewController.swift */,
 			);
 			path = Live;
 			sourceTree = "<group>";
@@ -267,6 +283,19 @@
 				6A3FEE442B275822006D63D0 /* Constants.swift */,
 			);
 			path = Tool;
+			sourceTree = "<group>";
+		};
+		6AEE5E9E2B29D79100D1D084 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				6AEE5E9F2B29D7A600D1D084 /* LiveManager.swift */,
+				6AEE5EA92B29E2D000D1D084 /* LiveManager+SignalClient.swift */,
+				6AEE5EA72B29E24F00D1D084 /* LiveManager+WebRTCClient.swift */,
+				6AEE5EA52B29DFE100D1D084 /* LiveManager+Channel.swift */,
+				6AEE5EA32B29DDF400D1D084 /* LiveManager+Connect.swift */,
+				6AEE5EA12B29DC8300D1D084 /* LiveManager+SignIn.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		7E7B8642D3EDB42A70BEF800 /* AmplifyConfig */ = {
@@ -464,17 +493,22 @@
 				35AC97812B1DE5FC005E843E /* NameInputViewController.swift in Sources */,
 				6AB59FC32B24ACF700B2F5A1 /* LoginBackend+User.swift in Sources */,
 				35AC97562B1DDEB0005E843E /* UIFont+Ext.swift in Sources */,
+				6AEE5EA22B29DC8300D1D084 /* LiveManager+SignIn.swift in Sources */,
 				6A3FEE4D2B2758A7006D63D0 /* Message.swift in Sources */,
+				6AEE5EA82B29E24F00D1D084 /* LiveManager+WebRTCClient.swift in Sources */,
 				35AC978E2B1F2AF1005E843E /* AppDelegate+Amplify.swift in Sources */,
 				35AC977A2B1DE1AA005E843E /* VenmoEditConfirmationView.swift in Sources */,
 				6A3FEE4E2B2758A7006D63D0 /* WebRTCClient.swift in Sources */,
 				35AC974C2B1DDE50005E843E /* String+Ext.swift in Sources */,
+				6AEE5EAA2B29E2D000D1D084 /* LiveManager+SignalClient.swift in Sources */,
 				6A3FEE4B2B2758A7006D63D0 /* KVSSigner.swift in Sources */,
 				35AC974F2B1DDE50005E843E /* CodableAny.swift in Sources */,
+				6AEE5EA42B29DDF400D1D084 /* LiveManager+Connect.swift in Sources */,
 				B63F5C342B1B5361000D6642 /* ViewController.swift in Sources */,
 				35AC97482B1DDE50005E843E /* StringUtils.swift in Sources */,
 				6A3FEE452B275822006D63D0 /* Constants.swift in Sources */,
 				B63F5C302B1B5361000D6642 /* AppDelegate.swift in Sources */,
+				6AEE5EAC2B29E44300D1D084 /* LiveViewController.swift in Sources */,
 				35AC97502B1DDE50005E843E /* Global.swift in Sources */,
 				35AC978C2B1F2A0B005E843E /* VerificationCodeManager.swift in Sources */,
 				35AC97462B1DDE50005E843E /* BaseViewController.swift in Sources */,
@@ -483,8 +517,10 @@
 				35AC97492B1DDE50005E843E /* ImageCacheUtils.swift in Sources */,
 				35AC97792B1DE1AA005E843E /* PhoneInputViewController.swift in Sources */,
 				35AC974A2B1DDE50005E843E /* Date+Ext.swift in Sources */,
+				6AEE5EA02B29D7A600D1D084 /* LiveManager.swift in Sources */,
 				35AC97922B1F3678005E843E /* LoginBackend.swift in Sources */,
 				35AC977E2B1DE299005E843E /* RegisterCache.swift in Sources */,
+				6AEE5EA62B29DFE100D1D084 /* LiveManager+Channel.swift in Sources */,
 				35AC97982B1F3AFE005E843E /* UserManager.swift in Sources */,
 				35AC97942B1F3800005E843E /* LoginTools.swift in Sources */,
 				35AC974E2B1DDE50005E843E /* CodableString.swift in Sources */,
@@ -653,6 +689,8 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NerveLive/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires access to camera to capture video";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app requires access to microphone";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -684,6 +722,8 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NerveLive/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires access to camera to capture video";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app requires access to microphone";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

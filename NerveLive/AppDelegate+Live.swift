@@ -39,12 +39,8 @@ extension AppDelegate {
             print("The user is \(userState.rawValue).")
             switch userState {
             case .signedIn:
-                DispatchQueue.main.async {
-
-                }
                 break
             default:
-                
                 DispatchQueue.main.async {
 
                 }

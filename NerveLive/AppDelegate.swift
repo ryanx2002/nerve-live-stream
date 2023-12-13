@@ -11,6 +11,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var orientationLock = UIInterfaceOrientationMask.all
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         addAmplify()
@@ -37,6 +38,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = navVC
             self.window?.backgroundColor = .white
             self.window?.makeKeyAndVisible()
+        }
+    }
+    
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return self.orientationLock
+    }
+    
+    struct AppUtility {
+        static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {
+            if let delegate = UIApplication.shared.delegate as? AppDelegate {
+                delegate.orientationLock = orientation
+            }
+        }
+
+        static func lockOrientation(_ orientation: UIInterfaceOrientationMask, andRotateTo rotateOrientation: UIInterfaceOrientation) {
+            self.lockOrientation(orientation)
+//             if #available(iOS 16, *) {
+//                 DispatchQueue.main.async {
+//                     let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+//                         windowScene?.requestGeometryUpdate(.iOS(interfaceOrientations: orientation))
+//                 }
+//             } else {
+            UIDevice.current.setValue(rotateOrientation.rawValue, forKey: "orientation")
+//             }
         }
     }
 }
