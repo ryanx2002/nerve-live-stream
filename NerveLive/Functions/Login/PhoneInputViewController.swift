@@ -24,7 +24,8 @@ class PhoneInputViewController: BaseViewController {
         Amplify.Auth.signOut { _ in
             print("退出登录成功")
 
-            LoginBackend.shared.login(userName: "+17048901338", pwd: RegisterCache.sharedTools.password) {
+            /// +19452007009  +17048901338
+            LoginBackend.shared.login(userName: "+19452007009", pwd: RegisterCache.sharedTools.password) {
 
             } fail: { msg in
 
@@ -41,7 +42,7 @@ extension PhoneInputViewController:UITextFieldDelegate{
         if(!StringUtils.isBlank(value: self.CountryCodeInputText.text) &&
            !StringUtils.isBlank(value: self.PhoneNumberInputText.text)) {
             RegisterCache.sharedTools.countryCode = CountryCodeInputText.text ?? ""
-            RegisterCache.sharedTools.phone = "+17048901338"//PhoneNumberInputText.text ?? ""
+            RegisterCache.sharedTools.phone = "+19452007009"//PhoneNumberInputText.text ?? ""
             LoginBackend.shared.signUp(for: RegisterCache.sharedTools.phone, password: RegisterCache.sharedTools.password) {
                 DispatchQueue.main.async {
                     let vc = ConfirmationCodeViewController()
@@ -72,7 +73,9 @@ extension PhoneInputViewController:UITextFieldDelegate{
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             } fail: { msg in
-                self.showFail()
+                DispatchQueue.main.async {
+                    self.showFail()
+                }
             }
 
         }))
