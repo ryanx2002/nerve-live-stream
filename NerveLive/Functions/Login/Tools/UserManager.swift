@@ -31,25 +31,25 @@ class UserManager: NSObject {
         // 创建文件路径
         guard let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("person_data.json") else {
             debugPrint("Unable to create file URL.")
-            return User()
+            return User(id: "")
         }
 
         do {
             // 从文件中读取数据
             let storedData = try? Data(contentsOf: fileURL)
             guard let storedData = storedData else {
-                return User()
+                return User(id: "")
             }
             let decoder = JSONDecoder()
             let decodedPerson = try decoder.decode(User.self, from: storedData)
             return decodedPerson
         } catch {
-            return User()
+            return User(id: "")
         }
     }
     
     static func clearUserInfo(){
-        let model: User = User()
+        let model: User = User(id: "")
         UserManager.saveUerInfo(model: model)
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 import SVProgressHUD
 
 class BaseViewController: UIViewController, UINavigationControllerDelegate {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = K_VIEW_BACKGROUNDCOLOR

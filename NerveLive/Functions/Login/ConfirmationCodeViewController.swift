@@ -79,6 +79,7 @@ class ConfirmationCodeViewController: BaseViewController {
 //                    self.changeRootController(controller: nav)
                 }
                 print("登录成功")
+                LiveManager.shared.singIn()
             } fail: { error in
                 print(error)
                 DispatchQueue.main.async {

@@ -1,6 +1,6 @@
 # Uncomment the next line to define a global platform for your project
 source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
-# platform :ios, '9.0'
+ platform :ios, '13.0'
 
 
 target 'NerveLive' do
@@ -15,6 +15,15 @@ target 'NerveLive' do
   pod 'AWSPinpoint'
   pod 'AWSMobileClient'
 #  pod 'AWSAppSync'
+
+  # 直播
+  pod 'AWSCognitoIdentityProvider'
+  pod 'CommonCryptoModule'
+  pod 'AWSKinesisVideo'
+  pod 'AWSKinesisVideoSignaling'
+  pod 'GoogleWebRTC', '~> 1.1'
+#  pod 'Starscream', '~> 3.0'
+
 
   pod 'IQKeyboardManagerSwift', '~> 6.5.12'
   pod 'Kingfisher', '~> 7.9.1' # Image loading library

@@ -32,6 +32,10 @@ PODS:
   - AWSCognitoIdentityProviderASF (2.33.4):
     - AWSCore (= 2.33.4)
   - AWSCore (2.33.4)
+  - AWSKinesisVideo (2.33.4):
+    - AWSCore (= 2.33.4)
+  - AWSKinesisVideoSignaling (2.33.4):
+    - AWSCore (= 2.33.4)
   - AWSMobileClient (2.33.4):
     - AWSAuthCore (= 2.33.4)
     - AWSCognitoIdentityProvider (= 2.33.4)
@@ -44,6 +48,8 @@ PODS:
     - AWSCore (~> 2.33.0)
   - AWSS3 (2.33.4):
     - AWSCore (= 2.33.4)
+  - CommonCryptoModule (1.0.2)
+  - GoogleWebRTC (1.1.32000)
   - IQKeyboardManagerSwift (6.5.12)
   - Kingfisher (7.9.1)
   - Starscream (4.0.4)
@@ -56,8 +62,13 @@ DEPENDENCIES:
   - AmplifyPlugins/AWSCognitoAuthPlugin
   - AmplifyPlugins/AWSPinpointAnalyticsPlugin
   - AmplifyPlugins/AWSS3StoragePlugin
+  - AWSCognitoIdentityProvider
+  - AWSKinesisVideo
+  - AWSKinesisVideoSignaling
   - AWSMobileClient
   - AWSPinpoint
+  - CommonCryptoModule
+  - GoogleWebRTC (~> 1.1)
   - IQKeyboardManagerSwift (~> 6.5.12)
   - Kingfisher (~> 7.9.1)
   - SVProgressHUD (~> 2.2.5)
@@ -71,10 +82,14 @@ SPEC REPOS:
     - AWSCognitoIdentityProvider
     - AWSCognitoIdentityProviderASF
     - AWSCore
+    - AWSKinesisVideo
+    - AWSKinesisVideoSignaling
     - AWSMobileClient
     - AWSPinpoint
     - AWSPluginsCore
     - AWSS3
+    - CommonCryptoModule
+    - GoogleWebRTC
     - IQKeyboardManagerSwift
     - Kingfisher
     - Starscream
@@ -88,15 +103,19 @@ SPEC CHECKSUMS:
   AWSCognitoIdentityProvider: 74464aeebddb8546586f979c8ed055180a4b1855
   AWSCognitoIdentityProviderASF: 28c6a2916512c08ded36b1aab4d92a1b5805d868
   AWSCore: 83e3416d2224ba98b61d8eadcfcb1f90f48fab82
+  AWSKinesisVideo: 78d90313ce0e2ede721d31aadaa2012447c51432
+  AWSKinesisVideoSignaling: 4778b45fc03e18d244dd9e645d77cb41228a56b1
   AWSMobileClient: ff115272d8b29f05443f82f5800036c498c5ca8b
   AWSPinpoint: e13098188d2907874edbca23df7fbb1b4a0992ba
   AWSPluginsCore: f2188458c27e6cb09597c67876f80611d14275d7
   AWSS3: a0d31bc565dc8a6c5eaa756610ac15704c100674
+  CommonCryptoModule: 63a68b57abed79655b3a01011419bf037a05b0a0
+  GoogleWebRTC: 4d261187b30512efdb711d21fa961a6adf138717
   IQKeyboardManagerSwift: 371b08cb39664fb56030f5345c815a4ffc74bbc0
   Kingfisher: 1d14e9f59cbe19389f591c929000332bf70efd32
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 31bb6d558e237742989d9aa43c0d9e017bd059ed
+PODFILE CHECKSUM: aeb883c67628e7bf12e58ab2ead6b1c9e4aac3d4
 
 COCOAPODS: 1.12.1

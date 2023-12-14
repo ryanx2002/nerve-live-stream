@@ -57,4 +57,35 @@ extension GraphQLRequest {
                                          variables: ["id": subId,"FirstName":firstName,"LastName":lastName,"Phone": phone],
                                     responseType: JSONValue.self)
     }
+    
+    static func updateUser(user: User) -> GraphQLRequest<JSONValue>{
+        let document = """
+            mutation MyMutation($firstName: String, $lastName: String, $phone: String, $id: ID!, $profilePhoto: String, $venmo:String, $deviceToken:String, $email:String) {
+              updateUser(
+                input: {id: $id, firstName: $firstName, lastName: $lastName, phone: $phone, profilePhoto: $profilePhoto, venmo: $venmo, deviceToken: $deviceToken, email: $email}
+              ) {
+                venmo
+                updatedAt
+                profilePhoto
+                phone
+                lastName
+                id
+                firstName
+                email
+                deviceToken
+                createdAt
+              }
+            }
+        """
+        return GraphQLRequest<JSONValue>(apiName: "nervelivestream", document: document,
+                                         variables: ["id": user.id,
+                                                     "firstName":user.firstName ?? "",
+                                                     "lastName":user.lastName ?? "",
+                                                     "phone": user.phone ?? "",
+                                                     "profilePhoto" : user.profilePhoto ?? "",
+                                                     "venmo": user.venmo ?? "",
+                                                     "deviceToken": user.deviceToken ?? "",
+                                                     "email": user.email ?? ""],
+                                    responseType: JSONValue.self)
+    }
 }
