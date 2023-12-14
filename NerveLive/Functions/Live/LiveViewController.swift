@@ -45,8 +45,9 @@ class LiveViewController: BaseViewController {
         remoteRenderer.backgroundColor = K_VIEW_WHITECOLOR
         #else
         // Using OpenGLES for the rest
-        let localRenderer = RTCEAGLVideoView(frame: localVideoView?.frame ?? CGRect.zero)
+        let localRenderer = RTCEAGLVideoView(frame: localVideoView.frame)
         let remoteRenderer = RTCEAGLVideoView(frame: view.frame)
+        remoteRenderer.backgroundColor = K_VIEW_WHITECOLOR
         #endif
 
         LiveManager.shared.webRTCClient?.startCaptureLocalVideo(renderer: localRenderer)
@@ -59,7 +60,7 @@ class LiveViewController: BaseViewController {
 
     private func embedView(_ view: UIView, into containerView: UIView) {
         containerView.addSubview(view)
-        view.translatesAutoresizingMaskIntoConstraints = false
+        /*view.translatesAutoresizingMaskIntoConstraints = false
         containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|",
                                                                     options: [],
                                                                     metrics: nil,
@@ -69,7 +70,7 @@ class LiveViewController: BaseViewController {
                                                                     options: [],
                                                                     metrics: nil,
                                                                     views: ["view": view]))
-        containerView.layoutIfNeeded()
+        containerView.layoutIfNeeded()*/
     }
 
     @objc func closeLive() {
@@ -84,14 +85,15 @@ class LiveViewController: BaseViewController {
 //    }
     
     lazy var localVideoView: UIView = {
-        let localVideoView = UIView(frame: CGRect(x: 16, y: 100, width: 200, height: 200))
+        // let localVideoView = UIView(frame: CGRect(x: 16, y: K_SAFEAREA_TOP_HEIGHT() + 16, width: 200, height: 200))
+        let localVideoView = UIView(frame: view.bounds) // 全屏展示
         return localVideoView
     }()
     
     lazy var closeBtn: UIButton = {
         let closeBtn = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - 44 - 16, y: K_SAFEAREA_TOP_HEIGHT() + 44, width: 44, height: 44))
         closeBtn.backgroundColor = .blue
-        closeBtn.setTitle("关闭", for: .normal)
+        closeBtn.setTitle("close", for: .normal)
         closeBtn.addTarget(self, action: #selector(closeLive), for: .touchUpInside)
         return closeBtn
     }()
