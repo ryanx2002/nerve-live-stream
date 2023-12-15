@@ -13,8 +13,11 @@ import SVProgressHUD
 /// 连接频道操作
 extension LiveManager {
     
-    /// 连接频道
-    func connectChannel() {
+    /// 链接频道
+    /// - Parameter userId: 频道所属的用户id(默认当前用户id)
+    func connectChannel(userId: String = LoginTools.sharedTools.userId()) {
+        channelName = "never-live-kvs-channel-\(userId)"
+        debugPrint("connectChannel:\(channelName ?? "") isMaster:\(isMaster)")
         SVProgressHUD.show(withStatus: "Entering the live room")
         // Attempt to gather User Inputs
         guard let channelNameValue = channelName?.trim(), !channelNameValue.isEmpty else {

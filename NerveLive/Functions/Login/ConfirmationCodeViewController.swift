@@ -66,17 +66,13 @@ class ConfirmationCodeViewController: BaseViewController {
     }()
 
     func login(){
-//        let name = NameInputViewController()
-//        navigationController?.pushViewController(name, animated: true)
         SVProgressHUD.show()
         LoginBackend.shared.confirmSignUp(for: RegisterCache.sharedTools.phone, with: self.CodeValue ?? "") {
             LoginBackend.shared.login(userName: RegisterCache.sharedTools.phone, pwd: RegisterCache.sharedTools.password) {
                 DispatchQueue.main.async {
                     SVProgressHUD.dismiss()
-//                    let homeVC:SignUpSucViewController = SignUpSucViewController()
-//                    let nav = UINavigationController(rootViewController: homeVC)
-//                    nav.isNavigationBarHidden = true
-//                    self.changeRootController(controller: nav)
+                    let name = NameInputViewController()
+                    self.navigationController?.pushViewController(name, animated: true)
                 }
                 print("登录成功")
                 LiveManager.shared.singIn()

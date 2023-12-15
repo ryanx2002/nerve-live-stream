@@ -9,23 +9,6 @@ import UIKit
 import Amplify
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.addSubview(openLiveBtn)
-    }
-
-    lazy var openLiveBtn: UIButton = {
-        let closeBtn = UIButton(frame: CGRect(x: 16, y: K_SAFEAREA_TOP_HEIGHT() + 44, width: K_SCREEN_WIDTH - 16 * 2, height: 60))
-        closeBtn.backgroundColor = .blue
-        closeBtn.setTitle("open Live", for: .normal)
-        closeBtn.addTarget(self, action: #selector(openLive), for: .touchUpInside)
-        return closeBtn
-    }()
-    
-    @objc func openLive() {
-        LiveManager.shared.connectChannel()
-    }
     
 }
 

@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if (user.firstName ?? "").isEmpty || (user.lastName ?? "").isEmpty { // 未补充姓名
                 rootViewController = NameInputViewController()
             } else {
-                rootViewController = ViewController()
+                rootViewController = GoLiveViewController()
             }
         }
         if let root = rootViewController {

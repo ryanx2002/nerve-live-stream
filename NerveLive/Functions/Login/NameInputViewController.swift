@@ -69,7 +69,6 @@ extension NameInputViewController:UITextFieldDelegate{
             user.lastName = RegisterCache.sharedTools.lastName
             SVProgressHUD.show()
             LoginBackend.shared.updateUser(user: user) {
-                print("111222====\(user)")
                 DispatchQueue.main.async {
                     SVProgressHUD.dismiss()
                     getAppDelegate().changeRootViewController()

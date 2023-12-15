@@ -20,11 +20,14 @@ class LiveManager: NSObject {
     // clients for WEBRTC Connection
     var signalingClient: SignalingClient?
     var webRTCClient: WebRTCClient?
-    
-    /// 是否是房间主人
-    var isMaster = true
+
     /// 频道名称
-    var channelName: String? = "never-live-kvs-channel"
+    var channelName: String? = "never-live-kvs-channel-\(LoginTools.sharedTools.userId())"
+    /// 是否是房间主人
+    var isMaster: Bool {
+        guard let channelName = channelName else { return false }
+        return channelName.hasSuffix(LoginTools.sharedTools.userId())
+    }
     ///  客户端ID
     var clientID: String = "64tkrejscnmpmsnppdbk4q9452"
     /// 区域名称
