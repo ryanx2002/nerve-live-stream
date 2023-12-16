@@ -30,9 +30,9 @@ extension User {
     model.listPluralName = "Users"
     model.syncPluralName = "Users"
     
-    model.attributes(
-      .primaryKey(fields: [user.id])
-    )
+//    model.attributes(
+//      .primaryKey(fields: [user.id])
+//    )
     
     model.fields(
       .field(user.id, is: .required, ofType: .string),
@@ -49,7 +49,7 @@ extension User {
     }
 }
 
-extension User: ModelIdentifiable {
-  public typealias IdentifierFormat = ModelIdentifierFormat.Default
-  public typealias IdentifierProtocol = DefaultModelIdentifier<Self>
-}
+//extension User: ModelIdentifiable {
+//  public typealias IdentifierFormat = ModelIdentifierFormat.Default
+//  public typealias IdentifierProtocol = DefaultModelIdentifier<Self>
+//}

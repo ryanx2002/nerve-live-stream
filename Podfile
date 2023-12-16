@@ -6,7 +6,7 @@ source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 target 'NerveLive' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-  pod 'Amplify'
+  pod 'Amplify', '1.19.2'
   pod 'Amplify/Tools'
   pod 'AmplifyPlugins/AWSS3StoragePlugin'
   pod 'AmplifyPlugins/AWSCognitoAuthPlugin'
@@ -22,7 +22,7 @@ target 'NerveLive' do
   pod 'AWSKinesisVideo'
   pod 'AWSKinesisVideoSignaling'
   pod 'GoogleWebRTC', '~> 1.1'
-#  pod 'Starscream', '~> 3.0'
+  pod 'Starscream', '~> 3.1.1'
 
 
   pod 'IQKeyboardManagerSwift', '~> 6.5.12'
@@ -30,4 +30,24 @@ target 'NerveLive' do
   pod 'SVProgressHUD', '~> 2.2.5' # HUD loading
   # Pods for NerveLive
 
+end
+
+post_install do |installer|
+    installer.generated_projects.each do |project|
+        project.targets.each do |target|
+            target.build_configurations.each do |config|
+                config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+            end
+        end
+    end
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings["ONLY_ACTIVE_ARCH"] = "NO"
+        end
+    end
+    installer.pods_project.build_configurations.each do |config|
+        config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+        config.build_settings["ONLY_ACTIVE_ARCH"] = "YES"
+        config.build_settings["IPHONEOS_DEPLOYMENT_TARGET"] = $iOSVersion
+    end
 end

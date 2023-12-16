@@ -56,11 +56,17 @@ class LiveViewController: BaseViewController {
         embedView(localRenderer, into: localVideoView)
         embedView(remoteRenderer, into: view)
         view.sendSubviewToBack(remoteRenderer)
+        /// 如果是master隐藏对方视频内容,  如果是viewer隐藏本地视频内容
+        if LiveManager.shared.isMaster {
+            remoteRenderer.isHidden = true
+        } else {
+            localRenderer.isHidden = true
+        }
     }
 
     private func embedView(_ view: UIView, into containerView: UIView) {
         containerView.addSubview(view)
-        /*view.translatesAutoresizingMaskIntoConstraints = false
+        view.translatesAutoresizingMaskIntoConstraints = false
         containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|",
                                                                     options: [],
                                                                     metrics: nil,
@@ -70,7 +76,7 @@ class LiveViewController: BaseViewController {
                                                                     options: [],
                                                                     metrics: nil,
                                                                     views: ["view": view]))
-        containerView.layoutIfNeeded()*/
+        containerView.layoutIfNeeded()
     }
 
     @objc func closeLive() {
@@ -91,9 +97,9 @@ class LiveViewController: BaseViewController {
     }()
     
     lazy var closeBtn: UIButton = {
-        let closeBtn = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - 44 - 16, y: K_SAFEAREA_TOP_HEIGHT() + 44, width: 44, height: 44))
-        closeBtn.backgroundColor = .blue
-        closeBtn.setTitle("close", for: .normal)
+        let closeBtn = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - 44 - 16, y: K_SAFEAREA_TOP_HEIGHT(), width: 44, height: 44))
+        closeBtn.backgroundColor = .clear
+        closeBtn.setImage(UIImage(named: "nav_close_back"), for: .normal)
         closeBtn.addTarget(self, action: #selector(closeLive), for: .touchUpInside)
         return closeBtn
     }()

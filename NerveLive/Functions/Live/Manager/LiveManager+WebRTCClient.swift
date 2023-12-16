@@ -7,6 +7,7 @@
 
 import Foundation
 import WebRTC
+import SVProgressHUD
 
 extension LiveManager: WebRTCClientDelegate {
     func webRTCClient(_: WebRTCClient, didGenerate candidate: RTCIceCandidate) {
@@ -23,6 +24,7 @@ extension LiveManager: WebRTCClientDelegate {
             print("WebRTC connected/completed state")
         case .disconnected:
             print("WebRTC disconnected state")
+            SVProgressHUD.showError(withStatus: "Live stream disconnected")
         case .new:
             print("WebRTC new state")
         case .checking:

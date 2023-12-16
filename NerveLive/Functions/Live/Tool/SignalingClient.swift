@@ -86,31 +86,14 @@ final class SignalingClient {
 
 // MARK: Websocket
 extension SignalingClient: WebSocketDelegate {
-    func didReceive(event: Starscream.WebSocketEvent, client: Starscream.WebSocket) {
-        switch event {
-        case .connected(let dictionary):
-            delegate?.signalClientDidConnect(self)
-            debugPrint("Connection \(dictionary) to signaling success.")
-        case .disconnected(let string, let uInt16):
-            delegate?.signalClientDidDisconnect(self)
-            debugPrint("Disconnected \(string) \(uInt16) from signaling.")
-        case .text(let string):
-            debugPrint("text \(string) from signaling.")
-        case .binary(let data):
-            debugPrint("binary \(data) from signaling.")
-        case .pong(let data):
-            debugPrint("pong \(data) from signaling.")
-        case .ping(let data):
-            debugPrint("ping \(data) from signaling.")
-        case .error(let error):
-            debugPrint("error \(error) from signaling.")
-        case .viabilityChanged(let bool):
-            debugPrint("viabilityChanged \(bool) from signaling.")
-        case .reconnectSuggested(let bool):
-            debugPrint("reconnectSuggested \(bool) from signaling.")
-        case .cancelled:
-            debugPrint("cancelled from signaling.")
-        }
+    func websocketDidConnect(socket _: WebSocketClient) {
+        delegate?.signalClientDidConnect(self)
+        debugPrint("Connection to signaling success.")
+    }
+
+    func websocketDidDisconnect(socket _: WebSocketClient, error: Error?) {
+        delegate?.signalClientDidDisconnect(self)
+        debugPrint("Disconnected from signaling. \(error != nil ? error!.localizedDescription : "")")
     }
 
     func websocketDidReceiveData(socket _: WebSocketClient, data: Data) {

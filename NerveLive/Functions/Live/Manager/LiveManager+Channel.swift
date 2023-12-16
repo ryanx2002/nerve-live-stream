@@ -65,20 +65,20 @@ extension LiveManager {
             equivalent AWS CLI command:
             aws kinesisvideo describe-media-storage-configuration --channel-name channelARN --region cognitoIdentityUserPoolRegion
         */
-        let mediaStorageInput = AWSKinesisVideoDescribeMediaStorageConfigurationInput()
-        mediaStorageInput?.channelARN = channelARN
-        let kvsClient = AWSKinesisVideo(forKey: awsKinesisVideoKey)
-        kvsClient.describeMediaStorageConfiguration(mediaStorageInput!).continueWith(block: { (task) -> Void in
-            if let error = task.error {
-                print("Error retriving Media Storage Configuration: \(error)")
-            } else {
-                usingMediaServer = task.result?.mediaStorageConfiguration!.status == AWSKinesisVideoMediaStorageConfigurationStatus.enabled
-                // the app doesn't use the streamARN but could be useful information for the user
-                if (usingMediaServer) {
-                    print("Stream ARN : ", task.result?.mediaStorageConfiguration!.streamARN ?? "No Stream ARN.")
-                }
-            }
-        }).waitUntilFinished()
+//        let mediaStorageInput = AWSKinesisVideoDescribeMediaStorageConfigurationInput()
+//        mediaStorageInput?.channelARN = channelARN
+//        let kvsClient = AWSKinesisVideo(forKey: awsKinesisVideoKey)
+//        kvsClient.describeMediaStorageConfiguration(mediaStorageInput!).continueWith(block: { (task) -> Void in
+//            if let error = task.error {
+//                print("Error retriving Media Storage Configuration: \(error)")
+//            } else {
+//                usingMediaServer = task.result?.mediaStorageConfiguration!.status == AWSKinesisVideoMediaStorageConfigurationStatus.enabled
+//                // the app doesn't use the streamARN but could be useful information for the user
+//                if (usingMediaServer) {
+//                    print("Stream ARN : ", task.result?.mediaStorageConfiguration!.streamARN ?? "No Stream ARN.")
+//                }
+//            }
+//        }).waitUntilFinished()
         return usingMediaServer
     }
     
@@ -122,8 +122,8 @@ extension LiveManager {
                     endpoints["HTTPS"] = endpoint.resourceEndpoint
                 case .wss:
                     endpoints["WSS"] = endpoint.resourceEndpoint
-                case .webrtc:
-                    endpoints["WEBRTC"] = endpoint.resourceEndpoint
+//                case .webrtc:
+//                    endpoints["WEBRTC"] = endpoint.resourceEndpoint
                 case .unknown:
                     print("Error: Unknown endpoint protocol ", endpoint.protocols, "for endpoint" + endpoint.description())
                 @unknown default:

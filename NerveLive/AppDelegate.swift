@@ -26,10 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if user.id.isEmpty { // 未注册
             rootViewController = PhoneInputViewController()
         } else {
+            debugPrint("userid:\(user.id)")
             if (user.firstName ?? "").isEmpty || (user.lastName ?? "").isEmpty { // 未补充姓名
                 rootViewController = NameInputViewController()
             } else {
-                rootViewController = GoLiveViewController()
+                rootViewController = GoLiveViewController() //GoLiveViewController()
             }
         }
         if let root = rootViewController {
