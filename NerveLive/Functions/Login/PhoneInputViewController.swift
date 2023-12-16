@@ -21,18 +21,18 @@ class PhoneInputViewController: BaseViewController {
         self.PhoneNumberInputText.attributedPlaceholder = StringUtils.PlaceholderAttributeText(contentText: "(610)555-0123")
         self.PhoneNumberInputText.delegate = self
 
-        Amplify.Auth.signOut { _ in
-            print("退出登录成功")
-
-            /// +19452007009  +17048901338
-            LoginBackend.shared.login(userName: "+19452007009", pwd: RegisterCache.sharedTools.password) {
-
-            } fail: { msg in
-
-            } confirmSignUp: {
-
-            }
-        }
+//        Amplify.Auth.signOut { _ in
+//            print("退出登录成功")
+//
+//            /// +19452007009  +17048901338
+//            LoginBackend.shared.login(userName: "+19452007009", pwd: RegisterCache.sharedTools.password) {
+//
+//            } fail: { msg in
+//
+//            } confirmSignUp: {
+//
+//            }
+//        }
     }
 }
 
@@ -41,9 +41,9 @@ extension PhoneInputViewController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if(!StringUtils.isBlank(value: self.CountryCodeInputText.text) &&
            !StringUtils.isBlank(value: self.PhoneNumberInputText.text)) {
-            RegisterCache.sharedTools.countryCode = CountryCodeInputText.text ?? ""
-            RegisterCache.sharedTools.phone = "+19452007009"//PhoneNumberInputText.text ?? ""
-            LoginBackend.shared.signUp(for: RegisterCache.sharedTools.phone, password: RegisterCache.sharedTools.password) {
+            RegisterCache.sharedTools.countryCode = CountryCodeInputText.text ?? "+1"
+            RegisterCache.sharedTools.phone = "9452007009"//PhoneNumberInputText.text ?? ""
+            LoginBackend.shared.signUp(for: "\(RegisterCache.sharedTools.countryCode)\(RegisterCache.sharedTools.phone)", password: RegisterCache.sharedTools.password) {
                 DispatchQueue.main.async {
                     let vc = ConfirmationCodeViewController()
                     self.navigationController?.pushViewController(vc, animated: true)
