@@ -19,6 +19,9 @@ class AuditLoginViewController: BaseViewController {
         view.addSubview(textLabel)
         view.addSubview(passwordTF)
         view.addSubview(signUpBtn)
+        Amplify.Auth.signOut { _ in
+
+        }
     }
     
     lazy var textLabel: UILabel = {
@@ -38,6 +41,7 @@ class AuditLoginViewController: BaseViewController {
         passwordTF.isSecureTextEntry = true
         passwordTF.textAlignment = .center
         passwordTF.textColor = UIColor.hexColorWithAlpha(color: "F9F9F9", alpha: 1)
+        passwordTF.returnKeyType = .done
         return passwordTF
     }()
     
@@ -55,27 +59,27 @@ class AuditLoginViewController: BaseViewController {
     }()
     
     @objc func signUpBtnClick() {
+        passwordTF.resignFirstResponder()
         if (passwordTF.text ?? "").count <= 0 {
             SVProgressHUD.showError(withStatus: "Please enter password")
             return
         }
-        Amplify.Auth.signOut { _ in
-            /// +19452007009  +17048901338
-            SVProgressHUD.show()
-            let phone = self.isMaster ? "+17048901338" : "+19452007009"
-            LoginBackend.shared.login(userName: phone, pwd: RegisterCache.sharedTools.password) {
-                DispatchQueue.main.async {
-                    SVProgressHUD.dismiss()
-                    LiveManager.shared.singIn()
-                }
-            } fail: { msg in
-                DispatchQueue.main.async {
-                    SVProgressHUD.showError(withStatus: msg)
-                }
-            } confirmSignUp: {
-                DispatchQueue.main.async {
-                    SVProgressHUD.dismiss()
-                }
+        /// +19452007009  +17048901338
+        SVProgressHUD.show()
+        let phone = self.isMaster ? "+17048901338" : "+19452007009"
+        LoginBackend.shared.login(userName: phone, pwd: RegisterCache.sharedTools.password) {
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                getAppDelegate().changeRootViewController()
+                LiveManager.shared.singIn()
+            }
+        } fail: { msg in
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+            }
+        } confirmSignUp: {
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
             }
         }
     }

@@ -21,6 +21,10 @@ class PhoneInputViewController: BaseViewController {
         self.PhoneNumberInputText.attributedPlaceholder = StringUtils.PlaceholderAttributeText(contentText: "(610)555-0123")
         self.PhoneNumberInputText.delegate = self
 
+        Amplify.Auth.signOut { _ in
+
+        }
+        
 //        Amplify.Auth.signOut { _ in
 //            print("退出登录成功")
 //
@@ -41,19 +45,27 @@ extension PhoneInputViewController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if(!StringUtils.isBlank(value: self.CountryCodeInputText.text) &&
            !StringUtils.isBlank(value: self.PhoneNumberInputText.text)) {
-            RegisterCache.sharedTools.countryCode = CountryCodeInputText.text ?? "+1"
-            RegisterCache.sharedTools.phone = "9452007009"//PhoneNumberInputText.text ?? ""
-            LoginBackend.shared.signUp(for: "\(RegisterCache.sharedTools.countryCode)\(RegisterCache.sharedTools.phone)", password: RegisterCache.sharedTools.password) {
-                DispatchQueue.main.async {
-                    let vc = ConfirmationCodeViewController()
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-            } suc: {
-                print("send code success")
-            } fail: { error in
-                print("signUp fail \(error)")
-                DispatchQueue.main.async {
-                    self.showFail()
+            /// 审核账号
+            if self.PhoneNumberInputText.text == "8159912449" ||
+                self.PhoneNumberInputText.text == "9462108010" {
+                let vc = AuditLoginViewController()
+                vc.isMaster = self.PhoneNumberInputText.text == "8159912449"
+                navigationController?.pushViewController(vc, animated: true)
+            } else {
+                RegisterCache.sharedTools.countryCode = CountryCodeInputText.text ?? "+1"
+                RegisterCache.sharedTools.phone = "9452007009"//PhoneNumberInputText.text ?? ""
+                LoginBackend.shared.signUp(for: "\(RegisterCache.sharedTools.countryCode)\(RegisterCache.sharedTools.phone)", password: RegisterCache.sharedTools.password) {
+                    DispatchQueue.main.async {
+                        let vc = ConfirmationCodeViewController()
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                } suc: {
+                    print("send code success")
+                } fail: { error in
+                    print("signUp fail \(error)")
+                    DispatchQueue.main.async {
+                        self.showFail()
+                    }
                 }
             }
         }

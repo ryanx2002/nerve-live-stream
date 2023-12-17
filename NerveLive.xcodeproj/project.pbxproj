@@ -716,11 +716,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 202312171308;
 				DEVELOPMENT_TEAM = KC37C9ZJH4;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NerveLive/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Quest;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires access to camera to capture video";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app requires access to microphone";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -749,11 +750,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 202312171308;
 				DEVELOPMENT_TEAM = KC37C9ZJH4;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NerveLive/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Quest;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires access to camera to capture video";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app requires access to microphone";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
