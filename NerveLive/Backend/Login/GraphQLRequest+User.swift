@@ -88,4 +88,30 @@ extension GraphQLRequest {
                                                      "email": user.email ?? ""],
                                     responseType: JSONValue.self)
     }
+    
+    /// 根据手机号查询用户
+    /// - Parameter phone: 手机号码
+    static func queryUserList() -> GraphQLRequest<JSONValue> {
+        let document = """
+            query MyQuery {
+              listUsers {
+                items {
+                  createdAt
+                  deviceToken
+                  email
+                  firstName
+                  id
+                  lastName
+                  phone
+                  profilePhoto
+                  updatedAt
+                  venmo
+                }
+              }
+            }
+            """
+        return GraphQLRequest<JSONValue>(apiName: "nervelivestream", document: document,
+                                         variables: nil,
+                                         responseType: JSONValue.self)
+    }
 }

@@ -53,19 +53,18 @@ extension PhoneInputViewController:UITextFieldDelegate{
                 navigationController?.pushViewController(vc, animated: true)
             } else {
                 RegisterCache.sharedTools.countryCode = CountryCodeInputText.text ?? "+1"
-                RegisterCache.sharedTools.phone = "9452007009"//PhoneNumberInputText.text ?? ""
-                LoginBackend.shared.signUp(for: "\(RegisterCache.sharedTools.countryCode)\(RegisterCache.sharedTools.phone)", password: RegisterCache.sharedTools.password) {
-                    DispatchQueue.main.async {
-                        let vc = ConfirmationCodeViewController()
-                        self.navigationController?.pushViewController(vc, animated: true)
+                RegisterCache.sharedTools.phone = PhoneNumberInputText.text ?? ""
+                // "\(RegisterCache.sharedTools.countryCode)\(RegisterCache.sharedTools.phone)"
+                //"7048901338"
+                /// 根据手机号查询用户
+                LoginBackend.shared.queryUserBy(phone: "\(RegisterCache.sharedTools.countryCode)\(RegisterCache.sharedTools.phone)") { user in
+                    if let _ = user {
+                        self.resendCode()
+                    } else {
+                        self.signUp()
                     }
-                } suc: {
-                    print("send code success")
-                } fail: { error in
-                    print("signUp fail \(error)")
-                    DispatchQueue.main.async {
-                        self.showFail()
-                    }
+                } fail: { msg in
+                    self.signUp()
                 }
             }
         }
@@ -73,23 +72,44 @@ extension PhoneInputViewController:UITextFieldDelegate{
         return true
     }
 
+    /// 注册
+    func signUp() {
+        LoginBackend.shared.signUp(for: "\(RegisterCache.sharedTools.countryCode)\(RegisterCache.sharedTools.phone)", password: RegisterCache.sharedTools.password) {
+            DispatchQueue.main.async {
+                let vc = ConfirmationCodeViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        } suc: {
+            print("send code success")
+        } fail: { error in
+            print("signUp fail \(error)")
+            DispatchQueue.main.async {
+                self.showFail()
+            }
+        }
+    }
+    
+    /// 重发验证码
+    func resendCode() {
+        LoginBackend.shared.resendCodeForSignUp(username: RegisterCache.sharedTools.phone) {
+            print("send code success")
+            DispatchQueue.main.async {
+                let vc = ConfirmationCodeViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        } fail: { msg in
+            DispatchQueue.main.async {
+                self.showFail()
+            }
+        }
+    }
+    
     func showFail() {
         let alert = UIAlertController(title: "Tips", message: "Failed to send the verification code.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         alert.addAction(UIAlertAction(title: "Resend", style: .default, handler: { _ in
             alert.dismiss(animated: true)
-            LoginBackend.shared.resendCodeForSignUp(username: RegisterCache.sharedTools.phone) {
-                print("send code success")
-                DispatchQueue.main.async {
-                    let vc = ConfirmationCodeViewController()
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-            } fail: { msg in
-                DispatchQueue.main.async {
-                    self.showFail()
-                }
-            }
-
+            self.resendCode()
         }))
         present(alert, animated: true)
     }
