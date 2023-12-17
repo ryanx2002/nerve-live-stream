@@ -64,6 +64,10 @@ class AuditLoginViewController: BaseViewController {
             SVProgressHUD.showError(withStatus: "Please enter password")
             return
         }
+        if passwordTF.text != "NerveLive2023!" {
+            SVProgressHUD.showError(withStatus: "Incorrect password")
+            return
+        }
         /// +19452007009  +17048901338
         SVProgressHUD.show()
         let phone = self.isMaster ? "+17048901338" : "+19452007009"
