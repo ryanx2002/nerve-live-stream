@@ -63,7 +63,7 @@ class AuditLoginViewController: BaseViewController {
             SVProgressHUD.showError(withStatus: "Please enter password")
             return
         }
-        if passwordTF.text != "NerveLive2023!" {
+        if passwordTF.text != "Quest2023!" {
             SVProgressHUD.showError(withStatus: "Incorrect password")
             return
         }
