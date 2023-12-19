@@ -54,6 +54,7 @@ PODS:
   - Kingfisher (7.9.1)
   - Starscream (3.1.1)
   - SVProgressHUD (2.2.5)
+  - YYText (1.0.7)
 
 DEPENDENCIES:
   - Amplify (= 1.19.2)
@@ -73,6 +74,7 @@ DEPENDENCIES:
   - Kingfisher (~> 7.9.1)
   - Starscream (~> 3.1.1)
   - SVProgressHUD (~> 2.2.5)
+  - YYText (~> 1.0.7)
 
 SPEC REPOS:
   https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
@@ -95,6 +97,7 @@ SPEC REPOS:
     - Kingfisher
     - Starscream
     - SVProgressHUD
+    - YYText
 
 SPEC CHECKSUMS:
   Amplify: cc3adcea085108a52bc3bb8273e5b38034593127
@@ -116,7 +119,8 @@ SPEC CHECKSUMS:
   Kingfisher: 1d14e9f59cbe19389f591c929000332bf70efd32
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 707cbf0121a001e98dd136f6306c68ee3a3a3648
+PODFILE CHECKSUM: f4e76b6968aa8c3a407b3ea6429faa4526033ecb
 
 COCOAPODS: 1.12.1

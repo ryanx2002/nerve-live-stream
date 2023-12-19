@@ -266,5 +266,19 @@ class LoginBackend: NSObject {
             }
         }
     }
+
+    public func signOut(suc:@escaping ()->Void,fail:@escaping ()->Void) {
+        _ = Amplify.Auth.signOut() { (result) in
+            switch result {
+            case .success:
+                print("Successfully signed out")
+                LoginTools.sharedTools.removeUserInfo()
+                suc()
+            case .failure(let error):
+                print("Sign out failed with error \(error)")
+                fail()
+            }
+        }
+    }
 }
 

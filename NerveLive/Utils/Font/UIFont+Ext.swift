@@ -23,3 +23,7 @@ extension UIFont {
         return .systemFont(ofSize: fontSize)
     }
 }
+
+func FONT(_ s: CGFloat) -> UIFont {
+    return UIFont.font(ofSize: s, type: .Regular)
+}

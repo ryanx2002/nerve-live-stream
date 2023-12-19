@@ -20,11 +20,6 @@ class PhoneInputViewController: BaseViewController {
         self.CountryCodeInputText.delegate = self;
         self.PhoneNumberInputText.attributedPlaceholder = StringUtils.PlaceholderAttributeText(contentText: "(610)555-0123")
         self.PhoneNumberInputText.delegate = self
-
-        Amplify.Auth.signOut { _ in
-
-        }
-        
 //        Amplify.Auth.signOut { _ in
 //            print("退出登录成功")
 //
@@ -66,6 +61,15 @@ extension PhoneInputViewController:UITextFieldDelegate{
                 } fail: { msg in
                     self.signUp()
                 }
+            }
+        } else {
+            if (self.CountryCodeInputText.text ?? "").count <= 0 {
+                SVProgressHUD.showError(withStatus: "Please enter the area code")
+                return false
+            }
+            if (self.PhoneNumberInputText.text ?? "").count <= 0 {
+                SVProgressHUD.showError(withStatus: "Please enter the phone number")
+                return false
             }
         }
         textField.resignFirstResponder()

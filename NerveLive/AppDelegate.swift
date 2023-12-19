@@ -24,7 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let user = LoginTools.sharedTools.userInfo()
         var rootViewController: UIViewController?
         if user.id.isEmpty { // 未注册
-            rootViewController = PhoneInputViewController()
+            // rootViewController = PhoneInputViewController()
+            rootViewController = StartupPageViewController()
         } else {
             debugPrint("userid:\(user.id)")
             if (user.firstName ?? "").isEmpty || (user.lastName ?? "").isEmpty { // 未补充姓名

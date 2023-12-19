@@ -19,16 +19,14 @@ class AuditLoginViewController: BaseViewController {
         view.addSubview(textLabel)
         view.addSubview(passwordTF)
         view.addSubview(signUpBtn)
-        Amplify.Auth.signOut { _ in
-
-        }
     }
     
     lazy var textLabel: UILabel = {
         let textLabel = UILabel(frame: CGRect(x: 0, y: 192, width: K_SCREEN_WIDTH, height: 20))
         textLabel.font = UIFont.font(ofSize: 16, type: .Regular)
-        textLabel.text = "Please enter password"
-        textLabel.textColor = UIColor.hexColorWithAlpha(color: "#FF00E5", alpha: 1)
+        // textLabel.text = "Please enter password"
+        textLabel.attributedText = StringUtils.TextWithBorder(font: 16, text: "Please enter password")
+        // textLabel.textColor = UIColor.hexColorWithAlpha(color: "#FF00E5", alpha: 1)
         textLabel.textAlignment = .center
         return textLabel
     }()
@@ -50,10 +48,11 @@ class AuditLoginViewController: BaseViewController {
         signUpBtn.frame = CGRect(x: (K_SCREEN_WIDTH - 80) / 2, y: passwordTF.frame.maxY + 60, width: 80, height: 50)
         signUpBtn.layer.cornerRadius = 6
         signUpBtn.layer.masksToBounds = true
-        signUpBtn.layer.borderWidth = 1
-        signUpBtn.layer.borderColor = UIColor.hexColorWithAlpha(color: "#FF00E5", alpha: 1).cgColor
+        //signUpBtn.layer.borderWidth = 1
+        //signUpBtn.layer.borderColor = UIColor.hexColorWithAlpha(color: "#FF00E5", alpha: 1).cgColor
         signUpBtn.setTitle("Sign Up", for: .normal)
-        signUpBtn.setTitleColor(UIColor.hexColorWithAlpha(color: "#FF00E5", alpha: 1), for: .normal)
+        signUpBtn.setTitleColor(UIColor.white, for: .normal)
+        signUpBtn.backgroundColor = UIColor(red: 1, green: 0, blue: 0.898, alpha: 0.5)
         signUpBtn.addTarget(self, action: #selector(signUpBtnClick), for: .touchUpInside)
         return signUpBtn
     }()

@@ -24,7 +24,7 @@ target 'NerveLive' do
   pod 'GoogleWebRTC', '~> 1.1'
   pod 'Starscream', '~> 3.1.1'
 
-
+  pod 'YYText', '~> 1.0.7' # YY
   pod 'IQKeyboardManagerSwift', '~> 6.5.12'
   pod 'Kingfisher', '~> 7.9.1' # Image loading library
   pod 'SVProgressHUD', '~> 2.2.5' # HUD loading

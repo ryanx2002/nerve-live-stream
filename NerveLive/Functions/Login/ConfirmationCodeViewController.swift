@@ -19,8 +19,9 @@ class ConfirmationCodeViewController: BaseViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        UIViewSetFrameWidth(view: DescTitle, width: 260)
-        UIViewSetFrameCenterX(view: DescTitle, x: K_SCREEN_WIDTH / 2.0)
+        UIViewSetFrameX(view: DescTitle, x: 0)
+        UIViewSetFrameWidth(view: DescTitle, width: K_SCREEN_WIDTH)
+        self.DescTitle.textAlignment = .center
     }
 
     override func viewDidLoad() {
@@ -80,6 +81,7 @@ class ConfirmationCodeViewController: BaseViewController {
                 print(error)
                 DispatchQueue.main.async {
                     SVProgressHUD.dismiss()
+                    SVProgressHUD.showError(withStatus: error.debugDescription)
                 }
             } confirmSignUp: {
                 DispatchQueue.main.async {
@@ -89,6 +91,7 @@ class ConfirmationCodeViewController: BaseViewController {
         } fail: { error in
             DispatchQueue.main.async {
                 SVProgressHUD.dismiss()
+                SVProgressHUD.showError(withStatus: "Invalid verification code provided, please try again.")
             }
         }
     }
