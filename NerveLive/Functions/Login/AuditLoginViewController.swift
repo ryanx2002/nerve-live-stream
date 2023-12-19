@@ -50,7 +50,7 @@ class AuditLoginViewController: BaseViewController {
         signUpBtn.layer.masksToBounds = true
         //signUpBtn.layer.borderWidth = 1
         //signUpBtn.layer.borderColor = UIColor.hexColorWithAlpha(color: "#FF00E5", alpha: 1).cgColor
-        signUpBtn.setTitle("Sign Up", for: .normal)
+        signUpBtn.setTitle("Sign In", for: .normal)
         signUpBtn.setTitleColor(UIColor.white, for: .normal)
         signUpBtn.backgroundColor = UIColor(red: 1, green: 0, blue: 0.898, alpha: 0.5)
         signUpBtn.addTarget(self, action: #selector(signUpBtnClick), for: .touchUpInside)

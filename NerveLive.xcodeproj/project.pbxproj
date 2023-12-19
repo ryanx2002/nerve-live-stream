@@ -730,8 +730,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NerveLive/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Quest;
-				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires access to camera to capture video";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app requires access to microphone";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Quest uses your device's camera to Live streaming.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Quest uses your device's microphone to Live streaming.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -766,8 +766,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NerveLive/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Quest;
-				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires access to camera to capture video";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app requires access to microphone";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Quest uses your device's camera to Live streaming.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Quest uses your device's microphone to Live streaming.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
