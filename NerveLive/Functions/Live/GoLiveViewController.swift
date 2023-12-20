@@ -19,11 +19,13 @@ class GoLiveViewController: BaseViewController {
     }
 
     lazy var openLiveBtn: UIButton = {
-        let openLiveBtn = UIButton(frame: CGRect(x: (K_SCREEN_WIDTH - 150) / 2.0, y: (K_SCREEN_HEIGHT - 60) / 2.0, width: 150, height: 60))
+        let width = (374.0 * 61.0) / 183.0
+        let openLiveBtn = UIButton(frame: CGRect(x: (K_SCREEN_WIDTH - width) / 2.0, y: (K_SCREEN_HEIGHT - 61) / 2.0, width: width, height: 61))
         openLiveBtn.backgroundColor = .clear
-        openLiveBtn.setTitle("Go Live", for: .normal)
-        openLiveBtn.titleLabel?.textAlignment = .center
-        openLiveBtn.titleLabel?.font = UIFont.font(ofSize: 36, type: .Bold)
+        //openLiveBtn.setTitle("Go Live", for: .normal)
+        //openLiveBtn.titleLabel?.textAlignment = .center
+        //openLiveBtn.titleLabel?.font = UIFont.font(ofSize: 36, type: .Bold)
+        openLiveBtn.setImage(UIImage(named: "icon_go_live"), for: .normal)
         openLiveBtn.addTarget(self, action: #selector(goLive), for: .touchUpInside)
         return openLiveBtn
     }()

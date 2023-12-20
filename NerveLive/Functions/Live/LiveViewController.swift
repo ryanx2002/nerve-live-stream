@@ -21,6 +21,9 @@ class LiveViewController: BaseViewController {
         super.viewDidLoad()
         view.addSubview(localVideoView)
         view.addSubview(closeBtn)
+
+        view.addSubview(lookBtn)
+        view.addSubview(liveBtn)
         
         if !LiveManager.shared.isMaster {
             // In viewer mode send offer once connection is established
@@ -97,11 +100,40 @@ class LiveViewController: BaseViewController {
     }()
     
     lazy var closeBtn: UIButton = {
-        let closeBtn = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - 44 - 16, y: K_SAFEAREA_TOP_HEIGHT(), width: 44, height: 44))
+        let closeBtn = UIButton(frame: CGRect(x: 16, y: K_SAFEAREA_TOP_HEIGHT(), width: 44, height: 44))
         closeBtn.backgroundColor = .clear
         closeBtn.setImage(UIImage(named: "nav_close_back"), for: .normal)
         closeBtn.addTarget(self, action: #selector(closeLive), for: .touchUpInside)
         return closeBtn
     }()
+
+    lazy var lookBtn: UIButton = {
+        let lookBtn = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - 66 - 16, y: K_SAFEAREA_TOP_HEIGHT(), width: 66, height: 36))
+        lookBtn.backgroundColor = UIColor.hexColorWithAlpha(color: "4E4744", alpha: 1)
+        lookBtn.setImage(UIImage(named: "icon_eye"), for: .normal)
+        lookBtn.setTitle("2", for: .normal)
+        lookBtn.setTitleColor(.white, for: .normal)
+        lookBtn.titleLabel?.font = UIFont.font(ofSize: 14, type: .Regular)
+        lookBtn.addTarget(self, action: #selector(lookBtnClick), for: .touchUpInside)
+        lookBtn.layer.cornerRadius = 5
+        lookBtn.layer.masksToBounds = true
+        return lookBtn
+    }()
+
+    @objc func lookBtnClick() {
+
+    }
+
+    lazy var liveBtn: UIButton = {
+        let liveBtn = UIButton(frame: CGRect(x: lookBtn.frame.minX - 50 - 16, y: K_SAFEAREA_TOP_HEIGHT(), width: 50, height: 37))
+        liveBtn.backgroundColor = .clear
+        liveBtn.setImage(UIImage(named: "icon_onLive"), for: .normal)
+        liveBtn.addTarget(self, action: #selector(liveBtnClick), for: .touchUpInside)
+        return liveBtn
+    }()
+
+    @objc func liveBtnClick() {
+
+    }
 
 }
