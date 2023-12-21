@@ -17,6 +17,36 @@ class LiveViewController: BaseViewController {
         AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
     }
 
+    /// 进入直播间
+    func enterLiveRoom() {
+        var user = LoginTools.sharedTools.userInfo()
+        if user.isMaster ?? false { // master 角色
+            user.isLive = true
+            LoginBackend.shared.updateUser(user: user) {
+                debugPrint("master is Live")
+            } fail: { msg in
+                debugPrint("master open Live fail")
+            }
+        } else { // viewer角色
+
+        }
+    }
+
+    /// 退出直播间
+    func exitLiveRoom() {
+        var user = LoginTools.sharedTools.userInfo()
+        if user.isMaster ?? false { // master 角色
+            user.isLive = false
+            LoginBackend.shared.updateUser(user: user) {
+                debugPrint("master is not Live")
+            } fail: { msg in
+                debugPrint("master close Live fail")
+            }
+        } else { // viewer角色
+
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(localVideoView)
@@ -24,7 +54,9 @@ class LiveViewController: BaseViewController {
 
         view.addSubview(lookBtn)
         view.addSubview(liveBtn)
-        
+
+        enterLiveRoom()
+
         if !LiveManager.shared.isMaster {
             // In viewer mode send offer once connection is established
             if let webRTCClient = LiveManager.shared.webRTCClient {
@@ -85,6 +117,7 @@ class LiveViewController: BaseViewController {
     @objc func closeLive() {
         LiveManager.shared.webRTCClient?.shutdown()
         LiveManager.shared.signalingClient?.disconnect()
+        exitLiveRoom()
         dismiss(animated: true)
     }
     
