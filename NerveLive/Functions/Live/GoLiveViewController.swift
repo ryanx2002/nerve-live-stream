@@ -13,9 +13,9 @@ class GoLiveViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(menuBtn)
         view.addSubview(openLiveBtn)
         // view.addSubview(idLabel)
-        view.addSubview(logoutBtn)
     }
 
     lazy var openLiveBtn: UIButton = {
@@ -45,28 +45,19 @@ class GoLiveViewController: BaseViewController {
         idLabel.text = LoginTools.sharedTools.userId()
         return idLabel
     }()
-
-    lazy var logoutBtn: UIButton = {
-        let logoutBtn = UIButton(type: .custom)
-        logoutBtn.frame = CGRect(x: 0 , y: K_SCREEN_HEIGHT - K_SAFEAREA_BOTTOM_HEIGHT() - 50, width: K_SCREEN_WIDTH, height: 50)
-        logoutBtn.backgroundColor = .clear
-        logoutBtn.setImage(UIImage(named: "logout_account"), for: .normal)
-        logoutBtn.addTarget(self, action: #selector(logoutBtnClicked), for: .touchUpInside)
-        return logoutBtn
+    
+    lazy var menuBtn: UIButton = {
+        let menuBtn = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - 22 - 48, y: K_SAFEAREA_TOP_HEIGHT(), width: 48, height: 48))
+        menuBtn.backgroundColor = .clear
+        menuBtn.setImage(UIImage(named: "icon_line_menu"), for: .normal)
+        menuBtn.addTarget(self, action: #selector(menuBtnClick), for: .touchUpInside)
+        return menuBtn
     }()
 
-    /// 退出登录点击事件
-    @objc func logoutBtnClicked() {
-        SVProgressHUD.show()
-        LoginBackend.shared.signOut {
-            LiveManager.shared.signOut()
-            SVProgressHUD.dismiss()
-            DispatchQueue.main.async {
-                getAppDelegate().changeRootViewController()
-            }
-        } fail: {
-            SVProgressHUD.showError(withStatus: "Logout Fail")
-        }
+    @objc func menuBtnClick() {
+        let vc = SettingViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
 
 }
