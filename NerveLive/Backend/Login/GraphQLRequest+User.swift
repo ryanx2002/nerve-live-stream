@@ -23,6 +23,8 @@ extension GraphQLRequest {
                     profilePhoto
                     updatedAt
                     venmo
+                    isMaster
+                    isLive
                 }
             }
             """
@@ -50,6 +52,8 @@ extension GraphQLRequest {
                 email
                 deviceToken
                 createdAt
+                isMaster
+                isLive
               }
             }
         """
@@ -110,6 +114,8 @@ extension GraphQLRequest {
                   profilePhoto
                   updatedAt
                   venmo
+                  isMaster
+                  isLive
                 }
               }
             }

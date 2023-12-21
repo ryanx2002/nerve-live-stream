@@ -31,7 +31,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if (user.firstName ?? "").isEmpty || (user.lastName ?? "").isEmpty { // 未补充姓名
                 rootViewController = NameInputViewController()
             } else {
-                rootViewController = GoLiveViewController() //GoLiveViewController()
+                if user.isMaster ?? false {
+                    rootViewController = GoLiveViewController() //GoLiveViewController()
+                } else {
+                    rootViewController = ViewerGoLiveViewController()
+                }
             }
         }
         if let root = rootViewController {

@@ -8,7 +8,7 @@
 import UIKit
 import SVProgressHUD
 
-/// 前往直播页面
+/// master角色前往直播页面
 class GoLiveViewController: BaseViewController {
 
     override func viewDidLoad() {

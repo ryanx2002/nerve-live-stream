@@ -98,4 +98,20 @@ extension LoginBackend {
             fail(msg)
         }
     }
+
+    /// 删除用户账户
+    /// - Parameters:
+    ///   - model: 用户model
+    func deleteUser(model: User, success: @escaping () -> Void, fail: @escaping (_ msg: String) -> Void) {
+        Amplify.API.mutate(request: .delete(model)) { result in
+            switch result {
+            case .success(let model):
+                print("Successfully deleted UserProfileModel: \(model)")
+                success()
+            case .failure(let error):
+                print("Failed to delete UserProfileModel - \(error)")
+                fail(error.localizedDescription)
+            }
+        }
+    }
 }

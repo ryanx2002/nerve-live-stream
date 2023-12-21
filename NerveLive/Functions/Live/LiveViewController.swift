@@ -19,32 +19,12 @@ class LiveViewController: BaseViewController {
 
     /// 进入直播间
     func enterLiveRoom() {
-        var user = LoginTools.sharedTools.userInfo()
-        if user.isMaster ?? false { // master 角色
-            user.isLive = true
-            LoginBackend.shared.updateUser(user: user) {
-                debugPrint("master is Live")
-            } fail: { msg in
-                debugPrint("master open Live fail")
-            }
-        } else { // viewer角色
-
-        }
+        LiveManager.shared.enterLiveRoom()
     }
 
     /// 退出直播间
     func exitLiveRoom() {
-        var user = LoginTools.sharedTools.userInfo()
-        if user.isMaster ?? false { // master 角色
-            user.isLive = false
-            LoginBackend.shared.updateUser(user: user) {
-                debugPrint("master is not Live")
-            } fail: { msg in
-                debugPrint("master close Live fail")
-            }
-        } else { // viewer角色
-
-        }
+        LiveManager.shared.exitLiveRoom()
     }
 
     override func viewDidLoad() {
