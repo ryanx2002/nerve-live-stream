@@ -1,66 +1,80 @@
 PODS:
-  - Amplify (1.30.4):
-    - Amplify/Default (= 1.30.4)
-  - Amplify/Default (1.30.4)
-  - Amplify/Tools (1.30.4)
-  - AmplifyPlugins/AWSAPIPlugin (1.30.4):
-    - AppSyncRealTimeClient (~> 3.1)
-    - AWSCore (~> 2.33.0)
-    - AWSPluginsCore (= 1.30.4)
-  - AmplifyPlugins/AWSCognitoAuthPlugin (1.30.4):
-    - AWSAuthCore (~> 2.33.0)
-    - AWSCognitoIdentityProvider (~> 2.33.0)
-    - AWSCognitoIdentityProviderASF (~> 2.33.0)
-    - AWSCore (~> 2.33.0)
-    - AWSMobileClient (~> 2.33.0)
-    - AWSPluginsCore (= 1.30.4)
-  - AmplifyPlugins/AWSPinpointAnalyticsPlugin (1.30.4):
-    - AWSCore (~> 2.33.0)
-    - AWSPinpoint (~> 2.33.0)
-    - AWSPluginsCore (= 1.30.4)
-  - AmplifyPlugins/AWSS3StoragePlugin (1.30.4):
-    - AWSCore (~> 2.33.0)
-    - AWSPluginsCore (= 1.30.4)
-    - AWSS3 (~> 2.33.0)
-  - AppSyncRealTimeClient (3.1.1):
-    - Starscream (= 4.0.4)
-  - AWSAuthCore (2.33.4):
-    - AWSCore (= 2.33.4)
-  - AWSCognitoIdentityProvider (2.33.4):
-    - AWSCognitoIdentityProviderASF (= 2.33.4)
-    - AWSCore (= 2.33.4)
-  - AWSCognitoIdentityProviderASF (2.33.4):
-    - AWSCore (= 2.33.4)
-  - AWSCore (2.33.4)
-  - AWSMobileClient (2.33.4):
-    - AWSAuthCore (= 2.33.4)
-    - AWSCognitoIdentityProvider (= 2.33.4)
-    - AWSCognitoIdentityProviderASF (= 2.33.4)
-    - AWSCore (= 2.33.4)
-  - AWSPinpoint (2.33.4):
-    - AWSCore (= 2.33.4)
-  - AWSPluginsCore (1.30.4):
-    - Amplify (= 1.30.4)
-    - AWSCore (~> 2.33.0)
-  - AWSS3 (2.33.4):
-    - AWSCore (= 2.33.4)
+  - Amplify (1.19.2):
+    - Amplify/Default (= 1.19.2)
+  - Amplify/Default (1.19.2)
+  - Amplify/Tools (1.19.2)
+  - AmplifyPlugins/AWSAPIPlugin (1.19.2):
+    - AppSyncRealTimeClient (~> 1.4)
+    - AWSCore (~> 2.27.0)
+    - AWSPluginsCore (= 1.19.2)
+  - AmplifyPlugins/AWSCognitoAuthPlugin (1.19.2):
+    - AWSAuthCore (~> 2.27.0)
+    - AWSCognitoIdentityProvider (~> 2.27.0)
+    - AWSCognitoIdentityProviderASF (~> 2.27.0)
+    - AWSCore (~> 2.27.0)
+    - AWSMobileClient (~> 2.27.0)
+    - AWSPluginsCore (= 1.19.2)
+  - AmplifyPlugins/AWSPinpointAnalyticsPlugin (1.19.2):
+    - AWSCore (~> 2.27.0)
+    - AWSPinpoint (~> 2.27.0)
+    - AWSPluginsCore (= 1.19.2)
+  - AmplifyPlugins/AWSS3StoragePlugin (1.19.2):
+    - AWSCore (~> 2.27.0)
+    - AWSPluginsCore (= 1.19.2)
+    - AWSS3 (~> 2.27.0)
+  - AppSyncRealTimeClient (1.6.0):
+    - Starscream (~> 3.1.1)
+  - AWSAuthCore (2.27.15):
+    - AWSCore (= 2.27.15)
+  - AWSCognitoIdentityProvider (2.27.15):
+    - AWSCognitoIdentityProviderASF (= 2.27.15)
+    - AWSCore (= 2.27.15)
+  - AWSCognitoIdentityProviderASF (2.27.15):
+    - AWSCore (= 2.27.15)
+  - AWSCore (2.27.15)
+  - AWSKinesisVideo (2.27.15):
+    - AWSCore (= 2.27.15)
+  - AWSKinesisVideoSignaling (2.27.15):
+    - AWSCore (= 2.27.15)
+  - AWSMobileClient (2.27.15):
+    - AWSAuthCore (= 2.27.15)
+    - AWSCognitoIdentityProvider (= 2.27.15)
+    - AWSCognitoIdentityProviderASF (= 2.27.15)
+    - AWSCore (= 2.27.15)
+  - AWSPinpoint (2.27.15):
+    - AWSCore (= 2.27.15)
+  - AWSPluginsCore (1.19.2):
+    - Amplify (= 1.19.2)
+    - AWSCore (~> 2.27.0)
+  - AWSS3 (2.27.15):
+    - AWSCore (= 2.27.15)
+  - CommonCryptoModule (1.0.2)
+  - GoogleWebRTC (1.1.32000)
   - IQKeyboardManagerSwift (6.5.12)
   - Kingfisher (7.9.1)
-  - Starscream (4.0.4)
+  - Starscream (3.1.1)
   - SVProgressHUD (2.2.5)
+  - YYText (1.0.7)
 
 DEPENDENCIES:
-  - Amplify
+  - Amplify (= 1.19.2)
   - Amplify/Tools
   - AmplifyPlugins/AWSAPIPlugin
   - AmplifyPlugins/AWSCognitoAuthPlugin
   - AmplifyPlugins/AWSPinpointAnalyticsPlugin
   - AmplifyPlugins/AWSS3StoragePlugin
+  - AWSCognitoIdentityProvider
+  - AWSKinesisVideo
+  - AWSKinesisVideoSignaling
   - AWSMobileClient
   - AWSPinpoint
+  - CommonCryptoModule
+  - GoogleWebRTC (~> 1.1)
   - IQKeyboardManagerSwift (~> 6.5.12)
   - Kingfisher (~> 7.9.1)
+  - Starscream (~> 3.1.1)
   - SVProgressHUD (~> 2.2.5)
+  - YYText (~> 1.0.7)
 
 SPEC REPOS:
   https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
@@ -71,32 +85,42 @@ SPEC REPOS:
     - AWSCognitoIdentityProvider
     - AWSCognitoIdentityProviderASF
     - AWSCore
+    - AWSKinesisVideo
+    - AWSKinesisVideoSignaling
     - AWSMobileClient
     - AWSPinpoint
     - AWSPluginsCore
     - AWSS3
+    - CommonCryptoModule
+    - GoogleWebRTC
     - IQKeyboardManagerSwift
     - Kingfisher
     - Starscream
     - SVProgressHUD
+    - YYText
 
 SPEC CHECKSUMS:
-  Amplify: 4e41668c8801667e174ab50c12bc3099c71a257f
-  AmplifyPlugins: 1335f0919aa07329df58685a020f2311c75a5176
-  AppSyncRealTimeClient: b33e3139fb3e71ee129698aee19de88bc6ddafd8
-  AWSAuthCore: 0584cee14bd5a692b8daa1c43b06df9524533692
-  AWSCognitoIdentityProvider: 74464aeebddb8546586f979c8ed055180a4b1855
-  AWSCognitoIdentityProviderASF: 28c6a2916512c08ded36b1aab4d92a1b5805d868
-  AWSCore: 83e3416d2224ba98b61d8eadcfcb1f90f48fab82
-  AWSMobileClient: ff115272d8b29f05443f82f5800036c498c5ca8b
-  AWSPinpoint: e13098188d2907874edbca23df7fbb1b4a0992ba
-  AWSPluginsCore: f2188458c27e6cb09597c67876f80611d14275d7
-  AWSS3: a0d31bc565dc8a6c5eaa756610ac15704c100674
+  Amplify: cc3adcea085108a52bc3bb8273e5b38034593127
+  AmplifyPlugins: 4b24b838046785cf89d733a579a5c2ce56907c8c
+  AppSyncRealTimeClient: 8b5ec94085b8ee9bb6fb9d9d76a157beb538ec6f
+  AWSAuthCore: 0bac0e67c28d620c8f823c88bd15d552544e801a
+  AWSCognitoIdentityProvider: a8d244d0cdfeff425fe20a2fb49b7e9cb89c4748
+  AWSCognitoIdentityProviderASF: 5dccf24b43c287eb1949e83cefccb6c25cdc04b7
+  AWSCore: c67277201b6aca10e4cf24638eadaa67c85ebf03
+  AWSKinesisVideo: e2e84a20bd5d3712250d77d9962e378617ec0052
+  AWSKinesisVideoSignaling: 1daa00a0c66cb627b21fad0d0b6f952ffd3d92e1
+  AWSMobileClient: 6f60d1fb6373e21aaada443dd4d4bf087158614d
+  AWSPinpoint: e2ea6471c4a4efd7a4d58546f34539c9dac185a7
+  AWSPluginsCore: 8c8d23756e6094aa92adfbe5c4b9cc1df1075576
+  AWSS3: 09801b290f8818f532694cabd5d503c7474eb3df
+  CommonCryptoModule: 63a68b57abed79655b3a01011419bf037a05b0a0
+  GoogleWebRTC: 4d261187b30512efdb711d21fa961a6adf138717
   IQKeyboardManagerSwift: 371b08cb39664fb56030f5345c815a4ffc74bbc0
   Kingfisher: 1d14e9f59cbe19389f591c929000332bf70efd32
-  Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
+  Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 31bb6d558e237742989d9aa43c0d9e017bd059ed
+PODFILE CHECKSUM: f4e76b6968aa8c3a407b3ea6429faa4526033ecb
 
 COCOAPODS: 1.12.1

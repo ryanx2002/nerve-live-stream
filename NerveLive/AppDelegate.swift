@@ -10,27 +10,61 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
+    var orientationLock = UIInterfaceOrientationMask.all
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        addAmplify()
+        addLive()
+        changeRootViewController()
         return true
     }
 
-    // MARK: UISceneSession Lifecycle
-
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    func changeRootViewController() {
+        let user = LoginTools.sharedTools.userInfo()
+        var rootViewController: UIViewController?
+        if user.id.isEmpty { // 未注册
+            // rootViewController = PhoneInputViewController()
+            rootViewController = StartupPageViewController()
+        } else {
+            debugPrint("userid:\(user.id)")
+            if (user.firstName ?? "").isEmpty || (user.lastName ?? "").isEmpty { // 未补充姓名
+                rootViewController = NameInputViewController()
+            } else {
+                rootViewController = GoLiveViewController() //GoLiveViewController()
+            }
+        }
+        if let root = rootViewController {
+            let navVC: UINavigationController  = UINavigationController(rootViewController: root)
+            navVC.isNavigationBarHidden = true
+            self.window?.rootViewController = navVC
+            self.window?.backgroundColor = .white
+            self.window?.makeKeyAndVisible()
+        }
     }
-
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return self.orientationLock
     }
+    
+    struct AppUtility {
+        static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {
+            if let delegate = UIApplication.shared.delegate as? AppDelegate {
+                delegate.orientationLock = orientation
+            }
+        }
 
-
+        static func lockOrientation(_ orientation: UIInterfaceOrientationMask, andRotateTo rotateOrientation: UIInterfaceOrientation) {
+            self.lockOrientation(orientation)
+//             if #available(iOS 16, *) {
+//                 DispatchQueue.main.async {
+//                     let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+//                         windowScene?.requestGeometryUpdate(.iOS(interfaceOrientations: orientation))
+//                 }
+//             } else {
+            UIDevice.current.setValue(rotateOrientation.rawValue, forKey: "orientation")
+//             }
+        }
+    }
 }
 

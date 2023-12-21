@@ -7,11 +7,66 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		358497B82B2BF168000EF591 /* GoLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358497B72B2BF168000EF591 /* GoLiveViewController.swift */; };
+		35AC97462B1DDE50005E843E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC97382B1DDE4F005E843E /* BaseViewController.swift */; };
+		35AC97472B1DDE50005E843E /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC973A2B1DDE4F005E843E /* UIColorExtension.swift */; };
+		35AC97482B1DDE50005E843E /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC973B2B1DDE50005E843E /* StringUtils.swift */; };
+		35AC97492B1DDE50005E843E /* ImageCacheUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC973C2B1DDE50005E843E /* ImageCacheUtils.swift */; };
+		35AC974A2B1DDE50005E843E /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC973D2B1DDE50005E843E /* Date+Ext.swift */; };
+		35AC974B2B1DDE50005E843E /* FrameUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC973E2B1DDE50005E843E /* FrameUtils.swift */; };
+		35AC974C2B1DDE50005E843E /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC973F2B1DDE50005E843E /* String+Ext.swift */; };
+		35AC974D2B1DDE50005E843E /* CodableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC97412B1DDE50005E843E /* CodableHelper.swift */; };
+		35AC974E2B1DDE50005E843E /* CodableString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC97422B1DDE50005E843E /* CodableString.swift */; };
+		35AC974F2B1DDE50005E843E /* CodableAny.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC97432B1DDE50005E843E /* CodableAny.swift */; };
+		35AC97502B1DDE50005E843E /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC97452B1DDE50005E843E /* Global.swift */; };
+		35AC97562B1DDEB0005E843E /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC97522B1DDEB0005E843E /* UIFont+Ext.swift */; };
+		35AC97572B1DDEB0005E843E /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35AC97532B1DDEB0005E843E /* Inter-Bold.ttf */; };
+		35AC97582B1DDEB0005E843E /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35AC97542B1DDEB0005E843E /* Inter-Regular.ttf */; };
+		35AC97592B1DDEB0005E843E /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35AC97552B1DDEB0005E843E /* Inter-SemiBold.ttf */; };
+		35AC97772B1DE1AA005E843E /* ConfirmationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC97722B1DE1AA005E843E /* ConfirmationCodeViewController.swift */; };
+		35AC97782B1DE1AA005E843E /* ConfirmationCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35AC97732B1DE1AA005E843E /* ConfirmationCodeViewController.xib */; };
+		35AC97792B1DE1AA005E843E /* PhoneInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC97742B1DE1AA005E843E /* PhoneInputViewController.swift */; };
+		35AC977A2B1DE1AA005E843E /* VenmoEditConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC97752B1DE1AA005E843E /* VenmoEditConfirmationView.swift */; };
+		35AC977B2B1DE1AA005E843E /* PhoneInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35AC97762B1DE1AA005E843E /* PhoneInputViewController.xib */; };
+		35AC977E2B1DE299005E843E /* RegisterCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC977D2B1DE299005E843E /* RegisterCache.swift */; };
+		35AC97812B1DE5FC005E843E /* NameInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC977F2B1DE5FC005E843E /* NameInputViewController.swift */; };
+		35AC97822B1DE5FC005E843E /* NameInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35AC97802B1DE5FC005E843E /* NameInputViewController.xib */; };
+		35AC978C2B1F2A0B005E843E /* VerificationCodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC978B2B1F2A0B005E843E /* VerificationCodeManager.swift */; };
+		35AC978E2B1F2AF1005E843E /* AppDelegate+Amplify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC978D2B1F2AF1005E843E /* AppDelegate+Amplify.swift */; };
+		35AC97922B1F3678005E843E /* LoginBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC97912B1F3678005E843E /* LoginBackend.swift */; };
+		35AC97942B1F3800005E843E /* LoginTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC97932B1F3800005E843E /* LoginTools.swift */; };
+		35AC97962B1F3AA6005E843E /* schema.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 35AC97952B1F3AA6005E843E /* schema.graphql */; };
+		35AC97982B1F3AFE005E843E /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC97972B1F3AFE005E843E /* UserManager.swift */; };
+		35AC979A2B1F3D07005E843E /* GraphQLRequest+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC97992B1F3D07005E843E /* GraphQLRequest+User.swift */; };
+		35BD380F2B312F8F008D265F /* StartupPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BD380E2B312F8F008D265F /* StartupPageViewController.swift */; };
+		35BD38112B3132CA008D265F /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BD38102B3132CA008D265F /* UIColor+Ext.swift */; };
+		35BD38132B313361008D265F /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BD38122B313361008D265F /* WebViewController.swift */; };
+		5325919CE5D7F0AEAF06CF07 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D8734636905A50C181342F /* User.swift */; };
+		681811A4482EF1EC4271BA1D /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27226C6E34F0E8C16E36C820 /* AmplifyModels.swift */; };
+		6A3FEE432B27577E006D63D0 /* AppDelegate+Live.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3FEE422B27577E006D63D0 /* AppDelegate+Live.swift */; };
+		6A3FEE452B275822006D63D0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3FEE442B275822006D63D0 /* Constants.swift */; };
+		6A3FEE4B2B2758A7006D63D0 /* KVSSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3FEE462B2758A6006D63D0 /* KVSSigner.swift */; };
+		6A3FEE4C2B2758A7006D63D0 /* SignalingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3FEE472B2758A7006D63D0 /* SignalingClient.swift */; };
+		6A3FEE4D2B2758A7006D63D0 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3FEE482B2758A7006D63D0 /* Message.swift */; };
+		6A3FEE4E2B2758A7006D63D0 /* WebRTCClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3FEE492B2758A7006D63D0 /* WebRTCClient.swift */; };
+		6A3FEE4F2B2758A7006D63D0 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3FEE4A2B2758A7006D63D0 /* Event.swift */; };
+		6A87A3082B2C8AC4006678B9 /* ChannelConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A87A3072B2C8AC4006678B9 /* ChannelConfigurationViewController.swift */; };
+		6A87A30B2B2C8B34006678B9 /* VideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A87A3092B2C8B34006678B9 /* VideoViewController.xib */; };
+		6A87A30C2B2C8B34006678B9 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A87A30A2B2C8B34006678B9 /* VideoViewController.swift */; };
+		6A87A30E2B2DEFB7006678B9 /* AuditLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A87A30D2B2DEFB7006678B9 /* AuditLoginViewController.swift */; };
+		6AB59FC32B24ACF700B2F5A1 /* LoginBackend+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB59FC22B24ACF700B2F5A1 /* LoginBackend+User.swift */; };
+		6AEE5EA02B29D7A600D1D084 /* LiveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE5E9F2B29D7A600D1D084 /* LiveManager.swift */; };
+		6AEE5EA22B29DC8300D1D084 /* LiveManager+SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE5EA12B29DC8300D1D084 /* LiveManager+SignIn.swift */; };
+		6AEE5EA42B29DDF400D1D084 /* LiveManager+Connect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE5EA32B29DDF400D1D084 /* LiveManager+Connect.swift */; };
+		6AEE5EA62B29DFE100D1D084 /* LiveManager+Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE5EA52B29DFE100D1D084 /* LiveManager+Channel.swift */; };
+		6AEE5EA82B29E24F00D1D084 /* LiveManager+WebRTCClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE5EA72B29E24F00D1D084 /* LiveManager+WebRTCClient.swift */; };
+		6AEE5EAA2B29E2D000D1D084 /* LiveManager+SignalClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE5EA92B29E2D000D1D084 /* LiveManager+SignalClient.swift */; };
+		6AEE5EAC2B29E44300D1D084 /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE5EAB2B29E44300D1D084 /* LiveViewController.swift */; };
 		8A2A36586AA3B1CBAC447CCF /* Pods_NerveLive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F64514B9262E4B6EFD859F2 /* Pods_NerveLive.framework */; };
 		8BEAD253F9D4B4A846FCE879 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 54E299A29CD8D8C9F2D2F54C /* awsconfiguration.json */; };
 		AFEE0F872F6DF53DA8095968 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A7D55A780F6296D630C8AE2 /* amplifyconfiguration.json */; };
+		B3EFEF6ABCD5C44D806A81F4 /* User+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E096ABA1FBB541FB145D91D /* User+Schema.swift */; };
 		B63F5C302B1B5361000D6642 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63F5C2F2B1B5361000D6642 /* AppDelegate.swift */; };
-		B63F5C322B1B5361000D6642 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63F5C312B1B5361000D6642 /* SceneDelegate.swift */; };
 		B63F5C342B1B5361000D6642 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63F5C332B1B5361000D6642 /* ViewController.swift */; };
 		B63F5C372B1B5361000D6642 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B63F5C352B1B5361000D6642 /* Main.storyboard */; };
 		B63F5C392B1B5363000D6642 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B63F5C382B1B5363000D6642 /* Assets.xcassets */; };
@@ -19,19 +74,74 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		27226C6E34F0E8C16E36C820 /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
 		2F96828DC90321A5548651E8 /* Pods-NerveLive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NerveLive.debug.xcconfig"; path = "Target Support Files/Pods-NerveLive/Pods-NerveLive.debug.xcconfig"; sourceTree = "<group>"; };
+		358497B72B2BF168000EF591 /* GoLiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoLiveViewController.swift; sourceTree = "<group>"; };
+		35AC97382B1DDE4F005E843E /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		35AC973A2B1DDE4F005E843E /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		35AC973B2B1DDE50005E843E /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		35AC973C2B1DDE50005E843E /* ImageCacheUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCacheUtils.swift; sourceTree = "<group>"; };
+		35AC973D2B1DDE50005E843E /* Date+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
+		35AC973E2B1DDE50005E843E /* FrameUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameUtils.swift; sourceTree = "<group>"; };
+		35AC973F2B1DDE50005E843E /* String+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		35AC97412B1DDE50005E843E /* CodableHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableHelper.swift; sourceTree = "<group>"; };
+		35AC97422B1DDE50005E843E /* CodableString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableString.swift; sourceTree = "<group>"; };
+		35AC97432B1DDE50005E843E /* CodableAny.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableAny.swift; sourceTree = "<group>"; };
+		35AC97452B1DDE50005E843E /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		35AC97522B1DDEB0005E843E /* UIFont+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
+		35AC97532B1DDEB0005E843E /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
+		35AC97542B1DDEB0005E843E /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
+		35AC97552B1DDEB0005E843E /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
+		35AC97722B1DE1AA005E843E /* ConfirmationCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmationCodeViewController.swift; sourceTree = "<group>"; };
+		35AC97732B1DE1AA005E843E /* ConfirmationCodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfirmationCodeViewController.xib; sourceTree = "<group>"; };
+		35AC97742B1DE1AA005E843E /* PhoneInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneInputViewController.swift; sourceTree = "<group>"; };
+		35AC97752B1DE1AA005E843E /* VenmoEditConfirmationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenmoEditConfirmationView.swift; sourceTree = "<group>"; };
+		35AC97762B1DE1AA005E843E /* PhoneInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneInputViewController.xib; sourceTree = "<group>"; };
+		35AC977D2B1DE299005E843E /* RegisterCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterCache.swift; sourceTree = "<group>"; };
+		35AC977F2B1DE5FC005E843E /* NameInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameInputViewController.swift; sourceTree = "<group>"; };
+		35AC97802B1DE5FC005E843E /* NameInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NameInputViewController.xib; sourceTree = "<group>"; };
+		35AC978B2B1F2A0B005E843E /* VerificationCodeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCodeManager.swift; sourceTree = "<group>"; };
+		35AC978D2B1F2AF1005E843E /* AppDelegate+Amplify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Amplify.swift"; sourceTree = "<group>"; };
+		35AC97912B1F3678005E843E /* LoginBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBackend.swift; sourceTree = "<group>"; };
+		35AC97932B1F3800005E843E /* LoginTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTools.swift; sourceTree = "<group>"; };
+		35AC97952B1F3AA6005E843E /* schema.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = schema.graphql; path = amplify/backend/api/nervelivestream/schema.graphql; sourceTree = "<group>"; };
+		35AC97972B1F3AFE005E843E /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		35AC97992B1F3D07005E843E /* GraphQLRequest+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GraphQLRequest+User.swift"; sourceTree = "<group>"; };
+		35BD380E2B312F8F008D265F /* StartupPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupPageViewController.swift; sourceTree = "<group>"; };
+		35BD38102B3132CA008D265F /* UIColor+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		35BD38122B313361008D265F /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		4F64514B9262E4B6EFD859F2 /* Pods_NerveLive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NerveLive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54E299A29CD8D8C9F2D2F54C /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+		6A3FEE422B27577E006D63D0 /* AppDelegate+Live.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Live.swift"; sourceTree = "<group>"; };
+		6A3FEE442B275822006D63D0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		6A3FEE462B2758A6006D63D0 /* KVSSigner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVSSigner.swift; sourceTree = "<group>"; };
+		6A3FEE472B2758A7006D63D0 /* SignalingClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalingClient.swift; sourceTree = "<group>"; };
+		6A3FEE482B2758A7006D63D0 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		6A3FEE492B2758A7006D63D0 /* WebRTCClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRTCClient.swift; sourceTree = "<group>"; };
+		6A3FEE4A2B2758A7006D63D0 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		6A87A3072B2C8AC4006678B9 /* ChannelConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelConfigurationViewController.swift; sourceTree = "<group>"; };
+		6A87A3092B2C8B34006678B9 /* VideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoViewController.xib; sourceTree = "<group>"; };
+		6A87A30A2B2C8B34006678B9 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		6A87A30D2B2DEFB7006678B9 /* AuditLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditLoginViewController.swift; sourceTree = "<group>"; };
+		6AB59FC22B24ACF700B2F5A1 /* LoginBackend+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginBackend+User.swift"; sourceTree = "<group>"; };
+		6AEE5E9F2B29D7A600D1D084 /* LiveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveManager.swift; sourceTree = "<group>"; };
+		6AEE5EA12B29DC8300D1D084 /* LiveManager+SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LiveManager+SignIn.swift"; sourceTree = "<group>"; };
+		6AEE5EA32B29DDF400D1D084 /* LiveManager+Connect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LiveManager+Connect.swift"; sourceTree = "<group>"; };
+		6AEE5EA52B29DFE100D1D084 /* LiveManager+Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LiveManager+Channel.swift"; sourceTree = "<group>"; };
+		6AEE5EA72B29E24F00D1D084 /* LiveManager+WebRTCClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LiveManager+WebRTCClient.swift"; sourceTree = "<group>"; };
+		6AEE5EA92B29E2D000D1D084 /* LiveManager+SignalClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LiveManager+SignalClient.swift"; sourceTree = "<group>"; };
+		6AEE5EAB2B29E44300D1D084 /* LiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
+		8E096ABA1FBB541FB145D91D /* User+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "User+Schema.swift"; path = "amplify/generated/models/User+Schema.swift"; sourceTree = "<group>"; };
 		9A7D55A780F6296D630C8AE2 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		A31C752DFE34621310DEFFC4 /* Pods-NerveLive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NerveLive.release.xcconfig"; path = "Target Support Files/Pods-NerveLive/Pods-NerveLive.release.xcconfig"; sourceTree = "<group>"; };
 		B63F5C2C2B1B5361000D6642 /* NerveLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NerveLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63F5C2F2B1B5361000D6642 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B63F5C312B1B5361000D6642 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B63F5C332B1B5361000D6642 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B63F5C362B1B5361000D6642 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B63F5C382B1B5363000D6642 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B63F5C3B2B1B5363000D6642 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B63F5C3D2B1B5363000D6642 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9D8734636905A50C181342F /* User.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = User.swift; path = amplify/generated/models/User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +156,123 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		35AC97372B1DDE4F005E843E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				35AC97382B1DDE4F005E843E /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		35AC97392B1DDE4F005E843E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				35BD38102B3132CA008D265F /* UIColor+Ext.swift */,
+				35AC97512B1DDEB0005E843E /* Font */,
+				35AC973A2B1DDE4F005E843E /* UIColorExtension.swift */,
+				35AC973B2B1DDE50005E843E /* StringUtils.swift */,
+				35AC973C2B1DDE50005E843E /* ImageCacheUtils.swift */,
+				35AC973D2B1DDE50005E843E /* Date+Ext.swift */,
+				35AC973E2B1DDE50005E843E /* FrameUtils.swift */,
+				35AC973F2B1DDE50005E843E /* String+Ext.swift */,
+				35AC97402B1DDE50005E843E /* CodableExt */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		35AC97402B1DDE50005E843E /* CodableExt */ = {
+			isa = PBXGroup;
+			children = (
+				35AC97412B1DDE50005E843E /* CodableHelper.swift */,
+				35AC97422B1DDE50005E843E /* CodableString.swift */,
+				35AC97432B1DDE50005E843E /* CodableAny.swift */,
+			);
+			path = CodableExt;
+			sourceTree = "<group>";
+		};
+		35AC97442B1DDE50005E843E /* Macros */ = {
+			isa = PBXGroup;
+			children = (
+				35AC97452B1DDE50005E843E /* Global.swift */,
+			);
+			path = Macros;
+			sourceTree = "<group>";
+		};
+		35AC97512B1DDEB0005E843E /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				35AC97522B1DDEB0005E843E /* UIFont+Ext.swift */,
+				35AC97532B1DDEB0005E843E /* Inter-Bold.ttf */,
+				35AC97542B1DDEB0005E843E /* Inter-Regular.ttf */,
+				35AC97552B1DDEB0005E843E /* Inter-SemiBold.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		35AC97702B1DE1AA005E843E /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				6A3FEE402B275735006D63D0 /* Live */,
+				35AC978A2B1F29F3005E843E /* VerificationCode */,
+				35AC97712B1DE1AA005E843E /* Login */,
+			);
+			path = Functions;
+			sourceTree = "<group>";
+		};
+		35AC97712B1DE1AA005E843E /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				35BD38122B313361008D265F /* WebViewController.swift */,
+				35AC977C2B1DE299005E843E /* Tools */,
+				35AC97722B1DE1AA005E843E /* ConfirmationCodeViewController.swift */,
+				35AC97732B1DE1AA005E843E /* ConfirmationCodeViewController.xib */,
+				35AC97752B1DE1AA005E843E /* VenmoEditConfirmationView.swift */,
+				35AC977F2B1DE5FC005E843E /* NameInputViewController.swift */,
+				35AC97802B1DE5FC005E843E /* NameInputViewController.xib */,
+				35AC97742B1DE1AA005E843E /* PhoneInputViewController.swift */,
+				35AC97762B1DE1AA005E843E /* PhoneInputViewController.xib */,
+				6A87A30D2B2DEFB7006678B9 /* AuditLoginViewController.swift */,
+				35BD380E2B312F8F008D265F /* StartupPageViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		35AC977C2B1DE299005E843E /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				35AC97972B1F3AFE005E843E /* UserManager.swift */,
+				35AC977D2B1DE299005E843E /* RegisterCache.swift */,
+				35AC97932B1F3800005E843E /* LoginTools.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		35AC978A2B1F29F3005E843E /* VerificationCode */ = {
+			isa = PBXGroup;
+			children = (
+				35AC978B2B1F2A0B005E843E /* VerificationCodeManager.swift */,
+			);
+			path = VerificationCode;
+			sourceTree = "<group>";
+		};
+		35AC978F2B1F365B005E843E /* Backend */ = {
+			isa = PBXGroup;
+			children = (
+				35AC97902B1F365B005E843E /* Login */,
+			);
+			path = Backend;
+			sourceTree = "<group>";
+		};
+		35AC97902B1F365B005E843E /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				35AC97912B1F3678005E843E /* LoginBackend.swift */,
+				6AB59FC22B24ACF700B2F5A1 /* LoginBackend+User.swift */,
+				35AC97992B1F3D07005E843E /* GraphQLRequest+User.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		424509208EB6DE2968DC448C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -55,9 +282,58 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		6A3FEE402B275735006D63D0 /* Live */ = {
+			isa = PBXGroup;
+			children = (
+				6A87A3062B2C8A9D006678B9 /* Demo */,
+				6AEE5E9E2B29D79100D1D084 /* Manager */,
+				6A3FEE412B275735006D63D0 /* Tool */,
+				6AEE5EAB2B29E44300D1D084 /* LiveViewController.swift */,
+				358497B72B2BF168000EF591 /* GoLiveViewController.swift */,
+			);
+			path = Live;
+			sourceTree = "<group>";
+		};
+		6A3FEE412B275735006D63D0 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				6A3FEE4A2B2758A7006D63D0 /* Event.swift */,
+				6A3FEE462B2758A6006D63D0 /* KVSSigner.swift */,
+				6A3FEE482B2758A7006D63D0 /* Message.swift */,
+				6A3FEE472B2758A7006D63D0 /* SignalingClient.swift */,
+				6A3FEE492B2758A7006D63D0 /* WebRTCClient.swift */,
+				6A3FEE442B275822006D63D0 /* Constants.swift */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		6A87A3062B2C8A9D006678B9 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				6A87A30A2B2C8B34006678B9 /* VideoViewController.swift */,
+				6A87A3092B2C8B34006678B9 /* VideoViewController.xib */,
+				6A87A3072B2C8AC4006678B9 /* ChannelConfigurationViewController.swift */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		6AEE5E9E2B29D79100D1D084 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				6AEE5E9F2B29D7A600D1D084 /* LiveManager.swift */,
+				6AEE5EA92B29E2D000D1D084 /* LiveManager+SignalClient.swift */,
+				6AEE5EA72B29E24F00D1D084 /* LiveManager+WebRTCClient.swift */,
+				6AEE5EA52B29DFE100D1D084 /* LiveManager+Channel.swift */,
+				6AEE5EA32B29DDF400D1D084 /* LiveManager+Connect.swift */,
+				6AEE5EA12B29DC8300D1D084 /* LiveManager+SignIn.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		7E7B8642D3EDB42A70BEF800 /* AmplifyConfig */ = {
 			isa = PBXGroup;
 			children = (
+				35AC97952B1F3AA6005E843E /* schema.graphql */,
 				54E299A29CD8D8C9F2D2F54C /* awsconfiguration.json */,
 				9A7D55A780F6296D630C8AE2 /* amplifyconfiguration.json */,
 			);
@@ -72,6 +348,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8850D27484B668BC551A2F2E /* AmplifyModels */ = {
+			isa = PBXGroup;
+			children = (
+				27226C6E34F0E8C16E36C820 /* AmplifyModels.swift */,
+				8E096ABA1FBB541FB145D91D /* User+Schema.swift */,
+				C9D8734636905A50C181342F /* User.swift */,
+			);
+			name = AmplifyModels;
+			sourceTree = "<group>";
+		};
 		B63F5C232B1B5361000D6642 = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +366,7 @@
 				424509208EB6DE2968DC448C /* Pods */,
 				84AE6A0D2151899775C870E9 /* Frameworks */,
 				7E7B8642D3EDB42A70BEF800 /* AmplifyConfig */,
+				8850D27484B668BC551A2F2E /* AmplifyModels */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,8 +381,14 @@
 		B63F5C2E2B1B5361000D6642 /* NerveLive */ = {
 			isa = PBXGroup;
 			children = (
+				35AC978F2B1F365B005E843E /* Backend */,
+				35AC97702B1DE1AA005E843E /* Functions */,
+				35AC97372B1DDE4F005E843E /* Base */,
+				35AC97442B1DDE50005E843E /* Macros */,
+				35AC97392B1DDE4F005E843E /* Utils */,
 				B63F5C2F2B1B5361000D6642 /* AppDelegate.swift */,
-				B63F5C312B1B5361000D6642 /* SceneDelegate.swift */,
+				6A3FEE422B27577E006D63D0 /* AppDelegate+Live.swift */,
+				35AC978D2B1F2AF1005E843E /* AppDelegate+Amplify.swift */,
 				B63F5C332B1B5361000D6642 /* ViewController.swift */,
 				B63F5C352B1B5361000D6642 /* Main.storyboard */,
 				B63F5C382B1B5363000D6642 /* Assets.xcassets */,
@@ -165,11 +458,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A87A30B2B2C8B34006678B9 /* VideoViewController.xib in Resources */,
+				35AC97782B1DE1AA005E843E /* ConfirmationCodeViewController.xib in Resources */,
+				35AC97572B1DDEB0005E843E /* Inter-Bold.ttf in Resources */,
 				B63F5C3C2B1B5363000D6642 /* LaunchScreen.storyboard in Resources */,
 				B63F5C392B1B5363000D6642 /* Assets.xcassets in Resources */,
+				35AC97962B1F3AA6005E843E /* schema.graphql in Resources */,
 				B63F5C372B1B5361000D6642 /* Main.storyboard in Resources */,
+				35AC97592B1DDEB0005E843E /* Inter-SemiBold.ttf in Resources */,
 				8BEAD253F9D4B4A846FCE879 /* awsconfiguration.json in Resources */,
 				AFEE0F872F6DF53DA8095968 /* amplifyconfiguration.json in Resources */,
+				35AC977B2B1DE1AA005E843E /* PhoneInputViewController.xib in Resources */,
+				35AC97822B1DE5FC005E843E /* NameInputViewController.xib in Resources */,
+				35AC97582B1DDEB0005E843E /* Inter-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,13 +507,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NerveLive/Pods-NerveLive-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NerveLive/Pods-NerveLive-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -226,9 +523,56 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35AC97812B1DE5FC005E843E /* NameInputViewController.swift in Sources */,
+				6A87A3082B2C8AC4006678B9 /* ChannelConfigurationViewController.swift in Sources */,
+				6AB59FC32B24ACF700B2F5A1 /* LoginBackend+User.swift in Sources */,
+				35AC97562B1DDEB0005E843E /* UIFont+Ext.swift in Sources */,
+				6AEE5EA22B29DC8300D1D084 /* LiveManager+SignIn.swift in Sources */,
+				6A3FEE4D2B2758A7006D63D0 /* Message.swift in Sources */,
+				6AEE5EA82B29E24F00D1D084 /* LiveManager+WebRTCClient.swift in Sources */,
+				35AC978E2B1F2AF1005E843E /* AppDelegate+Amplify.swift in Sources */,
+				35AC977A2B1DE1AA005E843E /* VenmoEditConfirmationView.swift in Sources */,
+				35BD380F2B312F8F008D265F /* StartupPageViewController.swift in Sources */,
+				6A3FEE4E2B2758A7006D63D0 /* WebRTCClient.swift in Sources */,
+				35AC974C2B1DDE50005E843E /* String+Ext.swift in Sources */,
+				6AEE5EAA2B29E2D000D1D084 /* LiveManager+SignalClient.swift in Sources */,
+				35BD38132B313361008D265F /* WebViewController.swift in Sources */,
+				6A3FEE4B2B2758A7006D63D0 /* KVSSigner.swift in Sources */,
+				35AC974F2B1DDE50005E843E /* CodableAny.swift in Sources */,
+				6AEE5EA42B29DDF400D1D084 /* LiveManager+Connect.swift in Sources */,
 				B63F5C342B1B5361000D6642 /* ViewController.swift in Sources */,
+				35AC97482B1DDE50005E843E /* StringUtils.swift in Sources */,
+				6A3FEE452B275822006D63D0 /* Constants.swift in Sources */,
+				6A87A30C2B2C8B34006678B9 /* VideoViewController.swift in Sources */,
 				B63F5C302B1B5361000D6642 /* AppDelegate.swift in Sources */,
-				B63F5C322B1B5361000D6642 /* SceneDelegate.swift in Sources */,
+				6AEE5EAC2B29E44300D1D084 /* LiveViewController.swift in Sources */,
+				35AC97502B1DDE50005E843E /* Global.swift in Sources */,
+				35AC978C2B1F2A0B005E843E /* VerificationCodeManager.swift in Sources */,
+				35AC97462B1DDE50005E843E /* BaseViewController.swift in Sources */,
+				35AC97772B1DE1AA005E843E /* ConfirmationCodeViewController.swift in Sources */,
+				6A3FEE4C2B2758A7006D63D0 /* SignalingClient.swift in Sources */,
+				35AC97492B1DDE50005E843E /* ImageCacheUtils.swift in Sources */,
+				35AC97792B1DE1AA005E843E /* PhoneInputViewController.swift in Sources */,
+				35AC974A2B1DDE50005E843E /* Date+Ext.swift in Sources */,
+				6AEE5EA02B29D7A600D1D084 /* LiveManager.swift in Sources */,
+				35AC97922B1F3678005E843E /* LoginBackend.swift in Sources */,
+				35AC977E2B1DE299005E843E /* RegisterCache.swift in Sources */,
+				6AEE5EA62B29DFE100D1D084 /* LiveManager+Channel.swift in Sources */,
+				35AC97982B1F3AFE005E843E /* UserManager.swift in Sources */,
+				35BD38112B3132CA008D265F /* UIColor+Ext.swift in Sources */,
+				35AC97942B1F3800005E843E /* LoginTools.swift in Sources */,
+				35AC974E2B1DDE50005E843E /* CodableString.swift in Sources */,
+				35AC97472B1DDE50005E843E /* UIColorExtension.swift in Sources */,
+				6A3FEE4F2B2758A7006D63D0 /* Event.swift in Sources */,
+				35AC974D2B1DDE50005E843E /* CodableHelper.swift in Sources */,
+				6A87A30E2B2DEFB7006678B9 /* AuditLoginViewController.swift in Sources */,
+				35AC974B2B1DDE50005E843E /* FrameUtils.swift in Sources */,
+				681811A4482EF1EC4271BA1D /* AmplifyModels.swift in Sources */,
+				35AC979A2B1F3D07005E843E /* GraphQLRequest+User.swift in Sources */,
+				6A3FEE432B27577E006D63D0 /* AppDelegate+Live.swift in Sources */,
+				358497B82B2BF168000EF591 /* GoLiveViewController.swift in Sources */,
+				B3EFEF6ABCD5C44D806A81F4 /* User+Schema.swift in Sources */,
+				5325919CE5D7F0AEAF06CF07 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,7 +650,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -363,7 +707,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -380,11 +724,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 202312210900;
 				DEVELOPMENT_TEAM = KC37C9ZJH4;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NerveLive/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Quest;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Quest uses your device's camera to Live streaming.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Quest uses your device's microphone to Live streaming.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -396,11 +743,13 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Mike.iphone.NerveLive;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ios.NerveLive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -411,11 +760,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 202312210900;
 				DEVELOPMENT_TEAM = KC37C9ZJH4;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NerveLive/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Quest;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Quest uses your device's camera to Live streaming.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Quest uses your device's microphone to Live streaming.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -427,11 +779,13 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Mike.iphone.NerveLive;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ios.NerveLive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

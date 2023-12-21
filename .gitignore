@@ -1,3 +1,8 @@
+/Pods
+xcuserdata/
+NerveLive.xcworkspace/contents.xcworkspacedata
+NerveLive.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
 amplify/.config/local-*
