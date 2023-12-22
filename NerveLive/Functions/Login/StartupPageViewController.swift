@@ -25,7 +25,7 @@ class StartupPageViewController: BaseViewController {
     }
 
     lazy var logoImg: UIImageView = {
-        let logoImg = UIImageView(frame: CGRect(x: (K_SCREEN_WIDTH - 339) / 2.0, y: 288, width: 339, height: 79))
+        let logoImg = UIImageView(frame: CGRect(x: (K_SCREEN_WIDTH - 339) / 2.0, y: 338, width: 339, height: 79))
         logoImg.image = UIImage(named: "icon_quest")
         return logoImg
     }()
@@ -49,7 +49,7 @@ class StartupPageViewController: BaseViewController {
     // MARK: 隐私条款 服务条款
     private lazy var agreeLabel: YYLabel = {
         let style = NSMutableParagraphStyle()
-        style.lineSpacing = 10
+        style.lineSpacing = 5
         style.alignment = .center
         let text = "By tapping “Play”, you’re accepting the Terms and Privacy Policy.\nClick “Terms” or “Privacy Policy” to view them."
         let content = NSMutableAttributedString(string: text)
