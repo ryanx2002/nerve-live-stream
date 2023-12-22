@@ -23,12 +23,14 @@ class NameInputViewController: BaseViewController{
 
         self.FisrtNameInputText.attributedPlaceholder = firstnameText
         self.FisrtNameInputText.delegate = self;
+        self.FisrtNameInputText.textContentType = .givenName
         self.FisrtNameInputText.becomeFirstResponder()
 
         let lastnameText = NSAttributedString(string: "Last name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hexColorWithAlpha(color: "#A9A9A9", alpha: 1)])
 
         self.LastNameInputText.attributedPlaceholder = lastnameText
         self.LastNameInputText.delegate = self
+        self.LastNameInputText.textContentType = .familyName
     }
 
 
