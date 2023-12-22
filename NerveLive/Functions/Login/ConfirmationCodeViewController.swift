@@ -72,7 +72,7 @@ class ConfirmationCodeViewController: BaseViewController {
         LoginBackend.shared.confirmSignUp(for: "\(RegisterCache.sharedTools.countryCode)\(RegisterCache.sharedTools.phone)", with: self.CodeValue ?? "") {
             LoginBackend.shared.login(userName: "\(RegisterCache.sharedTools.countryCode)\(RegisterCache.sharedTools.phone)", pwd: RegisterCache.sharedTools.password) {
                 print("登录成功")
-                LiveManager.shared.singIn()
+                //LiveManager.shared.singIn()
                 DispatchQueue.main.async {
                     SVProgressHUD.dismiss()
                     let name = NameInputViewController()
