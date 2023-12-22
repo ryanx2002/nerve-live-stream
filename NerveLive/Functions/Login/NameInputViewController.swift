@@ -17,7 +17,7 @@ class NameInputViewController: BaseViewController{
     var lastName:String?
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.DescTitle.attributedText = StringUtils.TextWithBorder(font: 20, text: "What’s your first name?")
+        self.DescTitle.attributedText = StringUtils.TextWithBorder(font: 20, text: "What’s your name?")
         // Do any additional setup after loading the view.
         let firstnameText = NSAttributedString(string: "First name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hexColorWithAlpha(color: "#A9A9A9", alpha: 1)])
 
