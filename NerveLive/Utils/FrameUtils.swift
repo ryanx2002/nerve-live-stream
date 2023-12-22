@@ -108,8 +108,8 @@ public let K_NAV_HEIGHT: CGFloat = (iPhoneX() ? K_IPHONEX_NAV_HEIGHT : (iOS7 ? 6
 public let K_TABBAR_HEIGHT: CGFloat = 49.0
 
 /// 整体App背景视图色
-public let K_VIEW_BACKGROUNDCOLOR = UIColor(32, 30, 30, 1)
 public let K_VIEW_BLACKCOLOR = UIColor(9, 9, 9)
+public let K_VIEW_BACKGROUNDCOLOR = K_VIEW_BLACKCOLOR
 public let K_VIEW_WHITECOLOR = UIColor(242, 249, 249)
 
 /// frame setting
