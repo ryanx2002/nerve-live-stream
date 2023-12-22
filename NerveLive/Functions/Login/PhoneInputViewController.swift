@@ -16,7 +16,7 @@ class PhoneInputViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.DescTitle.attributedText = StringUtils.TextWithBorder(font: 16, text: "What’s your phone number?")
-        self.CountryCodeInputText.attributedPlaceholder = StringUtils.PlaceholderAttributeText(contentText: "+1")
+        self.CountryCodeInputText.text = "+1"
         self.CountryCodeInputText.delegate = self;
         self.PhoneNumberInputText.attributedPlaceholder = StringUtils.PlaceholderAttributeText(contentText: "(123)456-7890")
         self.PhoneNumberInputText.delegate = self
