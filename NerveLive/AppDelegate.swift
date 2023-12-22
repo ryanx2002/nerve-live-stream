@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import AWSPinpoint
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var orientationLock = UIInterfaceOrientationMask.all
+    var pinpoint: AWSPinpoint?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         addAmplify()

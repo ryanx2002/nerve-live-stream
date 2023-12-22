@@ -17,10 +17,16 @@ class ViewerGoLiveViewController: BaseViewController {
         super.viewDidLoad()
         view.addSubview(menuBtn)
         view.addSubview(table)
-        self.dataArray.append(User())
+
+        getAppDelegate().mainRegisterRemote()
+
+        var user = User()
+        user.isMaster = true
+        user.isLive = true
+        self.dataArray.append(user)
         table.reloadData()
 
-        /*SVProgressHUD.show()
+        // SVProgressHUD.show()
         LoginBackend.shared.queryUserList { users in
             self.dataArray.removeAll()
             for (_, user) in users.enumerated() {
@@ -37,7 +43,7 @@ class ViewerGoLiveViewController: BaseViewController {
             DispatchQueue.main.async {
                 SVProgressHUD.dismiss()
             }
-        }*/
+        }
     }
 
     lazy var table: UITableView = {
@@ -105,8 +111,14 @@ extension ViewerGoLiveViewController: UITableViewDelegate, UITableViewDataSource
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        /*if let user: User = dataArray[indexPath.section] as? User {
-
-        }*/
+        let user = dataArray[indexPath.section]
+        if user.isLive ?? false {
+            LiveManager.shared.connectChannel()
+        } else {
+            let msg = "The anchor is offline!"
+            let alert = UIAlertController(title: "Tips", message: msg, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Sure", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true)
+        }
     }
 }

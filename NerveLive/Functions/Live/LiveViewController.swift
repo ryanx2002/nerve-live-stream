@@ -124,7 +124,11 @@ class LiveViewController: BaseViewController {
         let lookBtn = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - 66 - 16, y: K_SAFEAREA_TOP_HEIGHT(), width: 66, height: 36))
         lookBtn.backgroundColor = UIColor.hexColorWithAlpha(color: "4E4744", alpha: 1)
         lookBtn.setImage(UIImage(named: "icon_eye"), for: .normal)
-        lookBtn.setTitle("2", for: .normal)
+        if LoginTools.sharedTools.userInfo().isMaster ?? false {
+            lookBtn.setTitle("0", for: .normal)
+        } else {
+            lookBtn.setTitle("1", for: .normal)
+        }
         lookBtn.setTitleColor(.white, for: .normal)
         lookBtn.titleLabel?.font = UIFont.font(ofSize: 14, type: .Regular)
         lookBtn.addTarget(self, action: #selector(lookBtnClick), for: .touchUpInside)

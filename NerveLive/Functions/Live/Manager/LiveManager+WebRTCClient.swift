@@ -24,7 +24,9 @@ extension LiveManager: WebRTCClientDelegate {
             print("WebRTC connected/completed state")
         case .disconnected:
             print("WebRTC disconnected state")
-            SVProgressHUD.showError(withStatus: "Live stream disconnected")
+            if !(LoginTools.sharedTools.userInfo().isMaster ?? false) {
+                SVProgressHUD.showError(withStatus: "Live stream disconnected")
+            }
         case .new:
             print("WebRTC new state")
         case .checking:

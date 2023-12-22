@@ -68,7 +68,10 @@ class SettingViewController: BaseViewController {
     }()
 
     @objc func flagBtnClicked() {
-
+        let msg = "We have received your report and will verify the situation as soon as possible and handle it promptly!"
+        let alert = UIAlertController(title: "Tips", message: msg, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Sure", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true)
     }
 
     lazy var secondLine: UIImageView = {
@@ -90,7 +93,11 @@ class SettingViewController: BaseViewController {
     }()
 
     @objc func blockBtnClicked() {
-
+        let user = LoginTools.sharedTools.userInfo()
+        let name = "\(user.lastName ?? "") \(user.firstName ?? "")"
+        let alert = UIAlertController(title: "Tips", message: "User \(name) has been blocked, Any future updates from this anchor will be blocked for you!", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Sure", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true)
     }
 
     lazy var deleteAccountBtn: UIButton = {

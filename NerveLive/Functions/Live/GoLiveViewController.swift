@@ -16,6 +16,7 @@ class GoLiveViewController: BaseViewController {
         view.addSubview(menuBtn)
         view.addSubview(openLiveBtn)
         // view.addSubview(idLabel)
+        getAppDelegate().mainRegisterRemote()
     }
 
     lazy var openLiveBtn: UIButton = {
