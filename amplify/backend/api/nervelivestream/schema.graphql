@@ -7,4 +7,7 @@ type User @model @auth(rules: [{allow: public}]) {
   profilePhoto: String
   deviceToken: String
   venmo: String
+  isMaster: Boolean
+  isLive: Boolean
 }
+ 

@@ -47,5 +47,9 @@ extension AppDelegate {
             }
         }
     }
-    
+
+    /// 进程被杀死
+    func applicationWillTerminate(_ application: UIApplication) {
+        LiveManager.shared.exitLiveRoom()
+    }
 }

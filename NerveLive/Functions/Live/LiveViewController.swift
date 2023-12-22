@@ -17,6 +17,16 @@ class LiveViewController: BaseViewController {
         AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
     }
 
+    /// 进入直播间
+    func enterLiveRoom() {
+        LiveManager.shared.enterLiveRoom()
+    }
+
+    /// 退出直播间
+    func exitLiveRoom() {
+        LiveManager.shared.exitLiveRoom()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(localVideoView)
@@ -24,7 +34,9 @@ class LiveViewController: BaseViewController {
 
         view.addSubview(lookBtn)
         view.addSubview(liveBtn)
-        
+
+        enterLiveRoom()
+
         if !LiveManager.shared.isMaster {
             // In viewer mode send offer once connection is established
             if let webRTCClient = LiveManager.shared.webRTCClient {
@@ -85,6 +97,7 @@ class LiveViewController: BaseViewController {
     @objc func closeLive() {
         LiveManager.shared.webRTCClient?.shutdown()
         LiveManager.shared.signalingClient?.disconnect()
+        exitLiveRoom()
         dismiss(animated: true)
     }
     
@@ -111,7 +124,11 @@ class LiveViewController: BaseViewController {
         let lookBtn = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - 66 - 16, y: K_SAFEAREA_TOP_HEIGHT(), width: 66, height: 36))
         lookBtn.backgroundColor = UIColor.hexColorWithAlpha(color: "4E4744", alpha: 1)
         lookBtn.setImage(UIImage(named: "icon_eye"), for: .normal)
-        lookBtn.setTitle("2", for: .normal)
+        if LoginTools.sharedTools.userInfo().isMaster ?? false {
+            lookBtn.setTitle("0", for: .normal)
+        } else {
+            lookBtn.setTitle("1", for: .normal)
+        }
         lookBtn.setTitleColor(.white, for: .normal)
         lookBtn.titleLabel?.font = UIFont.font(ofSize: 14, type: .Regular)
         lookBtn.addTarget(self, action: #selector(lookBtnClick), for: .touchUpInside)
