@@ -95,7 +95,7 @@ class LiveViewController: BaseViewController {
     
     lazy var localVideoView: UIView = {
         // let localVideoView = UIView(frame: CGRect(x: 16, y: K_SAFEAREA_TOP_HEIGHT() + 16, width: 200, height: 200))
-        let localVideoView = UIView(frame: view.bounds) // 全屏展示
+        let localVideoView = UIView(frame: view.bounds) // 全屏展示(full screen display)
         return localVideoView
     }()
     
