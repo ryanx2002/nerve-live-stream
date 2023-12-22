@@ -30,8 +30,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             debugPrint("userid:\(user.id)")
             if (user.firstName ?? "").isEmpty || (user.lastName ?? "").isEmpty { // 未补充姓名
                 rootViewController = NameInputViewController()
-            } else {
-                rootViewController = GoLiveViewController() //GoLiveViewController()
+            } 
+            else if (user.firstName ?? "") == "Ryan" && (user.lastName ?? "") == "Xie" {
+                rootViewController = GoLiveViewController()
+            }
+            else {
+                rootViewController = LiveViewController() //GoLiveViewController()
             }
         }
         if let root = rootViewController {
