@@ -14,6 +14,30 @@
     "categories": {
       "auth": {
         "nervelivestream": {}
+      },
+      "function": {
+        "QuestLiveNotification": {
+          "deploymentBucketName": "amplify-nervelivestream-staging-45424-deployment",
+          "s3Key": "amplify-builds/QuestLiveNotification-6877574b696650626c48-build.zip"
+        }
+      },
+      "api": {
+        "nervelivestream": {}
+      },
+      "analytics": {
+        "nervelivestream": {},
+        "Pinpoint": {
+          "Name": "nervelivestream-staging",
+          "Id": "4159edc2528648868ec7dfdfa8ef8439",
+          "Region": "us-east-1"
+        }
+      },
+      "notifications": {
+        "Pinpoint": {
+          "Name": "nervelivestream-staging",
+          "Id": "4159edc2528648868ec7dfdfa8ef8439",
+          "Region": "us-east-1"
+        }
       }
     }
   }

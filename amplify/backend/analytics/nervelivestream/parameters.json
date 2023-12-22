@@ -1,0 +1,21 @@
+{
+    "appName": "nervelivestream",
+    "roleName": "pinpointLambdaRoled0688eb2",
+    "cloudformationPolicyName": "cloudformationPolicyd0688eb2",
+    "cloudWatchPolicyName": "cloudWatchPolicyd0688eb2",
+    "pinpointPolicyName": "pinpointPolicyd0688eb2",
+    "authPolicyName": "pinpoint_amplify_d0688eb2",
+    "unauthPolicyName": "pinpoint_amplify_d0688eb2",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}
