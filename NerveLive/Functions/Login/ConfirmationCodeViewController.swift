@@ -27,7 +27,7 @@ class ConfirmationCodeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.DescTitle.attributedText = StringUtils.TextWithBorder(font: 20, text: "Enter the code we just texted")
+        self.DescTitle.attributedText = StringUtils.TextWithBorder(font: 16, text: "Enter the code we just texted")
 
         // 创建一个NSMutableAttributedString
         let attributedString = NSMutableAttributedString(string: "you at \(RegisterCache.sharedTools.countryCode)\(RegisterCache.sharedTools.phone)")
@@ -43,6 +43,7 @@ class ConfirmationCodeViewController: BaseViewController {
 
         // 将NSAttributedString赋给UILabel的attributedText属性
         self.YourPhoneTitle.attributedText = attributedString
+        self.YourPhoneTitle.font = UIFont.systemFont(ofSize: 16)
         
         self.CodeArea.addSubview(editView)
         editView.venmoEditDidChanged = { value in
