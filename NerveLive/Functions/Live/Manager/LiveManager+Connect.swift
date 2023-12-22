@@ -15,7 +15,7 @@ extension LiveManager {
     
     /// 链接频道
     /// - Parameter userId: 频道所属的用户id(默认当前用户id)  LoginTools.sharedTools.userId()
-    func connectChannel(userId: String = "65fc8289-03c4-4f0c-9169-a54c46b2d6bd") {
+    func connectChannel(userId: String = "b9db2535-9d1f-45af-9da9-f0978eeffc5f") {
         channelName = "never-live-kvs-channel-\(userId)"
         debugPrint("connectChannel:\(channelName ?? "") isMaster:\(isMaster)")
         SVProgressHUD.show(withStatus: "Entering the live room")

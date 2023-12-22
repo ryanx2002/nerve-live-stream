@@ -40,8 +40,8 @@ class MasterLiveCell: UITableViewCell {
         let lastName = _master.firstName ?? "Ryan"
         let isLive = _master.isLive ?? false
 
-        nameLabel.text = "\(lastName) is \(isLive ? "ONLINE" : "OFFLINE")"
-        descLabel.text = "You’ll be notified when Ryan goes Live,and then you can dare him."
+        nameLabel.text = "\(lastName) is \(isLive ? "ONLINE" : "going live soon")"
+        descLabel.text = "You’ll be notified when Ryan goes Live."
         tikTokLabel.text = "TikTok: @rahultok_        IG: @ryanxietv"
     }
 
@@ -64,7 +64,8 @@ class MasterLiveCell: UITableViewCell {
 
     lazy var descLabel: UILabel = {
         let descLabel = UILabel()
-        descLabel.frame = CGRect(x: CGRectGetMaxX(avatarBtn.frame) + 8, y: nameLabel.frame.maxY + 3, width: K_SCREEN_WIDTH - avatarBtn.frame.maxX - 8 - 38, height: 34)
+        //descLabel.frame = CGRect(x: CGRectGetMaxX(avatarBtn.frame) + 8, y: nameLabel.frame.maxY + 3, width: K_SCREEN_WIDTH - avatarBtn.frame.maxX - 8 - 38, height: 34)
+        descLabel.frame = CGRect(x: CGRectGetMaxX(avatarBtn.frame) + 8, y: nameLabel.frame.maxY + 3, width: K_SCREEN_WIDTH - avatarBtn.frame.maxX - 8 - 38, height: 15)
         descLabel.font = .font(ofSize: 14, type: .Regular)
         descLabel.textColor = K_VIEW_WHITECOLOR
         descLabel.numberOfLines = 2
@@ -72,7 +73,8 @@ class MasterLiveCell: UITableViewCell {
     }()
 
     lazy var tikTokLabel: UILabel = {
-        let tikTokLabel = UILabel(frame: CGRect(x: CGRectGetMaxX(avatarBtn.frame) + 8, y: descLabel.frame.maxY + 5, width: K_SCREEN_WIDTH - avatarBtn.frame.maxX - 8 - 38, height: 17))
+        //let tikTokLabel = UILabel(frame: CGRect(x: CGRectGetMaxX(avatarBtn.frame) + 8, y: descLabel.frame.maxY + 5, width: K_SCREEN_WIDTH - avatarBtn.frame.maxX - 8 - 38, height: 17))
+        let tikTokLabel = UILabel(frame: CGRect(x: CGRectGetMaxX(avatarBtn.frame) + 8, y: descLabel.frame.maxY + 19 + 5, width: K_SCREEN_WIDTH - avatarBtn.frame.maxX - 8 - 38, height: 17))
         tikTokLabel.font = .font(ofSize: 14, type: .Regular)
         tikTokLabel.textColor = K_VIEW_WHITECOLOR
         return tikTokLabel

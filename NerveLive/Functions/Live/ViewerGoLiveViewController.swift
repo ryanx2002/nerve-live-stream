@@ -113,7 +113,7 @@ extension ViewerGoLiveViewController: UITableViewDelegate, UITableViewDataSource
         tableView.deselectRow(at: indexPath, animated: true)
         let user = dataArray[indexPath.section]
         if user.isLive ?? false {
-            LiveManager.shared.connectChannel()
+            LiveManager.shared.connectChannel(userId: user.id)
         } else {
             let msg = "The anchor is offline!"
             let alert = UIAlertController(title: "Tips", message: msg, preferredStyle: UIAlertController.Style.alert)
