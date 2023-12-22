@@ -41,15 +41,8 @@ class StartupPageViewController: BaseViewController {
 
     @objc func playBtnClick() {
         DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Tips", message: "By tapping \"Play\", you're accepting the Terms and Privacy Policy.Click \"Terms\" or \"Privacy Policy\" to view.", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
-            alert.addAction(UIAlertAction(title: "Sure", style: UIAlertAction.Style.default, handler: { (_: UIAlertAction) in
-                DispatchQueue.main.async {
-                    let nameInputVc = PhoneInputViewController();
-                    self.navigationController?.pushViewController(nameInputVc, animated: true)
-                }
-            }))
-            self.present(alert, animated: true)
+            let nameInputVc = PhoneInputViewController();
+            self.navigationController?.pushViewController(nameInputVc, animated: true)
         }
     }
 
