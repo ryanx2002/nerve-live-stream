@@ -11,6 +11,8 @@ public struct User: Model {
   public var profilePhoto: String?
   public var deviceToken: String?
   public var venmo: String?
+  public var isMaster: Bool?
+  public var isLive: Bool?
   public var createdAt: Temporal.DateTime?
   public var updatedAt: Temporal.DateTime?
   
@@ -21,7 +23,9 @@ public struct User: Model {
       phone: String? = nil,
       profilePhoto: String? = nil,
       deviceToken: String? = nil,
-      venmo: String? = nil) {
+      venmo: String? = nil,
+      isMaster: Bool? = nil,
+      isLive: Bool? = nil) {
     self.init(id: id,
       firstName: firstName,
       lastName: lastName,
@@ -30,6 +34,8 @@ public struct User: Model {
       profilePhoto: profilePhoto,
       deviceToken: deviceToken,
       venmo: venmo,
+      isMaster: isMaster,
+      isLive: isLive,
       createdAt: nil,
       updatedAt: nil)
   }
@@ -41,6 +47,8 @@ public struct User: Model {
       profilePhoto: String? = nil,
       deviceToken: String? = nil,
       venmo: String? = nil,
+      isMaster: Bool? = nil,
+      isLive: Bool? = nil,
       createdAt: Temporal.DateTime? = nil,
       updatedAt: Temporal.DateTime? = nil) {
       self.id = id
@@ -51,6 +59,8 @@ public struct User: Model {
       self.profilePhoto = profilePhoto
       self.deviceToken = deviceToken
       self.venmo = venmo
+      self.isMaster = isMaster
+      self.isLive = isLive
       self.createdAt = createdAt
       self.updatedAt = updatedAt
   }

@@ -10,5 +10,9 @@
 		<string>Inter-Bold.ttf</string>
 		<string>Inter-Regular.ttf</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>

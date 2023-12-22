@@ -13,6 +13,8 @@ extension User {
     case profilePhoto
     case deviceToken
     case venmo
+    case isMaster
+    case isLive
     case createdAt
     case updatedAt
   }
@@ -43,6 +45,8 @@ extension User {
       .field(user.profilePhoto, is: .optional, ofType: .string),
       .field(user.deviceToken, is: .optional, ofType: .string),
       .field(user.venmo, is: .optional, ofType: .string),
+      .field(user.isMaster, is: .optional, ofType: .bool),
+      .field(user.isLive, is: .optional, ofType: .bool),
       .field(user.createdAt, is: .optional, isReadOnly: true, ofType: .dateTime),
       .field(user.updatedAt, is: .optional, isReadOnly: true, ofType: .dateTime)
     )

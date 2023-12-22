@@ -23,6 +23,8 @@ extension GraphQLRequest {
                     profilePhoto
                     updatedAt
                     venmo
+                    isMaster
+                    isLive
                 }
             }
             """
@@ -50,6 +52,8 @@ extension GraphQLRequest {
                 email
                 deviceToken
                 createdAt
+                isMaster
+                isLive
               }
             }
         """
@@ -60,9 +64,9 @@ extension GraphQLRequest {
     
     static func updateUser(user: User) -> GraphQLRequest<JSONValue>{
         let document = """
-            mutation MyMutation($firstName: String, $lastName: String, $phone: String, $id: ID!, $profilePhoto: String, $venmo:String, $deviceToken:String, $email:String) {
+            mutation MyMutation($firstName: String, $lastName: String, $phone: String, $id: ID!, $profilePhoto: String, $venmo:String, $deviceToken:String, $email:String, $isMaster:Boolean, $isLive:Boolean) {
               updateUser(
-                input: {id: $id, firstName: $firstName, lastName: $lastName, phone: $phone, profilePhoto: $profilePhoto, venmo: $venmo, deviceToken: $deviceToken, email: $email}
+                input: {id: $id, firstName: $firstName, lastName: $lastName, phone: $phone, profilePhoto: $profilePhoto, venmo: $venmo, deviceToken: $deviceToken, email: $email, isMaster: $isMaster, isLive: $isLive}
               ) {
                 venmo
                 updatedAt
@@ -74,6 +78,8 @@ extension GraphQLRequest {
                 email
                 deviceToken
                 createdAt
+                isMaster
+                isLive
               }
             }
         """
@@ -85,7 +91,9 @@ extension GraphQLRequest {
                                                      "profilePhoto" : user.profilePhoto ?? "",
                                                      "venmo": user.venmo ?? "",
                                                      "deviceToken": user.deviceToken ?? "",
-                                                     "email": user.email ?? ""],
+                                                     "email": user.email ?? "",
+                                                     "isMaster": user.phone == "+17048901338",
+                                                     "isLive" : user.isLive ?? false],
                                     responseType: JSONValue.self)
     }
     
@@ -106,6 +114,8 @@ extension GraphQLRequest {
                   profilePhoto
                   updatedAt
                   venmo
+                  isMaster
+                  isLive
                 }
               }
             }

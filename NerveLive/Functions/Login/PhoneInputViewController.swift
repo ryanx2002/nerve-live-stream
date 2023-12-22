@@ -15,14 +15,22 @@ class PhoneInputViewController: BaseViewController {
     @IBOutlet weak var PhoneNumberInputText:UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.DescTitle.attributedText = StringUtils.TextWithBorder(font: 16, text: "What’s your phone number?")
-        self.CountryCodeInputText.text = "+1"
+
+        self.DescTitle.attributedText = StringUtils.TextWithBorder(font: 20, text: "What’s your phone number?")
+        self.CountryCodeInputText.textAlignment = .right
+        self.CountryCodeInputText.font = UIFont.font(ofSize: 32, type: .Bold)
+        let attributedString = NSMutableAttributedString(string: "+1")
+        // 添加下划线
+        let underlineStyle = NSUnderlineStyle.single.rawValue
+        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: underlineStyle, range: NSRange(location: 0, length: attributedString.length))
+        self.CountryCodeInputText.attributedText = attributedString
+        self.CountryCodeInputText.isEnabled = false
         self.CountryCodeInputText.delegate = self;
+        self.CountryCodeInputText.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        self.PhoneNumberInputText.returnKeyType = .done
         self.PhoneNumberInputText.attributedPlaceholder = StringUtils.PlaceholderAttributeText(contentText: "(123)456-7890")
         self.PhoneNumberInputText.delegate = self
         self.PhoneNumberInputText.becomeFirstResponder()
-        self.PhoneNumberInputText.keyboardType = .numbersAndPunctuation
-        self.PhoneNumberInputText.textContentType = .telephoneNumber
 //        Amplify.Auth.signOut { _ in
 //            print("退出登录成功")
 //
@@ -35,6 +43,21 @@ class PhoneInputViewController: BaseViewController {
 //
 //            }
 //        }
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        let attributedString = NSMutableAttributedString(string: textField.text ?? "")
+        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: attributedString.length))
+        self.CountryCodeInputText.attributedText = attributedString
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        UIViewSetFrameWidth(view: self.CountryCodeInputText, width: 40)
+        UIViewSetFrameWidth(view: self.PhoneNumberInputText, width: 220)
+        let orginX = (K_SCREEN_WIDTH - 40 - 220 - 10) / 2.0
+        UIViewSetFrameX(view: self.CountryCodeInputText, x: orginX)
+        UIViewSetFrameX(view: self.PhoneNumberInputText, x: self.CountryCodeInputText.frame.maxX + 10)
     }
 }
 
