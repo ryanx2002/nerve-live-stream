@@ -112,40 +112,34 @@ query MyQuery {
 exports.handler = async (event) => {
   console.log(`EVENT: ${JSON.stringify(event)}`);
 	var message;
-  // for (var i = 0; i < event.Records.length; i++) {
-  //   const record = event.Records[i];
-  //   if (record.eventName === "UPDATE") {
-  //     console.log(JSON.stringify(record));
-  //     message = record.dynamodb.NewImage;
-  //   }
-  // }
-  const client = await appsyncClient.hydrated();
-	//const toUserId = message.toUserId.S;
-	// const toUserId = '65fc8289-03c4-4f0c-9169-a54c46b2d6bd';
-	// console.log(`toUserId:${toUserId}`);
-	/// 分发用户的信息
-  const list = await client.query({
-		query: queryUserList,
-		variables: {},
-  });
-  console.log(`list:${JSON.stringify(list)}`);
-	const listUsers = list.data.listUsers.items;
-  console.log(`listUsers:${JSON.stringify(listUsers)}`);
-  for(let i = 0; i < listUsers.length; i++) {
-    let user = listUsers[i];
-    let deviceToken = user.deviceToken;
-    if (user.ismaster === false) {
-      sendMessage(message, deviceToken)
+  for (var i = 0; i < event.Records.length; i++) {
+    const record = event.Records[i];
+    if (record.eventName === "MODIFY") {
+      console.log(JSON.stringify(record));
+      message = record.dynamodb.NewImage;
     }
-    console.log(`user: ${user.phone}`);
   }
-
-	/// 获取用户设备deviceToken
-	// const deviceToken = '7d16660f15d0d5c83e073fc46d609ca42b5609011a3e18534609e92f3d5af574'//toUserProfileModel.deviceToken
-	// //console.log(`deviceToken: ${toUserProfileModel.deviceToken}`);
-  // console.log(`deviceToken: ${deviceToken}`);
-	// console.log(message);
-
+  const client = await appsyncClient.hydrated();
+	const isMaster = message.isMaster.BOOL;
+  const isLive = message.isLive.BOOL;
+  if (isMaster && isLive) {
+    /// 分发用户的信息
+    const list = await client.query({
+      query: queryUserList,
+      variables: {},
+    });
+    console.log(`list:${JSON.stringify(list)}`);
+    const listUsers = list.data.listUsers.items;
+    console.log(`listUsers:${JSON.stringify(listUsers)}`);
+    for(let i = 0; i < listUsers.length; i++) {
+      let user = listUsers[i];
+      let deviceToken = user.deviceToken;
+      if (user.isMaster === false) {
+        sendMessage(message, deviceToken)
+      }
+      console.log(`user: ${user.phone}`);
+    }
+  }
 };
 
 /// 发送消息
@@ -153,7 +147,7 @@ async function sendMessage(message, deviceToken) {
 	let messageRequest = CreateMessageRequest(
 		deviceToken,
 		message,
-		"NerveLive"
+		"Quest"
 	);
 	const sendMessagesParams = {
 		ApplicationId: "4159edc2528648868ec7dfdfa8ef8439", // Find it in Pinpoint->All projects
@@ -182,6 +176,7 @@ async function sendMessage(message, deviceToken) {
 }
 
 function CreateMessageRequest(deviceToken, message, fromUserName, aboutUserProfileModel, aboutUserContentModel) {
+  let firstName = message.firstName.S;
   return {
     Addresses: {
       [deviceToken]: {
@@ -191,7 +186,7 @@ function CreateMessageRequest(deviceToken, message, fromUserName, aboutUserProfi
     MessageConfiguration: {
       APNSMessage: {
         Action: "OPEN_APP",
-        Body: 'Ryan is live! You can request anything',
+        Body: `${firstName} is live! You can request anything`,
         SilentPush: false,
         Title: fromUserName,
         TimeToLive: 30,

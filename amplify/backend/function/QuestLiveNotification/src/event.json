@@ -1,5 +1,96 @@
 {
-  "key1": "value1",
-  "key2": "value2",
-  "key3": "value3"
+  "Records": [
+      {
+          "eventID": "3ed481d0ca4b2b00c03c09e11bea0739",
+          "eventName": "MODIFY",
+          "eventVersion": "1.1",
+          "eventSource": "aws:dynamodb",
+          "awsRegion": "us-east-1",
+          "dynamodb": {
+              "ApproximateCreationDateTime": 1703262088,
+              "Keys": {
+                  "id": {
+                      "S": "c9b90454-cdf4-4dbc-aede-dd70bba59f23"
+                  }
+              },
+              "NewImage": {
+                  "createdAt": {
+                      "S": "2023-12-22T15:42:42.730Z"
+                  },
+                  "firstName": {
+                      "S": "Yin"
+                  },
+                  "lastName": {
+                      "S": "Dan"
+                  },
+                  "isLive": {
+                      "BOOL": true
+                  },
+                  "phone": {
+                      "S": "+19452007009"
+                  },
+                  "isMaster": {
+                      "BOOL": true
+                  },
+                  "__typename": {
+                      "S": "User"
+                  },
+                  "id": {
+                      "S": "c9b90454-cdf4-4dbc-aede-dd70bba59f23"
+                  },
+                  "deviceToken": {
+                      "S": "7d16660f15d0d5c83e073fc46d609ca42b5609011a3e18534609e92f3d5af574"
+                  },
+                  "updatedAt": {
+                      "S": "2023-12-22T16:21:27.834Z"
+                  }
+              },
+              "OldImage": {
+                  "lastName": {
+                      "S": "Dan"
+                  },
+                  "__typename": {
+                      "S": "User"
+                  },
+                  "deviceToken": {
+                      "S": "7d16660f15d0d5c83e073fc46d609ca42b5609011a3e18534609e92f3d5af574"
+                  },
+                  "venmo": {
+                      "S": ""
+                  },
+                  "createdAt": {
+                      "S": "2023-12-22T15:42:42.730Z"
+                  },
+                  "firstName": {
+                      "S": "Yin"
+                  },
+                  "isLive": {
+                      "BOOL": false
+                  },
+                  "profilePhoto": {
+                      "S": ""
+                  },
+                  "phone": {
+                      "S": "+19452007009"
+                  },
+                  "isMaster": {
+                      "BOOL": false
+                  },
+                  "id": {
+                      "S": "c9b90454-cdf4-4dbc-aede-dd70bba59f23"
+                  },
+                  "email": {
+                      "S": ""
+                  },
+                  "updatedAt": {
+                      "S": "2023-12-22T15:43:08.981Z"
+                  }
+              },
+              "SequenceNumber": "81625100000000025663663985",
+              "SizeBytes": 558,
+              "StreamViewType": "NEW_AND_OLD_IMAGES"
+          },
+          "eventSourceARN": "arn:aws:dynamodb:us-east-1:450904514466:table/User-tixjaul7qjalbcmu2ju7obinb4-staging/stream/2023-12-05T10:54:51.888"
+      }
+  ]
 }

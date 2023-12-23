@@ -22,6 +22,8 @@ class StartupPageViewController: BaseViewController {
         } fail: {
             print("登出失败")
         }
+        
+        getAppDelegate().mainRegisterRemote()
     }
 
     lazy var logoImg: UIImageView = {

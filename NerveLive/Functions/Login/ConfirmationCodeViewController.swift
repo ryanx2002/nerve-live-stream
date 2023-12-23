@@ -7,11 +7,15 @@
 
 import UIKit
 import SVProgressHUD
+import Amplify
 
 let HIGHLIGHT_TEXT_BG = "#ffffff"
 let DEFAUT_TEXT_BG = "#4B4B4B"
 
 class ConfirmationCodeViewController: BaseViewController {
+    
+    var isLogin: Bool = false // is Login? default false(signUp)
+    
     @IBOutlet weak var DescTitle:UILabel!
     @IBOutlet weak var YourPhoneTitle:UILabel!
     @IBOutlet weak var CodeArea:UIView!
@@ -53,7 +57,11 @@ class ConfirmationCodeViewController: BaseViewController {
             if(value.count == 6){
                 self.CodeValue = value
                 RegisterCache.sharedTools.verificationCode = value
-                self.login()
+                if self.isLogin {
+                    self.login()
+                } else {
+                    self.signUp()
+                }
             }
         }
     }
@@ -66,7 +74,47 @@ class ConfirmationCodeViewController: BaseViewController {
         return editView
     }()
 
-    func login(){
+    func login() {
+        Amplify.Auth.confirmResetPassword(for: "\(RegisterCache.sharedTools.countryCode)\(RegisterCache.sharedTools.phone)", with: RegisterCache.sharedTools.password, confirmationCode: self.CodeValue ?? "") { result in
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    SVProgressHUD.show()
+                }
+                LoginBackend.shared.login(userName: "\(RegisterCache.sharedTools.countryCode)\(RegisterCache.sharedTools.phone)", pwd: RegisterCache.sharedTools.password) {
+                    print("登录成功")
+                    //LiveManager.shared.singIn()
+                    DispatchQueue.main.async {
+                        SVProgressHUD.dismiss()
+                        let name = NameInputViewController()
+                        self.navigationController?.pushViewController(name, animated: true)
+                    }
+                } fail: { error in
+                    print(error)
+                    DispatchQueue.main.async {
+                        SVProgressHUD.dismiss()
+                        SVProgressHUD.showError(withStatus: error.debugDescription)
+                    }
+                } confirmSignUp: {
+                    DispatchQueue.main.async {
+                        SVProgressHUD.dismiss()
+                    }
+                }
+            case .failure(let error):
+                let err = "\(error)"
+                if err.contains("Invalid verification code provided") {
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Tips", message: "Invalid verification code provided, please try again.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Sure", style: .default))
+                        self.present(alert, animated: true)
+                    }
+                }
+                print("An error occurred while confirmResetPassword \(error)")
+            }
+        }
+    }
+    
+    func signUp(){
         SVProgressHUD.show()
         LoginBackend.shared.confirmSignUp(for: "\(RegisterCache.sharedTools.countryCode)\(RegisterCache.sharedTools.phone)", with: self.CodeValue ?? "") {
             LoginBackend.shared.login(userName: "\(RegisterCache.sharedTools.countryCode)\(RegisterCache.sharedTools.phone)", pwd: RegisterCache.sharedTools.password) {

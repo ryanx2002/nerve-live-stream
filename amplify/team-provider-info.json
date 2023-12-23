@@ -18,7 +18,7 @@
       "function": {
         "QuestLiveNotification": {
           "deploymentBucketName": "amplify-nervelivestream-staging-45424-deployment",
-          "s3Key": "amplify-builds/QuestLiveNotification-6877574b696650626c48-build.zip"
+          "s3Key": "amplify-builds/QuestLiveNotification-6b444849774f372f7943-build.zip"
         }
       },
       "api": {
