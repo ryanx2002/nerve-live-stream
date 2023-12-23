@@ -252,7 +252,6 @@ class LoginBackend: NSObject {
                         LoginTools.sharedTools.saveUserInfo(dic: subDic as! [String : Any])
                         suc();
                         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\(LoginTools.sharedTools.userId())");
-                        suc()
                     }else {
                         fail("Failed")
                     }
