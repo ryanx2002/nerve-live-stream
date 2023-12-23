@@ -34,7 +34,7 @@ class GoLiveViewController: BaseViewController {
     }()
 
     @objc func goLive() {
-        LiveManager.shared.connectChannel()
+        LiveManager.shared.connectChannel(userId: LoginTools.sharedTools.userId())
     }
     
     lazy var idLabel: UILabel = {

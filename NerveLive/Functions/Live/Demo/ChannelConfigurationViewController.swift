@@ -114,7 +114,7 @@ class ChannelConfigurationViewController: BaseViewController, UITextFieldDelegat
 
      After the connection is established switch to VideoView 
      */
-    func connectAsRole(userId: String = "65fc8289-03c4-4f0c-9169-a54c46b2d6bd") {
+    func connectAsRole(userId: String = "b9db2535-9d1f-45af-9da9-f0978eeffc5f") {
         channelName = "never-live-kvs-channel-\(userId)"
         debugPrint("connectChannel:\(channelName ?? "") isMaster:\(isMaster)")
         // Attempt to gather User Inputs

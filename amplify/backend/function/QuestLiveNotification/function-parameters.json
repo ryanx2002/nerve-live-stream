@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "api": {
+      "nervelivestream": [
+        "Query",
+        "Mutation",
+        "Subscription"
+      ]
+    },
+    "auth": {
+      "nervelivestream": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

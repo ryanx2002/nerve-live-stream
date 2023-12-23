@@ -82,7 +82,7 @@ extension PhoneInputViewController:UITextFieldDelegate{
                 /// 根据手机号查询用户
                 LoginBackend.shared.queryUserBy(phone: "\(RegisterCache.sharedTools.countryCode)\(RegisterCache.sharedTools.phone)") { user in
                     if let _ = user {
-                        self.resendCode()
+                        self.resendCodeForSignIn()
                     } else {
                         self.signUp()
                     }
@@ -122,14 +122,32 @@ extension PhoneInputViewController:UITextFieldDelegate{
     }
     
     /// 重发验证码
-    func resendCode() {
-        LoginBackend.shared.resendCodeForSignUp(username: RegisterCache.sharedTools.phone) {
+    func resendCodeForSignIn() {
+        Amplify.Auth.resetPassword(for: "\(RegisterCache.sharedTools.countryCode)\(RegisterCache.sharedTools.phone)") { result in
+            switch result {
+            case .success:
+                print("Confirm signUp succeeded")
+                DispatchQueue.main.async {
+                    let vc = ConfirmationCodeViewController()
+                    vc.isLogin = true
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            case .failure(let error):
+                print("An error occurred while confirming sign up \(error)")
+            }
+        }
+    }
+    
+    func resendCodeForSignUp() {
+        LoginBackend.shared.resendCodeForSignUp(username: "\(RegisterCache.sharedTools.countryCode)\(RegisterCache.sharedTools.phone)") {
             print("send code success")
             DispatchQueue.main.async {
                 let vc = ConfirmationCodeViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         } fail: { msg in
+            //msg: AuthError: User is already confirmed.\nRecovery suggestion: Make sure that the parameters passed are valid\nCaused by:\ninvalidParameter
+            debugPrint("msg====>\(msg)")
             DispatchQueue.main.async {
                 self.showFail()
             }
@@ -137,11 +155,14 @@ extension PhoneInputViewController:UITextFieldDelegate{
     }
     
     func showFail() {
-        let alert = UIAlertController(title: "Error", message: "Failed to send the verification code.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        let alert = UIAlertController(title: "Tips", message: "Failed to send the verification code.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            let vc = ConfirmationCodeViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }))
         alert.addAction(UIAlertAction(title: "Resend", style: .default, handler: { _ in
             alert.dismiss(animated: true)
-            self.resendCode()
+            self.resendCodeForSignUp()
         }))
         present(alert, animated: true)
     }
