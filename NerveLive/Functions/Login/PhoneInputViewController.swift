@@ -15,6 +15,7 @@ class PhoneInputViewController: BaseViewController {
     @IBOutlet weak var PhoneNumberInputText:UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.DescTitle.attributedText = StringUtils.TextWithBorder(font: 20, text: "What’s your phone number?")
         self.CountryCodeInputText.textAlignment = .right
         self.CountryCodeInputText.font = UIFont.font(ofSize: 32, type: .Bold)
@@ -26,9 +27,12 @@ class PhoneInputViewController: BaseViewController {
         self.CountryCodeInputText.isEnabled = false
         self.CountryCodeInputText.delegate = self;
         self.CountryCodeInputText.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        self.PhoneNumberInputText.attributedPlaceholder = StringUtils.PlaceholderAttributeText(contentText: "(610)555-0123")
-        self.PhoneNumberInputText.delegate = self
         self.PhoneNumberInputText.returnKeyType = .done
+        self.PhoneNumberInputText.attributedPlaceholder = StringUtils.PlaceholderAttributeText(contentText: "(123)456-7890")
+        self.PhoneNumberInputText.delegate = self
+        self.PhoneNumberInputText.becomeFirstResponder()
+        self.PhoneNumberInputText.keyboardType = .numbersAndPunctuation
+        self.PhoneNumberInputText.textContentType = .telephoneNumber
 //        Amplify.Auth.signOut { _ in
 //            print("退出登录成功")
 //
@@ -72,7 +76,7 @@ extension PhoneInputViewController:UITextFieldDelegate{
                 navigationController?.pushViewController(vc, animated: true)
             } else {
                 RegisterCache.sharedTools.countryCode = CountryCodeInputText.text ?? "+1"
-                RegisterCache.sharedTools.phone = PhoneNumberInputText.text ?? ""
+                RegisterCache.sharedTools.phone = (PhoneNumberInputText.text ?? "").filter{ $0.isNumber }
                 // "\(RegisterCache.sharedTools.countryCode)\(RegisterCache.sharedTools.phone)"
                 //"7048901338"
                 /// 根据手机号查询用户

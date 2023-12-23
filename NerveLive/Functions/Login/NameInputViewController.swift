@@ -17,18 +17,20 @@ class NameInputViewController: BaseViewController{
     var lastName:String?
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.DescTitle.attributedText = StringUtils.TextWithBorder(font: 20, text: "What’s your first name?")
+        self.DescTitle.attributedText = StringUtils.TextWithBorder(font: 16, text: "What’s your name?")
         // Do any additional setup after loading the view.
         let firstnameText = NSAttributedString(string: "First name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hexColorWithAlpha(color: "#A9A9A9", alpha: 1)])
         
         self.FisrtNameInputText.attributedPlaceholder = firstnameText
         self.FisrtNameInputText.delegate = self;
+        self.FisrtNameInputText.textContentType = .givenName
         self.FisrtNameInputText.becomeFirstResponder()
         
         let lastnameText = NSAttributedString(string: "Last name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hexColorWithAlpha(color: "#A9A9A9", alpha: 1)])
         
         self.LastNameInputText.attributedPlaceholder = lastnameText
         self.LastNameInputText.delegate = self
+        self.LastNameInputText.textContentType = .familyName
     }
     
     
