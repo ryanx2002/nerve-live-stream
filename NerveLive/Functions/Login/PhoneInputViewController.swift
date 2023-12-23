@@ -31,6 +31,8 @@ class PhoneInputViewController: BaseViewController {
         self.PhoneNumberInputText.attributedPlaceholder = StringUtils.PlaceholderAttributeText(contentText: "(123)456-7890")
         self.PhoneNumberInputText.delegate = self
         self.PhoneNumberInputText.becomeFirstResponder()
+        self.PhoneNumberInputText.keyboardType = .numbersAndPunctuation
+        self.PhoneNumberInputText.textContentType = .telephoneNumber
 //        Amplify.Auth.signOut { _ in
 //            print("退出登录成功")
 //
