@@ -222,7 +222,7 @@ class LiveViewController: BaseViewController {
         giftButton.setTitle("Gift", for: .normal)
         giftButton.setTitleColor(.white, for: .normal)
         giftButton.layer.cornerRadius = 11
-        giftButton.titleLabel!.font = UIFont(name: giftButton.titleLabel!.font.fontName,size: 16)
+        giftButton.titleLabel!.font = UIFont(name: "Inter-Regular",size: 16)
         giftButton.addTarget(self, action: #selector(giftButtonClick), for: .touchUpInside)
         return giftButton
     }()
@@ -248,7 +248,7 @@ class LiveViewController: BaseViewController {
         commentButton.setTitle("Comment", for: .normal)
         commentButton.setTitleColor(.white, for: .normal)
         commentButton.layer.cornerRadius = 10
-        commentButton.titleLabel!.font = UIFont(name: commentButton.titleLabel!.font.fontName,size: 16)
+        commentButton.titleLabel!.font = UIFont(name: "Inter-Regular",size: 16)
         commentButton.addTarget(self, action: #selector(commentButtonClick), for: .touchUpInside)
         return commentButton
     }()
@@ -273,7 +273,7 @@ class LiveViewController: BaseViewController {
         firstButton.setTitle("$3", for: .normal)
         firstButton.setTitleColor(.white, for: .normal)
         firstButton.layer.cornerRadius = 10
-        firstButton.titleLabel!.font = UIFont(name: firstButton.titleLabel!.font.fontName,size: 12)
+        firstButton.titleLabel!.font = UIFont(name: "Inter-Regular",size: 12)
         firstButton.addTarget(self, action: #selector(firstPriceButtonClick), for: .touchUpInside)
         return firstButton
     }()
@@ -294,7 +294,7 @@ class LiveViewController: BaseViewController {
         secondButton.setTitle("$7", for: .normal)
         secondButton.setTitleColor(.white, for: .normal)
         secondButton.layer.cornerRadius = 10
-        secondButton.titleLabel!.font = UIFont(name: secondButton.titleLabel!.font.fontName,size: 12)
+        secondButton.titleLabel!.font = UIFont(name: "Inter-Regular",size: 12)
         secondButton.addTarget(self, action: #selector(secondPriceButtonClick), for: .touchUpInside)
         return secondButton
     }()
@@ -315,7 +315,7 @@ class LiveViewController: BaseViewController {
         thirdButton.setTitle("$10", for: .normal)
         thirdButton.setTitleColor(.white, for: .normal)
         thirdButton.layer.cornerRadius = 10
-        thirdButton.titleLabel!.font = UIFont(name: thirdButton.titleLabel!.font.fontName,size: 12)
+        thirdButton.titleLabel!.font = UIFont(name: "Inter-Regular",size: 12)
         thirdButton.addTarget(self, action: #selector(thirdPriceButtonClick), for: .touchUpInside)
         return thirdButton
     }()
@@ -330,7 +330,7 @@ class LiveViewController: BaseViewController {
     }
     
     lazy var submitButton : UIButton = {
-        let submitButton = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - widthOffset - 15 + 33 + 8, y: K_SAFEAREA_BOTTOM_HEIGHT() + 650 - YOffset + 12.5, width: 40, height: 45))
+        let submitButton = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - widthOffset - 15 + 33 + 8, y: K_SAFEAREA_BOTTOM_HEIGHT() + 650 - YOffset + 12.5, width: 45, height: 45))
         submitButton.setImage(UIImage(named: "forward_arrow"), for: .normal)
         submitButton.layer.cornerRadius = 10
         submitButton.layer.masksToBounds = true
