@@ -177,6 +177,7 @@ async function sendMessage(message, deviceToken) {
 
 function CreateMessageRequest(deviceToken, message, fromUserName, aboutUserProfileModel, aboutUserContentModel) {
   let firstName = message.firstName.S;
+
   return {
     Addresses: {
       [deviceToken]: {
