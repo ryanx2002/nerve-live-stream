@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if (user.firstName ?? "").isEmpty || (user.lastName ?? "").isEmpty { // 未补充姓名
                 rootViewController = NameInputViewController()
             } 
+            // TODO(matt): send them to login page. logic to decide where 
             else if (user.firstName ?? "") == "Ryan" && (user.lastName ?? "") == "Xie" {
                 rootViewController = GoLiveViewController()
             }
