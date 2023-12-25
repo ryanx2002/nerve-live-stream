@@ -31,6 +31,12 @@ type Gift @model @auth(rules: [{allow: public}]) {
   fulfilled: Boolean
 }
 
+type Comment @model @auth(rules: [{allow: public}]) {
+  id: ID! @primaryKey
+  commenterFullName: String
+  commentText: String
+}
+
 type Stream @model @auth(rules: [{allow: public}]) {
   id: ID! @primaryKey
   endTime : AWSDateTime

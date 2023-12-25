@@ -18,6 +18,7 @@ class LiveViewController: BaseViewController {
     var mediaServerEndPoint: String?
     
     var dareBubbles: Deque<UIView>?
+    var comments: Deque<UILabel>?
 
     override func viewWillAppear(_ animated: Bool) {
         AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
@@ -33,13 +34,13 @@ class LiveViewController: BaseViewController {
         LiveManager.shared.exitLiveRoom()
     }
     
-    var subscription : GraphQLSubscriptionOperation<Gift>?
+    var giftSubscription : GraphQLSubscriptionOperation<Gift>?
     
     func createGiftSubscription(handler: @escaping (Gift) -> Any) {
-        subscription = Amplify.API.subscribe(request: .subscription(of: Gift.self, type: .onCreate), valueListener: { (subscriptionEvent) in
+        giftSubscription = Amplify.API.subscribe(request: .subscription(of: Gift.self, type: .onCreate), valueListener: { (subscriptionEvent) in
             switch subscriptionEvent {
             case .connection(let subscriptionConnectionState):
-                print("Subscription connect state is \(subscriptionConnectionState)")
+                print("Gift subscription connect state is \(subscriptionConnectionState)")
             case .data(let result):
                 switch result {
                 case .success(let createdGift):
@@ -62,11 +63,47 @@ class LiveViewController: BaseViewController {
     }
     
     func cancelGiftSubscription() {
-        subscription?.cancel()
+        giftSubscription?.cancel()
+    }
+    
+    var commentSubscription : GraphQLSubscriptionOperation<Comment>?
+    
+    func createCommentSubscription(handler: @escaping (Comment) -> Any) {
+        commentSubscription = Amplify.API.subscribe(request: .subscription(of: Comment.self, type: .onCreate), valueListener: { (subscriptionEvent) in
+            switch subscriptionEvent {
+            case .connection(let subscriptionConnectionState):
+                print("Comment subscription connect state is \(subscriptionConnectionState)")
+            case .data(let result):
+                switch result {
+                case .success(let createdComment):
+                    print("Successfully got comment from subscription: \(createdComment)")
+                    DispatchQueue.main.async{
+                        handler(createdComment)
+                    }
+                case .failure(let error):
+                    print("Got failed result with \(error.errorDescription)")
+                }
+            }
+        }) { result in
+            switch result {
+            case .success:
+                print("Subscription has been closed successfully")
+            case .failure(let apiError):
+                print("Subscription has terminated with \(apiError)")
+            }
+        }
+    }
+    
+    func cancelCommentSubscription() {
+        commentSubscription?.cancel()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dareBubbles = Deque<UIView>()
+        comments = Deque<UILabel>()
+        
         view.addSubview(localVideoView)
         view.addSubview(closeBtn)
 
@@ -76,6 +113,7 @@ class LiveViewController: BaseViewController {
         textInputBar.delegate = self
         
         createGiftSubscription(handler: createDareBubble)
+        createCommentSubscription(handler: createCommentLabel)
         
         enterLiveRoom()
 
@@ -143,6 +181,7 @@ class LiveViewController: BaseViewController {
         let username = (LoginTools.sharedTools.userInfo().firstName ?? "[unknown first name]") + " " + (LoginTools.sharedTools.userInfo().lastName ?? "[unknown last name]")
         debugPrint("Live closed for user " + username)
         cancelGiftSubscription()
+        cancelCommentSubscription()
         dismiss(animated: true)
     }
     
@@ -233,6 +272,11 @@ class LiveViewController: BaseViewController {
             else {
                 textInputBar.placeholder = "Add a comment"
             }
+            
+            for comment in comments! {
+                comment.frame = CGRectMake(20, comment.frame.minY - YOffset, K_SCREEN_WIDTH - 40, 15)
+            }
+            
         }
     }
     
@@ -247,13 +291,16 @@ class LiveViewController: BaseViewController {
             thirdPriceButton.removeFromSuperview()
             submitButton.removeFromSuperview()
             textInputBar.placeholder = "Gift / Comment"
+            for comment in comments! {
+                comment.frame = CGRectMake(20, comment.frame.minY + YOffset, K_SCREEN_WIDTH - 40, 15)
+            }
         }
     }
     
     // buttons that will appear when text field has been opened
     
     var gift = true // !gift implies comment
-    var giftValue = 3
+    var giftValue = 7
     
     lazy var giftButton: UIButton = {
         let giftButton = UIButton(frame: CGRect(x: 10, y: K_SCREEN_HEIGHT - 70 - YOffset, width: 85, height: 32))
@@ -310,7 +357,6 @@ class LiveViewController: BaseViewController {
         let firstButton = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - widthOffset - 16, y: K_SCREEN_HEIGHT - 70 - YOffset, width: 34, height: 20))
         firstButton.backgroundColor = .clear
         firstButton.layer.borderColor = CGColor(red: 255/255, green: 1, blue: 1, alpha: 1)
-        firstButton.layer.borderWidth = 0.5
         firstButton.setTitle("$3", for: .normal)
         firstButton.setTitleColor(.white, for: .normal)
         firstButton.layer.cornerRadius = 10
@@ -332,6 +378,7 @@ class LiveViewController: BaseViewController {
         let secondButton = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - widthOffset - 16, y: K_SCREEN_HEIGHT - 70 - YOffset + 25, width: 34, height: 20))
         secondButton.backgroundColor = .clear
         secondButton.layer.borderColor = CGColor(red: 255/255, green: 1, blue: 1, alpha: 1)
+        secondButton.layer.borderWidth = 0.5
         secondButton.setTitle("$7", for: .normal)
         secondButton.setTitleColor(.white, for: .normal)
         secondButton.layer.cornerRadius = 10
@@ -387,7 +434,10 @@ class LiveViewController: BaseViewController {
         let user = LoginTools.sharedTools.userInfo()
         debugPrint((gift ? "Gift" : "Comment") + " submitted")
         if gift {
-            StreamingBackend.stream.logGift( gifterId: user.id, value: giftValue, msg: textInput, gifterName: user.firstName! + " " + user.lastName!)
+            StreamingBackend.stream.logGift( gifterId: user.id, value: giftValue, msg: textInput, gifterName: user.firstName!)
+        }
+        else {
+            StreamingBackend.stream.logComment(name: user.firstName! + " " + user.lastName!, msg: textInput)
         }
     }
     
@@ -429,8 +479,44 @@ class LiveViewController: BaseViewController {
         priceLabel.text = "$" + String(value)
         bubble.addSubview(priceLabel)
         
-        self.view.addSubview(bubble)
+        updateDareBubbles(newBubble: bubble)
     }
+    
+    func updateDareBubbles(newBubble: UIView){
+        let yShift = 47 + 12
+        if dareBubbles?.count == 3 {
+            dareBubbles?[0].removeFromSuperview()
+            dareBubbles?.removeFirst()
+        }
+        for element in dareBubbles! {
+            element.frame = CGRect(x: 200, y: Int(element.frame.minY) + yShift, width: 173, height: 47)
+        }
+        dareBubbles?.append(newBubble)
+        self.view.addSubview(newBubble)
+    }
+    
+    //comment text factory
+    func createCommentLabel(comment: Comment) {
+        var commentLabel = UILabel(frame: CGRect(x: 20, y: K_SCREEN_HEIGHT - 70 - 25, width: K_SCREEN_WIDTH - 40, height: 15))
+        commentLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        commentLabel.font = UIFont(name: "Inter-Regular", size: 12)
+        commentLabel.text = comment.commenterFullName! + ": " +  comment.commentText!
+        updateComments(newComment: commentLabel)
+    }
+    
+    func updateComments(newComment: UILabel){
+        let yShift = 15 + 5
+        if comments?.count == 3 {
+            comments?[0].removeFromSuperview()
+            comments?.removeFirst()
+        }
+        for element in comments! {
+            element.frame = CGRect(x: 20, y: Int(element.frame.minY) - yShift, width: Int(K_SCREEN_WIDTH) - 40, height: 15)
+        }
+        comments?.append(newComment)
+        self.view.addSubview(newComment)
+    }
+    
 }
 
 // text input delegate

@@ -29,8 +29,7 @@ extension StreamView {
     model.syncPluralName = "StreamViews"
     
     model.attributes(
-      .index(fields: ["id"], name: nil)
-    )
+      .index(fields: ["id"], name: nil)    )
     
     model.fields(
       .field(streamView.id, is: .required, ofType: .string),

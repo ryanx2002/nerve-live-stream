@@ -41,4 +41,24 @@ class StreamingBackend : NSObject {
             }
         }
     }
+    
+    func logComment(name: String, msg: String) {
+        let comment = Comment(commenterFullName: name, commentText: msg)
+        
+        Amplify.API.mutate(request: .create(comment)){
+            event in
+            switch event {
+            case .success(let result):
+                switch result {
+                case  .success(_):
+                    debugPrint("Success logging comment")
+                case .failure(let error):
+                    debugPrint("Error logging comment: \(error.errorDescription)")
+                }
+            case .failure(let error):
+                debugPrint("Failed to log comment: \(error)")
+            }
+
+        }
+    }
 }
