@@ -10,10 +10,14 @@ import AWSKinesisVideo
 import WebRTC
 import SwiftUI
 import SVProgressHUD
+import Amplify
+import Collections
 
 class LiveViewController: BaseViewController {
 
     var mediaServerEndPoint: String?
+    
+    var dareBubbles: Deque<UIView>?
 
     override func viewWillAppear(_ animated: Bool) {
         AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
@@ -28,6 +32,38 @@ class LiveViewController: BaseViewController {
     func exitLiveRoom() {
         LiveManager.shared.exitLiveRoom()
     }
+    
+    var subscription : GraphQLSubscriptionOperation<Gift>?
+    
+    func createGiftSubscription(handler: @escaping (Gift) -> Any) {
+        subscription = Amplify.API.subscribe(request: .subscription(of: Gift.self, type: .onCreate), valueListener: { (subscriptionEvent) in
+            switch subscriptionEvent {
+            case .connection(let subscriptionConnectionState):
+                print("Subscription connect state is \(subscriptionConnectionState)")
+            case .data(let result):
+                switch result {
+                case .success(let createdGift):
+                    print("Successfully got gift from subscription: \(createdGift)")
+                    DispatchQueue.main.async{
+                        handler(createdGift)
+                    }
+                case .failure(let error):
+                    print("Got failed result with \(error.errorDescription)")
+                }
+            }
+        }) { result in
+            switch result {
+            case .success:
+                print("Subscription has been closed successfully")
+            case .failure(let apiError):
+                print("Subscription has terminated with \(apiError)")
+            }
+        }
+    }
+    
+    func cancelGiftSubscription() {
+        subscription?.cancel()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +74,9 @@ class LiveViewController: BaseViewController {
         view.addSubview(liveBtn)
         view.addSubview(textInputBar)
         textInputBar.delegate = self
-
+        
+        createGiftSubscription(handler: createDareBubble)
+        
         enterLiveRoom()
 
         if !LiveManager.shared.isMaster {
@@ -104,6 +142,7 @@ class LiveViewController: BaseViewController {
         exitLiveRoom()
         let username = (LoginTools.sharedTools.userInfo().firstName ?? "[unknown first name]") + " " + (LoginTools.sharedTools.userInfo().lastName ?? "[unknown last name]")
         debugPrint("Live closed for user " + username)
+        cancelGiftSubscription()
         dismiss(animated: true)
     }
     
@@ -167,6 +206,7 @@ class LiveViewController: BaseViewController {
         let textInputBar = UITextField(frame: CGRect(x: 20, y: K_SCREEN_HEIGHT - 70, width: K_SCREEN_WIDTH - 40, height: 30))
         textInputBar.placeholder = "Gift / Comment"
         textInputBar.borderStyle = .roundedRect
+        //textInputBar.lineBreakMode = .byWordWrapping
         //textInputBar.textAlignment = .center
         
         return textInputBar
@@ -313,7 +353,7 @@ class LiveViewController: BaseViewController {
         let thirdButton = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - widthOffset - 16, y: K_SCREEN_HEIGHT - 70 - YOffset + 50, width: 34, height: 20))
         thirdButton.backgroundColor = .clear
         thirdButton.layer.borderColor = CGColor(red: 255/255, green: 1, blue: 1, alpha: 1)
-        thirdButton.setTitle("$10", for: .normal)
+        thirdButton.setTitle("$15", for: .normal)
         thirdButton.setTitleColor(.white, for: .normal)
         thirdButton.layer.cornerRadius = 10
         thirdButton.titleLabel!.font = UIFont(name: "Inter-Regular",size: 12)
@@ -322,11 +362,11 @@ class LiveViewController: BaseViewController {
     }()
     
     @objc func thirdPriceButtonClick() {
-        if giftValue != 10 {
+        if giftValue != 15 {
             firstPriceButton.layer.borderWidth = 0
             secondPriceButton.layer.borderWidth = 0
             thirdPriceButton.layer.borderWidth = 0.5
-            giftValue = 10
+            giftValue = 15
         }
     }
     
@@ -344,10 +384,52 @@ class LiveViewController: BaseViewController {
         textInputBar.text = ""
         resizeTextDownward(textInputBar)
         textInputBar.resignFirstResponder()
+        let user = LoginTools.sharedTools.userInfo()
         debugPrint((gift ? "Gift" : "Comment") + " submitted")
         if gift {
-            StreamingBackend.stream.logGift( gifterId: LoginTools.sharedTools.userInfo().id, value: giftValue, msg: textInput)
+            StreamingBackend.stream.logGift( gifterId: user.id, value: giftValue, msg: textInput, gifterName: user.firstName! + " " + user.lastName!)
         }
+    }
+    
+    // dare bubble factory
+    
+    func createDareBubble(gift: Gift){
+        //94
+        let msg = gift.gifterFullName! + ": " + gift.giftText!
+        let value = gift.giftValue!
+        var bubble = UIView(frame: CGRect(x: 200, y: K_SAFEAREA_TOP_HEIGHT() + 36 + 12, width: 173, height: 47))
+        bubble.layer.cornerRadius = 20
+        bubble.layer.borderColor = CGColor(red: 1, green: 1, blue: 1, alpha: 1)
+        //bubble.layer.borderWidth = 0.5
+        
+        let layer0 = CAGradientLayer()
+        layer0.colors = [
+            UIColor(red: 148/255, green: 0/255, blue: 211/255, alpha: 1).cgColor,
+        UIColor(red: 148/255, green: 0/255, blue: 211/255, alpha: 0.3).cgColor
+        ]
+        layer0.locations = [0, 1]
+        layer0.startPoint = CGPoint(x: 0.25, y: 0.5)
+        layer0.endPoint = CGPoint(x: 0.75, y: 0.5)
+        layer0.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: 192/K_SCREEN_WIDTH, b: 0, c: 0, d: 410/K_SCREEN_HEIGHT, tx: 87, ty: 23))
+        layer0.bounds = bubble.bounds.insetBy(dx: -0.5*bubble.bounds.size.width, dy: -0.5*bubble.bounds.size.height)
+        layer0.cornerRadius = 40
+        bubble.layer.addSublayer(layer0)
+        
+        var msgLabel = UILabel(frame: CGRect(x: 10, y: 3, width: 114, height: 36))
+        msgLabel.textColor = .white
+        msgLabel.font = UIFont(name: "Inter-Bold", size: 11)
+        msgLabel.lineBreakMode = .byWordWrapping
+        msgLabel.numberOfLines = 0
+        msgLabel.text = msg
+        bubble.addSubview(msgLabel)
+        
+        var priceLabel = UILabel(frame: CGRect(x: 10 + 114 + 3, y: 0, width: 41, height: 46))
+        priceLabel.textColor = UIColor(red: 0, green: 1, blue: 0.16, alpha: 1)
+        priceLabel.font = UIFont(name: "Inter-Bold", size: 22)
+        priceLabel.text = "$" + String(value)
+        bubble.addSubview(priceLabel)
+        
+        self.view.addSubview(bubble)
     }
 }
 

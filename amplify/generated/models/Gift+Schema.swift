@@ -9,6 +9,7 @@ extension Gift {
     case streamId
     case giftValue
     case giftText
+    case gifterFullName
     case fulfilled
     case createdAt
     case updatedAt
@@ -37,6 +38,7 @@ extension Gift {
       .field(gift.streamId, is: .optional, ofType: .string),
       .field(gift.giftValue, is: .optional, ofType: .int),
       .field(gift.giftText, is: .optional, ofType: .string),
+      .field(gift.gifterFullName, is: .optional, ofType: .string),
       .field(gift.fulfilled, is: .optional, ofType: .bool),
       .field(gift.createdAt, is: .optional, isReadOnly: true, ofType: .dateTime),
       .field(gift.updatedAt, is: .optional, isReadOnly: true, ofType: .dateTime),

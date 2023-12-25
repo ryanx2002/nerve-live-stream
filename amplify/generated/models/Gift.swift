@@ -7,6 +7,7 @@ public struct Gift: Model {
   public var streamId: String?
   public var giftValue: Int?
   public var giftText: String?
+  public var gifterFullName: String?
   public var fulfilled: Bool?
   public var createdAt: Temporal.DateTime?
   public var updatedAt: Temporal.DateTime?
@@ -16,12 +17,14 @@ public struct Gift: Model {
       streamId: String? = nil,
       giftValue: Int? = nil,
       giftText: String? = nil,
+      gifterFullName: String? = nil,
       fulfilled: Bool? = nil,
       userGiftsId: String? = nil) {
     self.init(id: id,
       streamId: streamId,
       giftValue: giftValue,
       giftText: giftText,
+      gifterFullName: gifterFullName,
       fulfilled: fulfilled,
       createdAt: nil,
       updatedAt: nil,
@@ -31,6 +34,7 @@ public struct Gift: Model {
       streamId: String? = nil,
       giftValue: Int? = nil,
       giftText: String? = nil,
+      gifterFullName: String? = nil,
       fulfilled: Bool? = nil,
       createdAt: Temporal.DateTime? = nil,
       updatedAt: Temporal.DateTime? = nil,
@@ -39,6 +43,7 @@ public struct Gift: Model {
       self.streamId = streamId
       self.giftValue = giftValue
       self.giftText = giftText
+      self.gifterFullName = gifterFullName
       self.fulfilled = fulfilled
       self.createdAt = createdAt
       self.updatedAt = updatedAt
