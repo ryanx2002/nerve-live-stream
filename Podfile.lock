@@ -50,7 +50,7 @@ PODS:
     - AWSCore (= 2.27.15)
   - CommonCryptoModule (1.0.2)
   - GoogleWebRTC (1.1.32000)
-  - IQKeyboardManagerSwift (6.5.12)
+  - IQKeyboardManagerSwift (6.5.16)
   - Kingfisher (7.9.1)
   - Starscream (3.1.1)
   - SVProgressHUD (2.2.5)
@@ -115,7 +115,7 @@ SPEC CHECKSUMS:
   AWSS3: 09801b290f8818f532694cabd5d503c7474eb3df
   CommonCryptoModule: 63a68b57abed79655b3a01011419bf037a05b0a0
   GoogleWebRTC: 4d261187b30512efdb711d21fa961a6adf138717
-  IQKeyboardManagerSwift: 371b08cb39664fb56030f5345c815a4ffc74bbc0
+  IQKeyboardManagerSwift: 12d89768845bb77b55cc092ecc2b1f9370f06b76
   Kingfisher: 1d14e9f59cbe19389f591c929000332bf70efd32
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
