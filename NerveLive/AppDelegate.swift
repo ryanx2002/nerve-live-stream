@@ -7,6 +7,8 @@
 
 import UIKit
 import AWSPinpoint
+import Amplify
+import AmplifyPlugins
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         addAmplify()
         addLive()
         changeRootViewController()
+        
         return true
     }
 

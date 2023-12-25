@@ -13,6 +13,9 @@ public struct User: Model {
   public var venmo: String?
   public var isMaster: Bool?
   public var isLive: Bool?
+  public var streams: List<Stream>?
+  public var views: List<StreamView>?
+  public var gifts: List<Gift>?
   public var createdAt: Temporal.DateTime?
   public var updatedAt: Temporal.DateTime?
   
@@ -25,7 +28,10 @@ public struct User: Model {
       deviceToken: String? = nil,
       venmo: String? = nil,
       isMaster: Bool? = nil,
-      isLive: Bool? = nil) {
+      isLive: Bool? = nil,
+      streams: List<Stream>? = [],
+      views: List<StreamView>? = [],
+      gifts: List<Gift>? = []) {
     self.init(id: id,
       firstName: firstName,
       lastName: lastName,
@@ -36,6 +42,9 @@ public struct User: Model {
       venmo: venmo,
       isMaster: isMaster,
       isLive: isLive,
+      streams: streams,
+      views: views,
+      gifts: gifts,
       createdAt: nil,
       updatedAt: nil)
   }
@@ -49,6 +58,9 @@ public struct User: Model {
       venmo: String? = nil,
       isMaster: Bool? = nil,
       isLive: Bool? = nil,
+      streams: List<Stream>? = [],
+      views: List<StreamView>? = [],
+      gifts: List<Gift>? = [],
       createdAt: Temporal.DateTime? = nil,
       updatedAt: Temporal.DateTime? = nil) {
       self.id = id
@@ -61,6 +73,9 @@ public struct User: Model {
       self.venmo = venmo
       self.isMaster = isMaster
       self.isLive = isLive
+      self.streams = streams
+      self.views = views
+      self.gifts = gifts
       self.createdAt = createdAt
       self.updatedAt = updatedAt
   }

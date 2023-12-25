@@ -1,5 +1,5 @@
 type User @model @auth(rules: [{allow: public}]) {
-  id: ID!
+  id: ID! @primaryKey
   firstName: String
   lastName: String
   email: String
@@ -9,5 +9,28 @@ type User @model @auth(rules: [{allow: public}]) {
   venmo: String
   isMaster: Boolean
   isLive: Boolean
+  streams: [Stream] @hasMany
+  views: [StreamView] @hasMany
+  gifts: [Gift] @hasMany
 }
- 
+
+type StreamView @model @auth(rules: [{allow: public}]) {
+  id: ID! @primaryKey
+  userId: ID!
+  streamId: ID!
+  endTime: AWSDateTime
+  sessions: Int!
+}
+
+type Gift @model @auth(rules: [{allow: public}]) {
+  id: ID! @primaryKey
+  streamId: ID
+  giftValue: Int
+  giftText: String
+  fulfilled: Boolean
+}
+
+type Stream @model @auth(rules: [{allow: public}]) {
+  id: ID! @primaryKey
+  endTime : AWSDateTime
+}

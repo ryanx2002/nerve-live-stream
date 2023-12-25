@@ -9,6 +9,7 @@ import UIKit
 import AWSKinesisVideo
 import WebRTC
 import SwiftUI
+import SVProgressHUD
 
 class LiveViewController: BaseViewController {
 
@@ -101,7 +102,7 @@ class LiveViewController: BaseViewController {
         LiveManager.shared.webRTCClient?.shutdown()
         LiveManager.shared.signalingClient?.disconnect()
         exitLiveRoom()
-        var username = (LoginTools.sharedTools.userInfo().firstName ?? "[unknown first name]") + " " + (LoginTools.sharedTools.userInfo().lastName ?? "[unknown last name]")
+        let username = (LoginTools.sharedTools.userInfo().firstName ?? "[unknown first name]") + " " + (LoginTools.sharedTools.userInfo().lastName ?? "[unknown last name]")
         debugPrint("Live closed for user " + username)
         dismiss(animated: true)
     }
@@ -132,7 +133,7 @@ class LiveViewController: BaseViewController {
         if LoginTools.sharedTools.userInfo().isMaster ?? false {
             lookBtn.setTitle("0", for: .normal)
         } else {
-            lookBtn.setTitle("20", for: .normal)
+            lookBtn.setTitle("22", for: .normal)
         }
         lookBtn.setTitleColor(.white, for: .normal)
         lookBtn.titleLabel?.font = UIFont.font(ofSize: 14, type: .Regular)
@@ -163,7 +164,7 @@ class LiveViewController: BaseViewController {
     var textTyping = false
 
     lazy var textInputBar: UITextField = {
-        let textInputBar = UITextField(frame: CGRect(x: 20, y: K_SAFEAREA_BOTTOM_HEIGHT() + 650, width: K_SCREEN_WIDTH - 40, height: 30))
+        let textInputBar = UITextField(frame: CGRect(x: 20, y: K_SCREEN_HEIGHT - 70, width: K_SCREEN_WIDTH - 40, height: 30))
         textInputBar.placeholder = "Gift / Comment"
         textInputBar.borderStyle = .roundedRect
         //textInputBar.textAlignment = .center
@@ -171,7 +172,7 @@ class LiveViewController: BaseViewController {
         return textInputBar
     }()
     
-    var YOffset = CGFloat(250)
+    var YOffset = CGFloat(300)
     var widthOffset = CGFloat(80)
     var heightOffset = CGFloat(40)
     
@@ -215,7 +216,7 @@ class LiveViewController: BaseViewController {
     var giftValue = 3
     
     lazy var giftButton: UIButton = {
-        let giftButton = UIButton(frame: CGRect(x: 10, y: K_SAFEAREA_BOTTOM_HEIGHT() + 650 - YOffset, width: 85, height: 32))
+        let giftButton = UIButton(frame: CGRect(x: 10, y: K_SCREEN_HEIGHT - 70 - YOffset, width: 85, height: 32))
         giftButton.layer.borderColor = CGColor(red: 255/255, green: 1, blue: 1, alpha: 1)
         giftButton.layer.borderWidth = 0.5
         giftButton.backgroundColor = .clear
@@ -242,7 +243,7 @@ class LiveViewController: BaseViewController {
     }
     
     lazy var commentButton: UIButton = {
-        let commentButton = UIButton(frame: CGRect(x: 10, y: K_SAFEAREA_BOTTOM_HEIGHT() + 650 - YOffset + 36, width: 85, height: 31))
+        let commentButton = UIButton(frame: CGRect(x: 10, y: K_SCREEN_HEIGHT - 70 - YOffset + 36, width: 85, height: 31))
         commentButton.backgroundColor = .clear
         commentButton.layer.borderColor = CGColor(red: 255/255, green: 1, blue: 1, alpha: 1)
         commentButton.setTitle("Comment", for: .normal)
@@ -266,7 +267,7 @@ class LiveViewController: BaseViewController {
     }
     
     lazy var firstPriceButton : UIButton = {
-        let firstButton = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - widthOffset - 16, y: K_SAFEAREA_BOTTOM_HEIGHT() + 650 - YOffset, width: 34, height: 20))
+        let firstButton = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - widthOffset - 16, y: K_SCREEN_HEIGHT - 70 - YOffset, width: 34, height: 20))
         firstButton.backgroundColor = .clear
         firstButton.layer.borderColor = CGColor(red: 255/255, green: 1, blue: 1, alpha: 1)
         firstButton.layer.borderWidth = 0.5
@@ -288,7 +289,7 @@ class LiveViewController: BaseViewController {
     }
     
     lazy var secondPriceButton : UIButton = {
-        let secondButton = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - widthOffset - 16, y: K_SAFEAREA_BOTTOM_HEIGHT() + 650 - YOffset + 25, width: 34, height: 20))
+        let secondButton = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - widthOffset - 16, y: K_SCREEN_HEIGHT - 70 - YOffset + 25, width: 34, height: 20))
         secondButton.backgroundColor = .clear
         secondButton.layer.borderColor = CGColor(red: 255/255, green: 1, blue: 1, alpha: 1)
         secondButton.setTitle("$7", for: .normal)
@@ -309,7 +310,7 @@ class LiveViewController: BaseViewController {
     }
     
     lazy var thirdPriceButton : UIButton = {
-        let thirdButton = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - widthOffset - 16, y: K_SAFEAREA_BOTTOM_HEIGHT() + 650 - YOffset + 50, width: 34, height: 20))
+        let thirdButton = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - widthOffset - 16, y: K_SCREEN_HEIGHT - 70 - YOffset + 50, width: 34, height: 20))
         thirdButton.backgroundColor = .clear
         thirdButton.layer.borderColor = CGColor(red: 255/255, green: 1, blue: 1, alpha: 1)
         thirdButton.setTitle("$10", for: .normal)
@@ -330,7 +331,7 @@ class LiveViewController: BaseViewController {
     }
     
     lazy var submitButton : UIButton = {
-        let submitButton = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - widthOffset - 15 + 33 + 8, y: K_SAFEAREA_BOTTOM_HEIGHT() + 650 - YOffset + 12.5, width: 45, height: 45))
+        let submitButton = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - widthOffset - 15 + 33 + 8, y: K_SCREEN_HEIGHT - 70 - YOffset + 12.5, width: 45, height: 45))
         submitButton.setImage(UIImage(named: "forward_arrow"), for: .normal)
         submitButton.layer.cornerRadius = 10
         submitButton.layer.masksToBounds = true
@@ -338,13 +339,16 @@ class LiveViewController: BaseViewController {
         return submitButton
     }()
     
-    @objc func submitButtonClick() {
+    @objc func submitButtonClick(){
         textInput = textInputBar.text!
         textInputBar.text = ""
         resizeTextDownward(textInputBar)
         textInputBar.resignFirstResponder()
+        debugPrint((gift ? "Gift" : "Comment") + " submitted")
+        if gift {
+            StreamingBackend.stream.logGift( gifterId: LoginTools.sharedTools.userInfo().id, value: giftValue, msg: textInput)
+        }
     }
-    
 }
 
 // text input delegate
@@ -380,4 +384,3 @@ struct ViewControllerPreview: PreviewProvider {
         return LiveView()
     }
 }
-
