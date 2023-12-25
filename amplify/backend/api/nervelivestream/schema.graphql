@@ -27,6 +27,7 @@ type Gift @model @auth(rules: [{allow: public}]) {
   streamId: ID
   giftValue: Int
   giftText: String
+  gifterFullName: String
   fulfilled: Boolean
 }
 

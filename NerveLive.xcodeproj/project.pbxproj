@@ -72,6 +72,9 @@
 		6AEE5EAC2B29E44300D1D084 /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE5EAB2B29E44300D1D084 /* LiveViewController.swift */; };
 		8A2A36586AA3B1CBAC447CCF /* Pods_NerveLive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F64514B9262E4B6EFD859F2 /* Pods_NerveLive.framework */; };
 		8BEAD253F9D4B4A846FCE879 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 54E299A29CD8D8C9F2D2F54C /* awsconfiguration.json */; };
+		972086982B3A29CE008817A0 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 972086972B3A29CE008817A0 /* Collections */; };
+		9720869A2B3A29CE008817A0 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 972086992B3A29CE008817A0 /* DequeModule */; };
+		9720869C2B3A29CE008817A0 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 9720869B2B3A29CE008817A0 /* OrderedCollections */; };
 		97B1EB1B2B38DCBE002EDF47 /* StreamingBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B1EB1A2B38DCBE002EDF47 /* StreamingBackend.swift */; };
 		A8A2B0A7D4BC25600870BC96 /* StreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACBC047028A129A4B0D3FE2 /* StreamView.swift */; };
 		AFEE0F872F6DF53DA8095968 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A7D55A780F6296D630C8AE2 /* amplifyconfiguration.json */; };
@@ -177,7 +180,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				972086982B3A29CE008817A0 /* Collections in Frameworks */,
 				8A2A36586AA3B1CBAC447CCF /* Pods_NerveLive.framework in Frameworks */,
+				9720869C2B3A29CE008817A0 /* OrderedCollections in Frameworks */,
+				9720869A2B3A29CE008817A0 /* DequeModule in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +470,11 @@
 			dependencies = (
 			);
 			name = NerveLive;
+			packageProductDependencies = (
+				972086972B3A29CE008817A0 /* Collections */,
+				972086992B3A29CE008817A0 /* DequeModule */,
+				9720869B2B3A29CE008817A0 /* OrderedCollections */,
+			);
 			productName = NerveLive;
 			productReference = B63F5C2C2B1B5361000D6642 /* NerveLive.app */;
 			productType = "com.apple.product-type.application";
@@ -492,6 +503,9 @@
 				Base,
 			);
 			mainGroup = B63F5C232B1B5361000D6642;
+			packageReferences = (
+				972086962B3A29CE008817A0 /* XCRemoteSwiftPackageReference "swift-collections" */,
+			);
 			productRefGroup = B63F5C2D2B1B5361000D6642 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -555,13 +569,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NerveLive/Pods-NerveLive-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NerveLive/Pods-NerveLive-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -881,6 +891,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		972086962B3A29CE008817A0 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		972086972B3A29CE008817A0 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 972086962B3A29CE008817A0 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		972086992B3A29CE008817A0 /* DequeModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 972086962B3A29CE008817A0 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = DequeModule;
+		};
+		9720869B2B3A29CE008817A0 /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 972086962B3A29CE008817A0 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B63F5C242B1B5361000D6642 /* Project object */;
 }

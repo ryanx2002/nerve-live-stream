@@ -20,10 +20,11 @@ class StreamingBackend : NSObject {
         return Gift(userGiftsId: gifterId)
     }
     
-    func logGift(gifterId: String, value: Int, msg: String) {
+    func logGift(gifterId: String, value: Int, msg: String, gifterName: String) {
         var gift = createGiftFromUser(gifterId: gifterId)
         gift.giftValue = value
         gift.giftText = msg
+        gift.gifterFullName = gifterName
         
         Amplify.API.mutate(request: .create(gift)){
             event in
@@ -39,4 +40,5 @@ class StreamingBackend : NSObject {
                 debugPrint("Failed to log gift: \(error)")
             }
         }
-    }}
+    }
+}
