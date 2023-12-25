@@ -15,6 +15,9 @@ extension User {
     case venmo
     case isMaster
     case isLive
+    case streams
+    case views
+    case gifts
     case createdAt
     case updatedAt
   }
@@ -32,9 +35,9 @@ extension User {
     model.listPluralName = "Users"
     model.syncPluralName = "Users"
     
-//    model.attributes(
-//      .primaryKey(fields: [user.id])
-//    )
+    model.attributes(
+      .index(fields: ["id"], name: nil)
+    )
     
     model.fields(
       .field(user.id, is: .required, ofType: .string),
@@ -47,13 +50,11 @@ extension User {
       .field(user.venmo, is: .optional, ofType: .string),
       .field(user.isMaster, is: .optional, ofType: .bool),
       .field(user.isLive, is: .optional, ofType: .bool),
+      .hasMany(user.streams, is: .optional, ofType: Stream.self, associatedWith: Stream.keys.userStreamsId),
+      .hasMany(user.views, is: .optional, ofType: StreamView.self, associatedWith: StreamView.keys.userViewsId),
+      .hasMany(user.gifts, is: .optional, ofType: Gift.self, associatedWith: Gift.keys.userGiftsId),
       .field(user.createdAt, is: .optional, isReadOnly: true, ofType: .dateTime),
       .field(user.updatedAt, is: .optional, isReadOnly: true, ofType: .dateTime)
     )
     }
 }
-
-//extension User: ModelIdentifiable {
-//  public typealias IdentifierFormat = ModelIdentifierFormat.Default
-//  public typealias IdentifierProtocol = DefaultModelIdentifier<Self>
-//}

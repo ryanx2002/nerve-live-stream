@@ -30,7 +30,8 @@
           "Name": "nervelivestream-staging",
           "Id": "4159edc2528648868ec7dfdfa8ef8439",
           "Region": "us-east-1"
-        }
+        },
+        "nervelivestream": {}
       },
       "notifications": {
         "Pinpoint": {
@@ -38,6 +39,18 @@
           "Id": "4159edc2528648868ec7dfdfa8ef8439",
           "Region": "us-east-1"
         }
+<<<<<<< HEAD
+=======
+      },
+      "function": {
+        "QuestLiveNotification": {
+          "deploymentBucketName": "amplify-nervelivestream-staging-45424-deployment",
+          "s3Key": "amplify-builds/QuestLiveNotification-6b444849774f372f7943-build.zip"
+        }
+      },
+      "api": {
+        "nervelivestream": {}
+>>>>>>> 8ada83e (minor UI edits and gift backend logging)
       }
     }
   }
