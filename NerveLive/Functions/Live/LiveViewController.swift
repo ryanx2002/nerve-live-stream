@@ -487,10 +487,16 @@ class LiveViewController: BaseViewController {
         if dareBubbles?.count == 3 {
             dareBubbles?[0].removeFromSuperview()
             dareBubbles?.removeFirst()
+            for element in dareBubbles! {
+                element.frame = CGRect(x: 200, y: Int(element.frame.minY) - yShift, width: 173, height: 47)
+            }
         }
-        for element in dareBubbles! {
-            element.frame = CGRect(x: 200, y: Int(element.frame.minY) + yShift, width: 173, height: 47)
-        }
+        
+        let newY = (dareBubbles?.count ?? 0) * yShift
+        
+        newBubble.frame = CGRect(x: 200, y: Int(K_SAFEAREA_TOP_HEIGHT()) + 36 + 12 + newY, width: 173, height: 47)
+        
+        
         dareBubbles?.append(newBubble)
         self.view.addSubview(newBubble)
     }
