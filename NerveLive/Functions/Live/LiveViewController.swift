@@ -247,11 +247,13 @@ class LiveViewController: BaseViewController {
         textInputBar.borderStyle = .roundedRect
         //textInputBar.lineBreakMode = .byWordWrapping
         //textInputBar.textAlignment = .center
+        textInputBar.autocorrectionType = .no
+        textInputBar.spellCheckingType = .no
         
         return textInputBar
     }()
     
-    var YOffset = CGFloat(300)
+    public var YOffset = CGFloat(300)
     var widthOffset = CGFloat(80)
     var heightOffset = CGFloat(40)
     
@@ -503,7 +505,7 @@ class LiveViewController: BaseViewController {
     
     //comment text factory
     func createCommentLabel(comment: Comment) {
-        var commentLabel = UILabel(frame: CGRect(x: 20, y: K_SCREEN_HEIGHT - 70 - 25, width: K_SCREEN_WIDTH - 40, height: 15))
+        var commentLabel = UILabel(frame: CGRect(x: 20, y: K_SCREEN_HEIGHT - 70 - 25 - (isEditing ? YOffset : 0), width: K_SCREEN_WIDTH - 40, height: 15))
         commentLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         commentLabel.font = UIFont(name: "Inter-Regular", size: 12)
         commentLabel.text = comment.commenterFullName! + ": " +  comment.commentText!
