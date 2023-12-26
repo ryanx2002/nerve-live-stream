@@ -93,8 +93,4 @@
           "eventSourceARN": "arn:aws:dynamodb:us-east-1:450904514466:table/User-tixjaul7qjalbcmu2ju7obinb4-staging/stream/2023-12-05T10:54:51.888"
       }
   ]
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 8ada83e (minor UI edits and gift backend logging)
