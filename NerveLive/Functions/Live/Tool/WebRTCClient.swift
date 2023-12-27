@@ -211,7 +211,7 @@ final class WebRTCClient: NSObject {
 
             let backFormat = RTCCameraVideoCapturer.supportedFormats(for: backCamera).last,
 
-            let backFps = frontFormat.videoSupportedFrameRateRanges.first?.maxFrameRate else {
+            let backFps = backFormat.videoSupportedFrameRateRanges.first?.maxFrameRate else {
                 debugPrint("Error setting fps.")
                 return
             }
@@ -229,16 +229,18 @@ final class WebRTCClient: NSObject {
     }
 
     private func createLocalVideoStream() {
-        let videoSource = WebRTCClient.factory.videoSource()
-        videoSource.adaptOutputFormat(toWidth: 1280, height: 720, fps: 30)
-        frontVideoCapturer = RTCCameraVideoCapturer(delegate: videoSource)
-        backVideoCapturer = RTCCameraVideoCapturer(delegate: videoSource)
-        localFrontVideoTrack = WebRTCClient.factory.videoTrack(with: videoSource, trackId: "KvsVideoTrack")
-        localBackVideoTrack = WebRTCClient.factory.videoTrack(with: videoSource, trackId: "KvsVideoTrack")
+        let frontVideoSource = WebRTCClient.factory.videoSource()
+        frontVideoSource.adaptOutputFormat(toWidth: 1280, height: 720, fps: 30)
+        let backVideoSource = WebRTCClient.factory.videoSource()
+        backVideoSource.adaptOutputFormat(toWidth: 1280, height: 720, fps: 30)
+        frontVideoCapturer = RTCCameraVideoCapturer(delegate: frontVideoSource)
+        backVideoCapturer = RTCCameraVideoCapturer(delegate: backVideoSource)
+        localFrontVideoTrack = WebRTCClient.factory.videoTrack(with: frontVideoSource, trackId: "KvsVideoTrack-front")
+        localBackVideoTrack = WebRTCClient.factory.videoTrack(with: backVideoSource, trackId: "KvsVideoTrack-back")
         
         peerConnection.add(localFrontVideoTrack!, streamIds: [streamId])
+        peerConnection.add(localBackVideoTrack!, streamIds: [streamId])
         remoteFrontVideoTrack = peerConnection.transceivers.first { $0.mediaType == .video }?.receiver.track as? RTCVideoTrack
-
     }
 
     private func createLocalAudioStream() {
