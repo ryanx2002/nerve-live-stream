@@ -7,6 +7,7 @@
 
 import Foundation
 import StoreKit
+import Amplify
 
 // MARK: - StoreObserverDelegate
 
@@ -20,3 +21,12 @@ protocol StoreObserverDelegate: AnyObject {
     //
     func successfulPurchase()
 }
+/*
+protocol SubscriptionContainer : AnyObject {
+    associatedtype T : Model
+    
+    var subscription : GraphQLSubscriptionOperation<T>? { get }
+    func create(handler: @escaping (T) -> Any) -> GraphQLSubscriptionOperation<T>
+    func cancel()
+    
+}*/

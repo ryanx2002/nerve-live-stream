@@ -21,9 +21,9 @@ class LiveViewController: BaseViewController {
     var dareBubbles: Deque<UIView>?
     var comments: Deque<UILabel>?
     
-    public var availableProducts : [SKProduct]?
+    let bubbleBorderColor = Colors.CGWhite
     
-    var purchaseSuccessful = false
+    public var availableProducts : [SKProduct]?
     
     fileprivate var productRequest: SKProductsRequest!
     var inAppPurchasesObserver : StoreObserver?
@@ -41,7 +41,7 @@ class LiveViewController: BaseViewController {
     func exitLiveRoom() {
         LiveManager.shared.exitLiveRoom()
     }
-    
+
     var giftSubscription : GraphQLSubscriptionOperation<Gift>?
     
     func createGiftSubscription(handler: @escaping (Gift) -> Any) {
@@ -109,7 +109,7 @@ class LiveViewController: BaseViewController {
     // get products
     func initializeInAppPurchases() {
         availableProducts = []
-        fetchProductInformation(productIds: ["FirstPriceGift"])
+        fetchProductInformation(productIds: [Messages.firstPriceGiftProductId])
     }
 
     override func viewDidLoad() {
@@ -258,15 +258,14 @@ class LiveViewController: BaseViewController {
 
     @objc func liveBtnClick() {
         debugPrint("Live button clicked")
-        debugPrint("Text Box is: " + textInput)
     }
     
-    var textInput = ""
+    var textInput = Messages.emptyString
     var textTyping = false
 
     lazy var textInputBar: UITextField = {
         let textInputBar = UITextField(frame: CGRect(x: 20, y: K_SCREEN_HEIGHT - 70, width: K_SCREEN_WIDTH - 40, height: 30))
-        textInputBar.placeholder = "Gift / Comment"
+        textInputBar.placeholder = Messages.unselectedPlaceholder
         textInputBar.borderStyle = .roundedRect
         //textInputBar.lineBreakMode = .byWordWrapping
         //textInputBar.textAlignment = .center
@@ -289,13 +288,13 @@ class LiveViewController: BaseViewController {
             
             view.addSubview(submitButton)
             if gift {
-                textInputBar.placeholder = "Add a note to your gift"
+                textInputBar.placeholder = Messages.giftingPlaceholder
                 view.addSubview(firstPriceButton)
                 view.addSubview(secondPriceButton)
                 view.addSubview(thirdPriceButton)
             }
             else {
-                textInputBar.placeholder = "Add a comment"
+                textInputBar.placeholder = Messages.commentingPlaceholder
             }
             
             for comment in comments! {
@@ -315,7 +314,7 @@ class LiveViewController: BaseViewController {
             secondPriceButton.removeFromSuperview()
             thirdPriceButton.removeFromSuperview()
             submitButton.removeFromSuperview()
-            textInputBar.placeholder = "Gift / Comment"
+            textInputBar.placeholder = Messages.unselectedPlaceholder
             for comment in comments! {
                 comment.frame = CGRectMake(20, comment.frame.minY + YOffset, K_SCREEN_WIDTH - 40, 15)
             }
@@ -325,17 +324,17 @@ class LiveViewController: BaseViewController {
     // buttons that will appear when text field has been opened
     
     var gift = true // !gift implies comment
-    var giftValue = 7
+    var giftValue = Pricing.secondPrice
     
     lazy var giftButton: UIButton = {
         let giftButton = UIButton(frame: CGRect(x: 10, y: K_SCREEN_HEIGHT - 70 - YOffset, width: 85, height: 32))
-        giftButton.layer.borderColor = CGColor(red: 255/255, green: 1, blue: 1, alpha: 1)
+        giftButton.layer.borderColor = bubbleBorderColor
         giftButton.layer.borderWidth = 0.5
         giftButton.backgroundColor = .clear
-        giftButton.setTitle("Gift", for: .normal)
+        giftButton.setTitle(Messages.giftButtonText, for: .normal)
         giftButton.setTitleColor(.white, for: .normal)
-        giftButton.layer.cornerRadius = 11
-        giftButton.titleLabel!.font = UIFont(name: "Inter-Regular",size: 16)
+        giftButton.layer.cornerRadius = 10
+        giftButton.titleLabel!.font = Fonts.giftCommentButtonFont
         giftButton.addTarget(self, action: #selector(giftButtonClick), for: .touchUpInside)
         return giftButton
     }()
@@ -345,7 +344,7 @@ class LiveViewController: BaseViewController {
             giftButton.backgroundColor = .clear
             commentButton.backgroundColor = .clear
             gift = true
-            textInputBar.placeholder = "Add a note to your gift"
+            textInputBar.placeholder = Messages.giftingPlaceholder
             view.addSubview(firstPriceButton)
             view.addSubview(secondPriceButton)
             view.addSubview(thirdPriceButton)
@@ -357,11 +356,11 @@ class LiveViewController: BaseViewController {
     lazy var commentButton: UIButton = {
         let commentButton = UIButton(frame: CGRect(x: 10, y: K_SCREEN_HEIGHT - 70 - YOffset + 36, width: 85, height: 31))
         commentButton.backgroundColor = .clear
-        commentButton.layer.borderColor = CGColor(red: 255/255, green: 1, blue: 1, alpha: 1)
-        commentButton.setTitle("Comment", for: .normal)
+        commentButton.layer.borderColor = bubbleBorderColor
+        commentButton.setTitle(Messages.commentButtonText, for: .normal)
         commentButton.setTitleColor(.white, for: .normal)
         commentButton.layer.cornerRadius = 10
-        commentButton.titleLabel!.font = UIFont(name: "Inter-Regular",size: 16)
+        commentButton.titleLabel!.font = Fonts.giftCommentButtonFont
         commentButton.addTarget(self, action: #selector(commentButtonClick), for: .touchUpInside)
         return commentButton
     }()
@@ -371,7 +370,7 @@ class LiveViewController: BaseViewController {
             gift = false
             commentButton.layer.borderWidth = 0.5
             giftButton.layer.borderWidth = 0
-            textInputBar.placeholder = "Add a comment"
+            textInputBar.placeholder = Messages.commentingPlaceholder
             firstPriceButton.removeFromSuperview()
             secondPriceButton.removeFromSuperview()
             thirdPriceButton.removeFromSuperview()
@@ -381,64 +380,64 @@ class LiveViewController: BaseViewController {
     lazy var firstPriceButton : UIButton = {
         let firstButton = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - widthOffset - 16, y: K_SCREEN_HEIGHT - 70 - YOffset, width: 34, height: 20))
         firstButton.backgroundColor = .clear
-        firstButton.layer.borderColor = CGColor(red: 255/255, green: 1, blue: 1, alpha: 1)
-        firstButton.setTitle("$3", for: .normal)
+        firstButton.layer.borderColor = bubbleBorderColor
+        firstButton.setTitle("$" + String(Pricing.firstPrice), for: .normal)
         firstButton.setTitleColor(.white, for: .normal)
         firstButton.layer.cornerRadius = 10
-        firstButton.titleLabel!.font = UIFont(name: "Inter-Regular",size: 12)
+        firstButton.titleLabel!.font = Fonts.priceButtonFont
         firstButton.addTarget(self, action: #selector(firstPriceButtonClick), for: .touchUpInside)
         return firstButton
     }()
     
     @objc func firstPriceButtonClick() {
-        if giftValue != 3 {
+        if giftValue != Pricing.firstPrice {
             firstPriceButton.layer.borderWidth = 0.5
             secondPriceButton.layer.borderWidth = 0
             thirdPriceButton.layer.borderWidth = 0
-            giftValue = 3
+            giftValue = Pricing.firstPrice
         }
     }
     
     lazy var secondPriceButton : UIButton = {
         let secondButton = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - widthOffset - 16, y: K_SCREEN_HEIGHT - 70 - YOffset + 25, width: 34, height: 20))
         secondButton.backgroundColor = .clear
-        secondButton.layer.borderColor = CGColor(red: 255/255, green: 1, blue: 1, alpha: 1)
+        secondButton.layer.borderColor = bubbleBorderColor
         secondButton.layer.borderWidth = 0.5
-        secondButton.setTitle("$7", for: .normal)
+        secondButton.setTitle("$" + String(Pricing.secondPrice), for: .normal)
         secondButton.setTitleColor(.white, for: .normal)
         secondButton.layer.cornerRadius = 10
-        secondButton.titleLabel!.font = UIFont(name: "Inter-Regular",size: 12)
+        secondButton.titleLabel!.font = Fonts.priceButtonFont
         secondButton.addTarget(self, action: #selector(secondPriceButtonClick), for: .touchUpInside)
         return secondButton
     }()
     
     @objc func secondPriceButtonClick() {
-        if giftValue != 7 {
+        if giftValue != Pricing.secondPrice {
             firstPriceButton.layer.borderWidth = 0
             secondPriceButton.layer.borderWidth = 0.5
             thirdPriceButton.layer.borderWidth = 0
-            giftValue = 7
+            giftValue = Pricing.secondPrice
         }
     }
     
     lazy var thirdPriceButton : UIButton = {
         let thirdButton = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - widthOffset - 16, y: K_SCREEN_HEIGHT - 70 - YOffset + 50, width: 34, height: 20))
         thirdButton.backgroundColor = .clear
-        thirdButton.layer.borderColor = CGColor(red: 255/255, green: 1, blue: 1, alpha: 1)
-        thirdButton.setTitle("$15", for: .normal)
+        thirdButton.layer.borderColor = bubbleBorderColor
+        thirdButton.setTitle("$" + String(Pricing.thirdPrice), for: .normal)
         thirdButton.setTitleColor(.white, for: .normal)
         thirdButton.layer.cornerRadius = 10
-        thirdButton.titleLabel!.font = UIFont(name: "Inter-Regular",size: 12)
+        thirdButton.titleLabel!.font = Fonts.priceButtonFont
         thirdButton.addTarget(self, action: #selector(thirdPriceButtonClick), for: .touchUpInside)
         return thirdButton
     }()
     
     @objc func thirdPriceButtonClick() {
-        if giftValue != 15 {
+        if giftValue != Pricing.thirdPrice {
             firstPriceButton.layer.borderWidth = 0
             secondPriceButton.layer.borderWidth = 0
             thirdPriceButton.layer.borderWidth = 0.5
-            giftValue = 15
+            giftValue = Pricing.thirdPrice
         }
     }
     
@@ -518,7 +517,7 @@ class LiveViewController: BaseViewController {
         bubble.addSubview(msgLabel)
         
         var priceLabel = UILabel(frame: CGRect(x: 10 + 114 + 3, y: 0, width: 41, height: 46))
-        priceLabel.textColor = UIColor(red: 0, green: 1, blue: 0.16, alpha: 1)
+        priceLabel.textColor = Colors.darePriceLabel
         priceLabel.font = UIFont(name: "Inter-Bold", size: 22)
         priceLabel.text = "$" + String(value)
         bubble.addSubview(priceLabel)
@@ -547,8 +546,8 @@ class LiveViewController: BaseViewController {
     //comment text factory
     func createCommentLabel(comment: Comment) {
         var commentLabel = UILabel(frame: CGRect(x: 20, y: K_SCREEN_HEIGHT - 70 - 25 - (isEditing ? YOffset : 0), width: K_SCREEN_WIDTH - 40, height: 15))
-        commentLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        commentLabel.font = UIFont(name: "Inter-Regular", size: 12)
+        commentLabel.textColor = .white
+        commentLabel.font = Fonts.commentDisplayFont
         commentLabel.text = comment.commenterFullName! + ": " +  comment.commentText!
         updateComments(newComment: commentLabel)
     }
@@ -594,7 +593,7 @@ extension LiveViewController : UITextFieldDelegate {
 
 extension LiveViewController: StoreObserverDelegate {
     func storeObserverDidReceiveMessage(_ message: String) {
-        liveAlert(title: "Purchase Unsuccessful", message: message)
+        liveAlert(title: ToUser.unsuccessfulPurchase, message: message)
     }
     
     func storeObserverRestoreDidSucceed() {
@@ -640,7 +639,7 @@ extension StoreManager: SKRequestDelegate {
 }
 */
 
-//preview stuff
+// preview stuff. note Amplify functions cause preview to crash
 
 struct LiveView: UIViewControllerRepresentable {
     typealias UIViewControllerType = LiveViewController
