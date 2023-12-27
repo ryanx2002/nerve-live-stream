@@ -148,7 +148,7 @@ class LiveViewController: BaseViewController {
         remoteRenderer.backgroundColor = K_VIEW_WHITECOLOR
         #endif
 
-        LiveManager.shared.webRTCClient?.startCaptureLocalVideo(renderer: localBackRenderer)
+        LiveManager.shared.webRTCClient?.startCaptureLocalVideo(frontRenderer: localFrontRenderer, backRenderer: localBackRenderer)
         LiveManager.shared.webRTCClient?.renderRemoteVideo(to: remoteRenderer)
 
         embedView(localBackRenderer, into: localBackVideoView)

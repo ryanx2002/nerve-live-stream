@@ -25,8 +25,10 @@ final class WebRTCClient: NSObject {
     private var frontVideoCapturer: RTCVideoCapturer?
     private var backVideoCapturer: RTCVideoCapturer?
     private var localFrontVideoTrack: RTCVideoTrack?
+    private var localBackVideoTrack: RTCVideoTrack?
     private var localAudioTrack: RTCAudioTrack?
     private var remoteFrontVideoTrack: RTCVideoTrack?
+    private var remoteBackVideoTrack: RTCVideoTrack?
     private var remoteDataChannel: RTCDataChannel?
     private var constructedIceServers: [RTCIceServer]?
 
@@ -84,7 +86,9 @@ final class WebRTCClient: NSObject {
         if let stream = peerConnection.localStreams.first {
             localAudioTrack = nil
             localFrontVideoTrack = nil
+            localBackVideoTrack = nil
             remoteFrontVideoTrack = nil
+            remoteBackVideoTrack = nil
             peerConnection.remove(stream)
         }
         peerConnectionFoundMap.removeAll();
@@ -179,7 +183,7 @@ final class WebRTCClient: NSObject {
         checkAndAddIceCandidate(remoteCandidate: remoteCandidate, clientId: clientId)
     }
 
-    func startCaptureLocalVideo(renderer: RTCVideoRenderer) {
+    func startCaptureLocalVideo(frontRenderer: RTCVideoRenderer, backRenderer: RTCVideoRenderer) {
         guard let frontCapturer = self.frontVideoCapturer as? RTCCameraVideoCapturer else {
             return
         }
@@ -216,7 +220,8 @@ final class WebRTCClient: NSObject {
                               format: backFormat,
                               fps: Int(backFps.magnitude))
 
-        localFrontVideoTrack?.add(renderer)
+        localFrontVideoTrack?.add(frontRenderer)
+        localBackVideoTrack?.add(backRenderer)
     }
 
     func renderRemoteVideo(to renderer: RTCVideoRenderer) {
@@ -224,7 +229,12 @@ final class WebRTCClient: NSObject {
     }
 
     private func createLocalVideoStream() {
-        localFrontVideoTrack = createVideoTrack()
+        let videoSource = WebRTCClient.factory.videoSource()
+        videoSource.adaptOutputFormat(toWidth: 1280, height: 720, fps: 30)
+        frontVideoCapturer = RTCCameraVideoCapturer(delegate: videoSource)
+        backVideoCapturer = RTCCameraVideoCapturer(delegate: videoSource)
+        localFrontVideoTrack = WebRTCClient.factory.videoTrack(with: videoSource, trackId: "KvsVideoTrack")
+        localBackVideoTrack = WebRTCClient.factory.videoTrack(with: videoSource, trackId: "KvsVideoTrack")
         
         peerConnection.add(localFrontVideoTrack!, streamIds: [streamId])
         remoteFrontVideoTrack = peerConnection.transceivers.first { $0.mediaType == .video }?.receiver.track as? RTCVideoTrack
@@ -238,14 +248,6 @@ final class WebRTCClient: NSObject {
             let audioTracks = peerConnection.transceivers.compactMap { $0.sender.track as? RTCAudioTrack }
             audioTracks.forEach { $0.isEnabled = true }
         }
-    }
-
-    private func createVideoTrack() -> RTCVideoTrack {
-        let videoSource = WebRTCClient.factory.videoSource()
-        videoSource.adaptOutputFormat(toWidth: 1280, height: 720, fps: 30)
-        frontVideoCapturer = RTCCameraVideoCapturer(delegate: videoSource)
-        backVideoCapturer = RTCCameraVideoCapturer(delegate: videoSource)
-        return WebRTCClient.factory.videoTrack(with: videoSource, trackId: "KvsVideoTrack")
     }
 
     private func createAudioTrack() -> RTCAudioTrack {
