@@ -34,7 +34,7 @@ class ConfirmationCodeViewController: BaseViewController {
         self.DescTitle.attributedText = StringUtils.TextWithBorder(font: 16, text: "Enter the code we just texted")
 
         // 创建一个NSMutableAttributedString
-        let attributedString = NSMutableAttributedString(string: "you at \(RegisterCache.sharedTools.countryCode)\(RegisterCache.sharedTools.phone)")
+        let attributedString = NSMutableAttributedString(string: "you at \(RegisterCache.sharedTools.countryCode) \(RegisterCache.sharedTools.phone)")
 
         // 添加红色边框
         let redBorderColor = UIColor.red
@@ -87,8 +87,8 @@ class ConfirmationCodeViewController: BaseViewController {
                     //LiveManager.shared.singIn()
                     DispatchQueue.main.async {
                         SVProgressHUD.dismiss()
-                        let name = NameInputViewController()
-                        self.navigationController?.pushViewController(name, animated: true)
+                        print("Login via confirmation code successful")
+                        getAppDelegate().changeRootViewController()
                     }
                 } fail: { error in
                     print(error)

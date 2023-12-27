@@ -13,10 +13,16 @@ class NameInputViewController: BaseViewController{
     @IBOutlet weak var DescTitle:UILabel!
     @IBOutlet weak var FisrtNameInputText:UITextField!
     @IBOutlet weak var LastNameInputText:UITextField!
+    var login = false
     var firstName:String?
     var lastName:String?
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if login {
+            updatePage()
+        }
+        
         self.DescTitle.attributedText = StringUtils.TextWithBorder(font: 16, text: "What’s your name?")
         // Do any additional setup after loading the view.
         let firstnameText = NSAttributedString(string: "First name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.hexColorWithAlpha(color: "#A9A9A9", alpha: 1)])
@@ -31,6 +37,24 @@ class NameInputViewController: BaseViewController{
         self.LastNameInputText.attributedPlaceholder = lastnameText
         self.LastNameInputText.delegate = self
         self.LastNameInputText.textContentType = .familyName
+    }
+    
+    func updatePage() {
+        var user = LoginTools.sharedTools.userInfo()
+        user.firstName = RegisterCache.sharedTools.firstName
+        user.lastName = RegisterCache.sharedTools.lastName
+        SVProgressHUD.show()
+        LoginBackend.shared.updateUser(user: user) {
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                getAppDelegate().changeRootViewController()
+            }
+        } fail: { msg in
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                SVProgressHUD.showError(withStatus: msg)
+            }
+        }
     }
     
     

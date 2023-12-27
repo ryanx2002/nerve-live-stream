@@ -62,9 +62,6 @@
 		6A3FEE4D2B2758A7006D63D0 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3FEE482B2758A7006D63D0 /* Message.swift */; };
 		6A3FEE4E2B2758A7006D63D0 /* WebRTCClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3FEE492B2758A7006D63D0 /* WebRTCClient.swift */; };
 		6A3FEE4F2B2758A7006D63D0 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3FEE4A2B2758A7006D63D0 /* Event.swift */; };
-		6A87A3082B2C8AC4006678B9 /* ChannelConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A87A3072B2C8AC4006678B9 /* ChannelConfigurationViewController.swift */; };
-		6A87A30B2B2C8B34006678B9 /* VideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A87A3092B2C8B34006678B9 /* VideoViewController.xib */; };
-		6A87A30C2B2C8B34006678B9 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A87A30A2B2C8B34006678B9 /* VideoViewController.swift */; };
 		6A87A30E2B2DEFB7006678B9 /* AuditLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A87A30D2B2DEFB7006678B9 /* AuditLoginViewController.swift */; };
 		6AB59FC32B24ACF700B2F5A1 /* LoginBackend+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB59FC22B24ACF700B2F5A1 /* LoginBackend+User.swift */; };
 		6AEE5EA02B29D7A600D1D084 /* LiveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE5E9F2B29D7A600D1D084 /* LiveManager.swift */; };
@@ -160,9 +157,6 @@
 		6A3FEE482B2758A7006D63D0 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		6A3FEE492B2758A7006D63D0 /* WebRTCClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRTCClient.swift; sourceTree = "<group>"; };
 		6A3FEE4A2B2758A7006D63D0 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		6A87A3072B2C8AC4006678B9 /* ChannelConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelConfigurationViewController.swift; sourceTree = "<group>"; };
-		6A87A3092B2C8B34006678B9 /* VideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoViewController.xib; sourceTree = "<group>"; };
-		6A87A30A2B2C8B34006678B9 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		6A87A30D2B2DEFB7006678B9 /* AuditLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditLoginViewController.swift; sourceTree = "<group>"; };
 		6AB59FC22B24ACF700B2F5A1 /* LoginBackend+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginBackend+User.swift"; sourceTree = "<group>"; };
 		6AEE5E9F2B29D7A600D1D084 /* LiveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveManager.swift; sourceTree = "<group>"; };
@@ -354,7 +348,6 @@
 			isa = PBXGroup;
 			children = (
 				97CEF0AE2B3A8CA60078DA5F /* Payments */,
-				6A87A3062B2C8A9D006678B9 /* Demo */,
 				6AEE5E9E2B29D79100D1D084 /* Manager */,
 				6A3FEE412B275735006D63D0 /* Tool */,
 				6AEE5EAB2B29E44300D1D084 /* LiveViewController.swift */,
@@ -377,16 +370,6 @@
 				6A3FEE442B275822006D63D0 /* Constants.swift */,
 			);
 			path = Tool;
-			sourceTree = "<group>";
-		};
-		6A87A3062B2C8A9D006678B9 /* Demo */ = {
-			isa = PBXGroup;
-			children = (
-				6A87A30A2B2C8B34006678B9 /* VideoViewController.swift */,
-				6A87A3092B2C8B34006678B9 /* VideoViewController.xib */,
-				6A87A3072B2C8AC4006678B9 /* ChannelConfigurationViewController.swift */,
-			);
-			path = Demo;
 			sourceTree = "<group>";
 		};
 		6AEE5E9E2B29D79100D1D084 /* Manager */ = {
@@ -576,7 +559,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A87A30B2B2C8B34006678B9 /* VideoViewController.xib in Resources */,
 				97CEF0AB2B3A62DE0078DA5F /* StoreKitTestCertificate.cer in Resources */,
 				35AC97782B1DE1AA005E843E /* ConfirmationCodeViewController.xib in Resources */,
 				35AC97572B1DDEB0005E843E /* Inter-Bold.ttf in Resources */,
@@ -648,7 +630,6 @@
 			files = (
 				358F99CE2B3528B500192445 /* AppDelegate+Push.swift in Sources */,
 				35AC97812B1DE5FC005E843E /* NameInputViewController.swift in Sources */,
-				6A87A3082B2C8AC4006678B9 /* ChannelConfigurationViewController.swift in Sources */,
 				6AB59FC32B24ACF700B2F5A1 /* LoginBackend+User.swift in Sources */,
 				358F99C82B3444C500192445 /* SettingViewController.swift in Sources */,
 				35AC97562B1DDEB0005E843E /* UIFont+Ext.swift in Sources */,
@@ -671,7 +652,6 @@
 				B63F5C342B1B5361000D6642 /* ViewController.swift in Sources */,
 				35AC97482B1DDE50005E843E /* StringUtils.swift in Sources */,
 				6A3FEE452B275822006D63D0 /* Constants.swift in Sources */,
-				6A87A30C2B2C8B34006678B9 /* VideoViewController.swift in Sources */,
 				B63F5C302B1B5361000D6642 /* AppDelegate.swift in Sources */,
 				6AEE5EAC2B29E44300D1D084 /* LiveViewController.swift in Sources */,
 				35AC97502B1DDE50005E843E /* Global.swift in Sources */,

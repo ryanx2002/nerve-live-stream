@@ -32,7 +32,7 @@ class LoginBackend: NSObject {
             case .success(let signUpResult):
                 if case let .confirmUser(deliveryDetails, _) = signUpResult.nextStep {
                     print("Delivery details \(String(describing: deliveryDetails))")
-                    needConfirm()
+                    needConfirm() // generates confirmation code view controller
                 } else {
                     print("SignUp Complete")
                     suc()

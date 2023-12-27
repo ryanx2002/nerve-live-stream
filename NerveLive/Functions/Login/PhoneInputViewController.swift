@@ -8,6 +8,7 @@
 import UIKit
 import Amplify
 import SVProgressHUD
+import SwiftUI
 
 class PhoneInputViewController: BaseViewController {
     @IBOutlet weak var DescTitle:UILabel!
@@ -65,6 +66,59 @@ class PhoneInputViewController: BaseViewController {
 
 extension PhoneInputViewController:UITextFieldDelegate{
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let maxLength = 9
+        let currentString = (textField.text ?? "") as NSString
+        var newString = currentString.replacingCharacters(in: range, with: string)
+        let lenNew = newString.count
+        
+        if newString.filter{ $0.isNumber }.count == lenNew - 1 {
+            return false
+        }
+        
+        let res = lenNew <= maxLength
+        if !res {
+            if lenNew == 10 {
+                debugPrint(newString)
+                textField.text = newString
+                submitText()
+                return false
+            } else if newString.starts(with: "+1"){
+                newString = newString.filter{ $0.isNumber }
+                newString.remove(at: newString.startIndex)
+                if newString.count == 10 {
+                    textField.text = newString
+                    submitText()
+                }
+                return false
+            } else {
+                textField.text = String(currentString)
+            }
+        }
+        return res
+    }
+    
+    func submitText() {
+        PhoneNumberInputText.resignFirstResponder()
+        var number = PhoneNumberInputText.text!
+        RegisterCache.sharedTools.countryCode = CountryCodeInputText.text ?? "+1"
+        RegisterCache.sharedTools.phone = number
+        number = RegisterCache.sharedTools.countryCode + number
+        LoginBackend.shared.queryUserBy(phone: number) { user in
+            if user != nil {
+                UserManager.saveUerInfo(model: user!)
+                debugPrint("saving found user")
+                DispatchQueue.main.async{
+                    self.resendCodeForSignIn()
+                }
+            } else {
+                self.signUp()
+            }
+        } fail: { msg in
+            self.signUp()
+        }
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if(!StringUtils.isBlank(value: self.CountryCodeInputText.text) &&
            !StringUtils.isBlank(value: self.PhoneNumberInputText.text)) {
@@ -82,7 +136,9 @@ extension PhoneInputViewController:UITextFieldDelegate{
                 /// 根据手机号查询用户
                 LoginBackend.shared.queryUserBy(phone: "\(RegisterCache.sharedTools.countryCode)\(RegisterCache.sharedTools.phone)") { user in
                     if let _ = user {
-                        self.resendCodeForSignIn()
+                        let vc = AuditLoginViewController()
+                        vc.isMaster = self.PhoneNumberInputText.text == "8159912449"
+                        self.navigationController?.pushViewController(vc, animated: true)
                     } else {
                         self.signUp()
                     }
@@ -165,5 +221,23 @@ extension PhoneInputViewController:UITextFieldDelegate{
             self.resendCodeForSignUp()
         }))
         present(alert, animated: true)
+    }
+}
+
+// preview stuff. note Amplify functions cause preview to crash
+
+struct PhoneInputView: UIViewControllerRepresentable {
+    typealias UIViewControllerType = PhoneInputViewController
+    func makeUIViewController(context: Context) -> PhoneInputViewController {
+            let vc = PhoneInputViewController()
+            return vc
+        }
+    func updateUIViewController(_ uiViewController: PhoneInputViewController, context: Context) {
+        }
+    }
+
+struct PhoneInputPreview: PreviewProvider {
+    static var previews: some View {
+        return PhoneInputView()
     }
 }

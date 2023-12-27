@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // rootViewController = PhoneInputViewController()
             rootViewController = StartupPageViewController()
         } else {
-            debugPrint("userid:\(user.id)")
+            debugPrint("userid:\(user.id)\n\(user.firstName ?? "none") \(user.lastName ?? "none")")
             if (user.firstName ?? "").isEmpty || (user.lastName ?? "").isEmpty { // 未补充姓名
                 rootViewController = NameInputViewController()
             } 
