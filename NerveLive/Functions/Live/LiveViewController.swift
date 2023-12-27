@@ -12,6 +12,7 @@ import SwiftUI
 import SVProgressHUD
 import Amplify
 import Collections
+import StoreKit
 
 class LiveViewController: BaseViewController {
 
@@ -19,6 +20,13 @@ class LiveViewController: BaseViewController {
     
     var dareBubbles: Deque<UIView>?
     var comments: Deque<UILabel>?
+    
+    public var availableProducts : [SKProduct]?
+    
+    var purchaseSuccessful = false
+    
+    fileprivate var productRequest: SKProductsRequest!
+    var inAppPurchasesObserver : StoreObserver?
 
     override func viewWillAppear(_ animated: Bool) {
         AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
@@ -97,9 +105,21 @@ class LiveViewController: BaseViewController {
     func cancelCommentSubscription() {
         commentSubscription?.cancel()
     }
+    
+    // get products
+    func initializeInAppPurchases() {
+        availableProducts = []
+        fetchProductInformation(productIds: ["FirstPriceGift"])
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        inAppPurchasesObserver = StoreObserver()
+        inAppPurchasesObserver!.delegate = self
+        SKPaymentQueue.default().add(inAppPurchasesObserver!)
+        
+        initializeInAppPurchases()
         
         dareBubbles = Deque<UIView>()
         comments = Deque<UILabel>()
@@ -182,6 +202,9 @@ class LiveViewController: BaseViewController {
         debugPrint("Live closed for user " + username)
         cancelGiftSubscription()
         cancelCommentSubscription()
+        
+        SKPaymentQueue.default().remove(inAppPurchasesObserver!)
+        
         dismiss(animated: true)
     }
     
@@ -436,10 +459,29 @@ class LiveViewController: BaseViewController {
         let user = LoginTools.sharedTools.userInfo()
         debugPrint((gift ? "Gift" : "Comment") + " submitted")
         if gift {
-            StreamingBackend.stream.logGift( gifterId: user.id, value: giftValue, msg: textInput, gifterName: user.firstName!)
-        }
-        else {
+            if(giftValue == 3){
+                if inAppPurchasesObserver != nil {
+                    inAppPurchasesObserver!.buy(availableProducts![0])
+                } else {
+                    debugPrint("inAppPurchasesObserver closed, in-app purchases disabled.")
+                }
+            } else {
+                StreamingBackend.stream.logGift( gifterId: user.id, value: giftValue, msg: textInput, gifterName: user.firstName!)
+            }
+        } else {
             StreamingBackend.stream.logComment(name: user.firstName! + " " + user.lastName!, msg: textInput)
+        }
+    }
+    
+    //in-app purchases helpers
+    
+    func fetchProductInformation(productIds : [String]) {
+        if inAppPurchasesObserver!.isAuthorizedForPayments {
+            productRequest = SKProductsRequest(productIdentifiers: Set(productIds))
+            productRequest.delegate = self
+            productRequest.start()
+        } else {
+            liveAlert(title: "You don’t have authorization to make payments", message: "There may be restrictions on your device for in-app purchases")
         }
     }
     
@@ -498,7 +540,6 @@ class LiveViewController: BaseViewController {
         
         newBubble.frame = CGRect(x: 200, y: Int(K_SAFEAREA_TOP_HEIGHT()) + 36 + 12 + newY, width: 173, height: 47)
         
-        
         dareBubbles?.append(newBubble)
         self.view.addSubview(newBubble)
     }
@@ -525,6 +566,14 @@ class LiveViewController: BaseViewController {
         self.view.addSubview(newComment)
     }
     
+    // function to create alerts
+    func liveAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: NSLocalizedString("OK", comment: ""),
+                                   style: .default, handler: nil)
+        alertController.addAction(action)
+        self.navigationController?.present(alertController, animated: true, completion: nil)
+    }
 }
 
 // text input delegate
@@ -542,6 +591,54 @@ extension LiveViewController : UITextFieldDelegate {
         debugPrint("Text editing began")
     }
 }
+
+extension LiveViewController: StoreObserverDelegate {
+    func storeObserverDidReceiveMessage(_ message: String) {
+        liveAlert(title: "Purchase Unsuccessful", message: message)
+    }
+    
+    func storeObserverRestoreDidSucceed() {
+    }
+    
+    func successfulPurchase() {
+        let user = LoginTools.sharedTools.userInfo()
+        StreamingBackend.stream.logGift( gifterId: user.id, value: giftValue, msg: textInput, gifterName: user.firstName!)
+    }
+}
+
+
+/// Extends StoreManager to conform to SKProductsRequestDelegate.
+extension LiveViewController: SKProductsRequestDelegate {
+    /// Use this to get the App Store's response to your request and notify your observer.
+    /// - Tag: ProductRequest
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        
+        // Contains products with identifiers that the App Store recognizes. As such, they are available for purchase.
+        if !response.products.isEmpty {
+            availableProducts = response.products
+        }
+        
+        // invalidProductIdentifiers contains all product identifiers that the App Store doesn’t recognize.
+        /*if !response.invalidProductIdentifiers.isEmpty {
+            invalidProductIdentifiers = response.invalidProductIdentifiers
+        }*/
+        
+        /*if !availableProducts.isEmpty {
+            storeResponse.append(Section(type: .availableProducts, elements: availableProducts))
+        }*/
+    }
+}
+/*
+/// Extends StoreManager to conform to SKRequestDelegate.
+extension StoreManager: SKRequestDelegate {
+    /// The system calls this when the product request fails.
+    func request(_ request: SKRequest, didFailWithError error: Error) {
+        DispatchQueue.main.async {
+            self.delegate?.storeManagerDidReceiveMessage(error.localizedDescription)
+        }
+    }
+}
+*/
 
 //preview stuff
 
