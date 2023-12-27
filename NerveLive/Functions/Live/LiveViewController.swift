@@ -23,7 +23,7 @@ class LiveViewController: BaseViewController {
     
     let bubbleBorderColor = Colors.CGWhite
     
-    public var availableProducts : [SKProduct]?
+    public var availableProducts : Dictionary<String,SKProduct>?
     
     fileprivate var productRequest: SKProductsRequest!
     var inAppPurchasesObserver : StoreObserver?
@@ -108,16 +108,15 @@ class LiveViewController: BaseViewController {
     
     // get products
     func initializeInAppPurchases() {
-        availableProducts = []
+        inAppPurchasesObserver = StoreObserver()
+        inAppPurchasesObserver!.delegate = self
+        SKPaymentQueue.default().add(inAppPurchasesObserver!)
+        availableProducts = [:]
         fetchProductInformation(productIds: [Messages.firstPriceGiftProductId])
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        inAppPurchasesObserver = StoreObserver()
-        inAppPurchasesObserver!.delegate = self
-        SKPaymentQueue.default().add(inAppPurchasesObserver!)
         
         initializeInAppPurchases()
         
@@ -458,9 +457,11 @@ class LiveViewController: BaseViewController {
         let user = LoginTools.sharedTools.userInfo()
         debugPrint((gift ? "Gift" : "Comment") + " submitted")
         if gift {
-            if(giftValue == 3){
+            if !inAppPurchasesObserver!.isAuthorizedForPayments {
+                liveAlert(title: ToUser.unauthorizedTitle, message: ToUser.unauthorizedMessage)
+            } else if(giftValue == 3){
                 if inAppPurchasesObserver != nil {
-                    inAppPurchasesObserver!.buy(availableProducts![0])
+                    inAppPurchasesObserver!.buy(availableProducts![Messages.firstPriceGiftProductId]!)
                 } else {
                     debugPrint("inAppPurchasesObserver closed, in-app purchases disabled.")
                 }
@@ -480,7 +481,7 @@ class LiveViewController: BaseViewController {
             productRequest.delegate = self
             productRequest.start()
         } else {
-            liveAlert(title: "You don’t have authorization to make payments", message: "There may be restrictions on your device for in-app purchases")
+            liveAlert(title: ToUser.unauthorizedTitle, message: ToUser.unauthorizedMessage)
         }
     }
     
@@ -614,7 +615,9 @@ extension LiveViewController: SKProductsRequestDelegate {
         
         // Contains products with identifiers that the App Store recognizes. As such, they are available for purchase.
         if !response.products.isEmpty {
-            availableProducts = response.products
+            for product in response.products {
+                availableProducts?[product.productIdentifier] = product
+            }
         }
         
         // invalidProductIdentifiers contains all product identifiers that the App Store doesn’t recognize.

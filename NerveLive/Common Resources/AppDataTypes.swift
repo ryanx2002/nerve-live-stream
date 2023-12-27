@@ -42,6 +42,8 @@ struct Messages {
 
 struct ToUser {
     static let unsuccessfulPurchase = "Purchase Unsuccessful"
+    static let unauthorizedTitle = "You don’t have authorization to make payments"
+    static let unauthorizedMessage = "There may be restrictions on your device for in-app purchases"
 }
 
 struct Colors {
