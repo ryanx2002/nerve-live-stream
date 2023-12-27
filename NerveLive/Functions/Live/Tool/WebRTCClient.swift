@@ -23,9 +23,9 @@ final class WebRTCClient: NSObject {
     private let mediaConstrains = [kRTCMediaConstraintsOfferToReceiveAudio: kRTCMediaConstraintsValueTrue,
                                    kRTCMediaConstraintsOfferToReceiveVideo: kRTCMediaConstraintsValueTrue]
     private var videoCapturer: RTCVideoCapturer?
-    private var localVideoTrack: RTCVideoTrack?
+    private var localFrontVideoTrack: RTCVideoTrack?
     private var localAudioTrack: RTCAudioTrack?
-    private var remoteVideoTrack: RTCVideoTrack?
+    private var remoteFrontVideoTrack: RTCVideoTrack?
     private var remoteDataChannel: RTCDataChannel?
     private var constructedIceServers: [RTCIceServer]?
 
@@ -82,8 +82,8 @@ final class WebRTCClient: NSObject {
 
         if let stream = peerConnection.localStreams.first {
             localAudioTrack = nil
-            localVideoTrack = nil
-            remoteVideoTrack = nil
+            localFrontVideoTrack = nil
+            remoteFrontVideoTrack = nil
             peerConnection.remove(stream)
         }
         peerConnectionFoundMap.removeAll();
@@ -186,31 +186,29 @@ final class WebRTCClient: NSObject {
         guard
             let frontCamera = (RTCCameraVideoCapturer.captureDevices().first { $0.position == .front }),
 
-            let format = RTCCameraVideoCapturer.supportedFormats(for: frontCamera).last,
+            let frontFormat = RTCCameraVideoCapturer.supportedFormats(for: frontCamera).last,
 
-            let fps = format.videoSupportedFrameRateRanges.first?.maxFrameRate else {
+            let frontFps = frontFormat.videoSupportedFrameRateRanges.first?.maxFrameRate else {
                 debugPrint("Error setting fps.")
                 return
             }
 
         capturer.startCapture(with: frontCamera,
-                              format: format,
-                              fps: Int(fps.magnitude))
+                              format: frontFormat,
+                              fps: Int(frontFps.magnitude))
 
-        localVideoTrack?.add(renderer)
+        localFrontVideoTrack?.add(renderer)
     }
 
     func renderRemoteVideo(to renderer: RTCVideoRenderer) {
-        remoteVideoTrack?.add(renderer)
+        remoteFrontVideoTrack?.add(renderer)
     }
 
     private func createLocalVideoStream() {
-        localVideoTrack = createVideoTrack()
-
-        if let localVideoTrack = localVideoTrack {
-            peerConnection.add(localVideoTrack, streamIds: [streamId])
-            remoteVideoTrack = peerConnection.transceivers.first { $0.mediaType == .video }?.receiver.track as? RTCVideoTrack
-        }
+        localFrontVideoTrack = createVideoTrack()
+        
+        peerConnection.add(localFrontVideoTrack!, streamIds: [streamId])
+        remoteFrontVideoTrack = peerConnection.transceivers.first { $0.mediaType == .video }?.receiver.track as? RTCVideoTrack
 
     }
 
