@@ -21,6 +21,8 @@ class LiveViewController: BaseViewController {
     var dareBubbles: Deque<UIView>?
     var comments: Deque<UILabel>?
     
+    var cameraPositionIsFront = true
+    
     let bubbleBorderColor = Colors.CGWhite
     
     public var availableProducts : Dictionary<String,SKProduct>?
@@ -164,9 +166,10 @@ class LiveViewController: BaseViewController {
         remoteRenderer.backgroundColor = K_VIEW_WHITECOLOR
         #endif
 
-        LiveManager.shared.webRTCClient?.startCaptureLocalVideo(renderer: localRenderer)
+        LiveManager.shared.webRTCClient?.startCaptureLocalVideo(renderer: localRenderer, camera: .front )
         LiveManager.shared.webRTCClient?.renderRemoteVideo(to: remoteRenderer)
 
+       
         embedView(localRenderer, into: localVideoView)
         embedView(remoteRenderer, into: view)
         view.sendSubviewToBack(remoteRenderer)
@@ -244,7 +247,13 @@ class LiveViewController: BaseViewController {
     }()
 
     @objc func lookBtnClick() {
-        debugPrint("Look Button Clicked")
+        print("Switching cameras...")
+        let localRenderer = RTCMTLVideoView(frame: localVideoView.frame)
+        let remoteRenderer = RTCMTLVideoView(frame: view.frame)
+        localRenderer.videoContentMode = .scaleAspectFill
+        LiveManager.shared.webRTCClient?.startCaptureLocalVideo(renderer: localRenderer, camera: cameraPositionIsFront ? .back : .front )
+        cameraPositionIsFront = !cameraPositionIsFront
+        embedView(localRenderer, into: localVideoView)
     }
 
     lazy var liveBtn: UIButton = {
