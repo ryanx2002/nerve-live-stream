@@ -104,7 +104,8 @@ class LiveViewController: BaseViewController {
         dareBubbles = Deque<UIView>()
         comments = Deque<UILabel>()
         
-        view.addSubview(localVideoView)
+        view.addSubview(localFrontVideoView)
+        view.addSubview(localBackVideoView)
         view.addSubview(closeBtn)
 
         view.addSubview(lookBtn)
@@ -133,9 +134,11 @@ class LiveViewController: BaseViewController {
         
         #if arch(arm64)
         // Using metal (arm64 only)
-        let localRenderer = RTCMTLVideoView(frame: localVideoView.frame)
+        let localBackRenderer = RTCMTLVideoView(frame: localBackVideoView.frame)
+        let localFrontRenderer = RTCMTLVideoView(frame: localFrontVideoView.frame)
         let remoteRenderer = RTCMTLVideoView(frame: view.frame)
-        localRenderer.videoContentMode = .scaleAspectFill
+        localBackRenderer.videoContentMode = .scaleAspectFill
+        localFrontRenderer.videoContentMode = .scaleAspectFill
         remoteRenderer.videoContentMode = .scaleAspectFill
         remoteRenderer.backgroundColor = K_VIEW_WHITECOLOR
         #else
@@ -145,17 +148,20 @@ class LiveViewController: BaseViewController {
         remoteRenderer.backgroundColor = K_VIEW_WHITECOLOR
         #endif
 
-        LiveManager.shared.webRTCClient?.startCaptureLocalVideo(renderer: localRenderer)
+        LiveManager.shared.webRTCClient?.startCaptureLocalVideo(renderer: localBackRenderer)
         LiveManager.shared.webRTCClient?.renderRemoteVideo(to: remoteRenderer)
 
-        embedView(localRenderer, into: localVideoView)
+        embedView(localBackRenderer, into: localBackVideoView)
+        embedView(localFrontRenderer, into: localFrontVideoView)
         embedView(remoteRenderer, into: view)
+        
         view.sendSubviewToBack(remoteRenderer)
         /// 如果是master隐藏对方视频内容,  如果是viewer隐藏本地视频内容
         if LiveManager.shared.isMaster {
             remoteRenderer.isHidden = true
         } else {
-            localRenderer.isHidden = true
+            localBackRenderer.isHidden = true
+            localFrontRenderer.isHidden = true
         }
     }
 
@@ -190,9 +196,14 @@ class LiveViewController: BaseViewController {
 //        joinStorageButton?.isHidden = true
 //    }
     
-    lazy var localVideoView: UIView = {
+    lazy var localFrontVideoView: UIView = {
         // let localVideoView = UIView(frame: CGRect(x: 16, y: K_SAFEAREA_TOP_HEIGHT() + 16, width: 200, height: 200))
         let localVideoView = UIView(frame: view.bounds) // 全屏展示(full screen display)
+        return localVideoView
+    }()
+    
+    lazy var localBackVideoView: UIView = {
+        let localVideoView = UIView(frame: CGRect(x: 16, y: K_SAFEAREA_TOP_HEIGHT(), width: 200, height: 200)) // 全屏展示(full screen display)
         return localVideoView
     }()
     

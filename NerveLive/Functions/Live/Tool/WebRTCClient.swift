@@ -22,7 +22,8 @@ final class WebRTCClient: NSObject {
     private let streamId = "KvsLocalMediaStream"
     private let mediaConstrains = [kRTCMediaConstraintsOfferToReceiveAudio: kRTCMediaConstraintsValueTrue,
                                    kRTCMediaConstraintsOfferToReceiveVideo: kRTCMediaConstraintsValueTrue]
-    private var videoCapturer: RTCVideoCapturer?
+    private var frontVideoCapturer: RTCVideoCapturer?
+    private var backVideoCapturer: RTCVideoCapturer?
     private var localFrontVideoTrack: RTCVideoTrack?
     private var localAudioTrack: RTCAudioTrack?
     private var remoteFrontVideoTrack: RTCVideoTrack?
@@ -179,7 +180,7 @@ final class WebRTCClient: NSObject {
     }
 
     func startCaptureLocalVideo(renderer: RTCVideoRenderer) {
-        guard let capturer = self.videoCapturer as? RTCCameraVideoCapturer else {
+        guard let frontCapturer = self.frontVideoCapturer as? RTCCameraVideoCapturer else {
             return
         }
 
@@ -193,9 +194,27 @@ final class WebRTCClient: NSObject {
                 return
             }
 
-        capturer.startCapture(with: frontCamera,
+        frontCapturer.startCapture(with: frontCamera,
                               format: frontFormat,
                               fps: Int(frontFps.magnitude))
+        
+        guard let backCapturer = self.backVideoCapturer as? RTCCameraVideoCapturer else {
+            return
+        }
+
+        guard
+            let backCamera = (RTCCameraVideoCapturer.captureDevices().first { $0.position == .back }),
+
+            let backFormat = RTCCameraVideoCapturer.supportedFormats(for: backCamera).last,
+
+            let backFps = frontFormat.videoSupportedFrameRateRanges.first?.maxFrameRate else {
+                debugPrint("Error setting fps.")
+                return
+            }
+
+        backCapturer.startCapture(with: backCamera,
+                              format: backFormat,
+                              fps: Int(backFps.magnitude))
 
         localFrontVideoTrack?.add(renderer)
     }
@@ -224,7 +243,8 @@ final class WebRTCClient: NSObject {
     private func createVideoTrack() -> RTCVideoTrack {
         let videoSource = WebRTCClient.factory.videoSource()
         videoSource.adaptOutputFormat(toWidth: 1280, height: 720, fps: 30)
-        videoCapturer = RTCCameraVideoCapturer(delegate: videoSource)
+        frontVideoCapturer = RTCCameraVideoCapturer(delegate: videoSource)
+        backVideoCapturer = RTCCameraVideoCapturer(delegate: videoSource)
         return WebRTCClient.factory.videoTrack(with: videoSource, trackId: "KvsVideoTrack")
     }
 
