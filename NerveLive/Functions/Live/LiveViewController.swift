@@ -136,11 +136,14 @@ class LiveViewController: BaseViewController {
         // Using metal (arm64 only)
         let localBackRenderer = RTCMTLVideoView(frame: localBackVideoView.frame)
         let localFrontRenderer = RTCMTLVideoView(frame: localFrontVideoView.frame)
-        let remoteRenderer = RTCMTLVideoView(frame: view.frame)
+        let remoteBackRenderer = RTCMTLVideoView(frame: localBackVideoView.frame)
+        let remoteFrontRenderer = RTCMTLVideoView(frame: localFrontVideoView.frame)
         localBackRenderer.videoContentMode = .scaleAspectFill
         localFrontRenderer.videoContentMode = .scaleAspectFill
-        remoteRenderer.videoContentMode = .scaleAspectFill
-        remoteRenderer.backgroundColor = K_VIEW_WHITECOLOR
+        remoteBackRenderer.videoContentMode = .scaleAspectFill
+        remoteFrontRenderer.videoContentMode = .scaleAspectFill
+        remoteBackRenderer.backgroundColor = K_VIEW_WHITECOLOR
+        remoteFrontRenderer.backgroundColor = K_VIEW_WHITECOLOR
         #else
         // Using OpenGLES for the rest
         let localRenderer = RTCEAGLVideoView(frame: localVideoView.frame)
@@ -149,19 +152,15 @@ class LiveViewController: BaseViewController {
         #endif
 
         LiveManager.shared.webRTCClient?.startCaptureLocalVideo(frontRenderer: localFrontRenderer, backRenderer: localBackRenderer)
-        LiveManager.shared.webRTCClient?.renderRemoteVideo(to: remoteRenderer)
-
-        embedView(localBackRenderer, into: localBackVideoView)
-        embedView(localFrontRenderer, into: localFrontVideoView)
-        embedView(remoteRenderer, into: view)
+        LiveManager.shared.webRTCClient?.renderRemoteVideo(frontRenderer: remoteFrontRenderer, backRenderer: remoteBackRenderer)
         
-        view.sendSubviewToBack(remoteRenderer)
         /// 如果是master隐藏对方视频内容,  如果是viewer隐藏本地视频内容
         if LiveManager.shared.isMaster {
-            remoteRenderer.isHidden = true
+            embedView(localBackRenderer, into: localBackVideoView)
+            embedView(localFrontRenderer, into: localFrontVideoView)
         } else {
-            localBackRenderer.isHidden = true
-            localFrontRenderer.isHidden = true
+            embedView(remoteBackRenderer, into: localBackVideoView)
+            embedView(remoteFrontRenderer, into: localFrontVideoView)
         }
     }
 

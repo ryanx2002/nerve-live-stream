@@ -224,8 +224,9 @@ final class WebRTCClient: NSObject {
         localBackVideoTrack?.add(backRenderer)
     }
 
-    func renderRemoteVideo(to renderer: RTCVideoRenderer) {
-        remoteFrontVideoTrack?.add(renderer)
+    func renderRemoteVideo(frontRenderer: RTCVideoRenderer, backRenderer: RTCVideoRenderer) {
+        remoteFrontVideoTrack?.add(frontRenderer)
+        remoteBackVideoTrack?.add(backRenderer)
     }
 
     private func createLocalVideoStream() {
@@ -241,6 +242,7 @@ final class WebRTCClient: NSObject {
         peerConnection.add(localFrontVideoTrack!, streamIds: [streamId])
         peerConnection.add(localBackVideoTrack!, streamIds: [streamId])
         remoteFrontVideoTrack = peerConnection.transceivers.first { $0.mediaType == .video }?.receiver.track as? RTCVideoTrack
+        remoteBackVideoTrack = peerConnection.transceivers.last { $0.mediaType == .video }?.receiver.track as? RTCVideoTrack
     }
 
     private func createLocalAudioStream() {
