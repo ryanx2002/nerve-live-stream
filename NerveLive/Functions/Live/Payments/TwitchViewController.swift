@@ -16,9 +16,7 @@ class TwitchViewController : BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        debugPrint("creating Twitch")
         let twitch = createViewer()
-        debugPrint("showing Twitch")
         view.addSubview(twitch)
     }
     

@@ -76,6 +76,7 @@
 		972086982B3A29CE008817A0 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 972086972B3A29CE008817A0 /* Collections */; };
 		9720869A2B3A29CE008817A0 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 972086992B3A29CE008817A0 /* DequeModule */; };
 		9720869C2B3A29CE008817A0 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 9720869B2B3A29CE008817A0 /* OrderedCollections */; };
+		97783C322B3E1BF8000C347B /* TwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97783C312B3E1BF8000C347B /* TwitchViewController.swift */; };
 		97B1EB1B2B38DCBE002EDF47 /* StreamingBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B1EB1A2B38DCBE002EDF47 /* StreamingBackend.swift */; };
 		97C446D92B3BCE9400CC79D2 /* AppDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C446D82B3BCE9400CC79D2 /* AppDataTypes.swift */; };
 		97CEF0A32B3A4D870078DA5F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CEF0A22B3A4D870078DA5F /* StoreKit.framework */; };
@@ -170,6 +171,7 @@
 		8E096ABA1FBB541FB145D91D /* User+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "User+Schema.swift"; path = "amplify/generated/models/User+Schema.swift"; sourceTree = "<group>"; };
 		8E5AB6050A14DBCE22C9B523 /* Pods-NerveLive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NerveLive.release.xcconfig"; path = "Target Support Files/Pods-NerveLive/Pods-NerveLive.release.xcconfig"; sourceTree = "<group>"; };
 		942141DB0B4660BFE3088F17 /* Pods-NerveLive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NerveLive.debug.xcconfig"; path = "Target Support Files/Pods-NerveLive/Pods-NerveLive.debug.xcconfig"; sourceTree = "<group>"; };
+		97783C312B3E1BF8000C347B /* TwitchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitchViewController.swift; sourceTree = "<group>"; };
 		97B1EB1A2B38DCBE002EDF47 /* StreamingBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingBackend.swift; sourceTree = "<group>"; };
 		97C446D82B3BCE9400CC79D2 /* AppDataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDataTypes.swift; sourceTree = "<group>"; };
 		97CEF0A22B3A4D870078DA5F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -443,6 +445,7 @@
 			isa = PBXGroup;
 			children = (
 				97CEF0A62B3A5DC80078DA5F /* StoreObserver.swift */,
+				97783C312B3E1BF8000C347B /* TwitchViewController.swift */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -683,6 +686,7 @@
 				97CEF0A72B3A5DC80078DA5F /* StoreObserver.swift in Sources */,
 				5325919CE5D7F0AEAF06CF07 /* User.swift in Sources */,
 				C0C1986B9FCBCFE8A3987CC8 /* Gift.swift in Sources */,
+				97783C322B3E1BF8000C347B /* TwitchViewController.swift in Sources */,
 				CC5B71175A23101F522C68FA /* Stream.swift in Sources */,
 				A8A2B0A7D4BC25600870BC96 /* StreamView.swift in Sources */,
 				97C446D92B3BCE9400CC79D2 /* AppDataTypes.swift in Sources */,

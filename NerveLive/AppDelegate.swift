@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 rootViewController = GoLiveViewController()
             }
             else {
+                //rootViewController = TwitchViewController()
                 rootViewController = LiveViewController() //GoLiveViewController()
             }
         }

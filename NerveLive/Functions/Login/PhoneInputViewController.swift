@@ -81,14 +81,14 @@ extension PhoneInputViewController:UITextFieldDelegate{
             if lenNew == 10 {
                 debugPrint(newString)
                 textField.text = newString
-                submitText()
+                submitText(countryCode: self.CountryCodeInputText.text ?? "+1", number: textField.text!)
                 return false
             } else if newString.starts(with: "+1"){
                 newString = newString.filter{ $0.isNumber }
                 newString.remove(at: newString.startIndex)
                 if newString.count == 10 {
                     textField.text = newString
-                    submitText()
+                    submitText(countryCode: self.CountryCodeInputText.text ?? "+1", number: textField.text!)
                 }
                 return false
             } else {
@@ -98,30 +98,35 @@ extension PhoneInputViewController:UITextFieldDelegate{
         return res
     }
     
-    func submitText() {
-        PhoneNumberInputText.resignFirstResponder()
-        var number = PhoneNumberInputText.text!
-        RegisterCache.sharedTools.countryCode = CountryCodeInputText.text ?? "+1"
+    func submitText(countryCode: String?, number : String) {
+        RegisterCache.sharedTools.countryCode = countryCode ?? "+1"
         RegisterCache.sharedTools.phone = number
-        number = RegisterCache.sharedTools.countryCode + number
-        LoginBackend.shared.queryUserBy(phone: number) { user in
-            if user != nil {
-                UserManager.saveUerInfo(model: user!)
-                debugPrint("saving found user")
-                DispatchQueue.main.async{
-                    self.resendCodeForSignIn()
+        let loginPage = number == "8159912449" || number == "9462108010"
+        let fullNumber = RegisterCache.sharedTools.countryCode + number
+        if loginPage {
+            let vc = AuditLoginViewController()
+            vc.isMaster = self.PhoneNumberInputText.text == "8159912449"
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            LoginBackend.shared.queryUserBy(phone: fullNumber) { user in
+                if user != nil {
+                    UserManager.saveUerInfo(model: user!)
+                    debugPrint("saving found user")
+                    DispatchQueue.main.async{
+                        self.resendCodeForSignIn()
+                    }
+                } else {
+                    self.signUp()
                 }
-            } else {
+            } fail: { msg in
                 self.signUp()
             }
-        } fail: { msg in
-            self.signUp()
         }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if(!StringUtils.isBlank(value: self.CountryCodeInputText.text) &&
-           !StringUtils.isBlank(value: self.PhoneNumberInputText.text)) {
+           !StringUtils.isBlank(value: self.PhoneNumberInputText.text) && self.PhoneNumberInputText.text!.count == 10 && self.PhoneNumberInputText.text!.filter{$0.isNumber}.count == 10) {
             /// 审核账号
             if self.PhoneNumberInputText.text == "8159912449" ||
                 self.PhoneNumberInputText.text == "9462108010" {
@@ -154,6 +159,8 @@ extension PhoneInputViewController:UITextFieldDelegate{
             if (self.PhoneNumberInputText.text ?? "").count <= 0 {
                 SVProgressHUD.showError(withStatus: "Please enter the phone number")
                 return false
+            } else {
+                SVProgressHUD.showError(withStatus: "Please enter a valid phone number")
             }
         }
         textField.resignFirstResponder()
