@@ -13,6 +13,7 @@ import SVProgressHUD
 import Amplify
 import Collections
 import StoreKit
+import WebKit
 
 class LiveViewController: BaseViewController {
     
@@ -125,18 +126,8 @@ class LiveViewController: BaseViewController {
         dareBubbles = Deque<UIView>()
         comments = Deque<UILabel>()
         
-        view.addSubview(localVideoView)
 
-        view.addSubview(lookBtn)
-        view.addSubview(liveBtn)
-        textInputBar.delegate = self
-        
-        createGiftSubscription(handler: createDareBubble)
-        createCommentSubscription(handler: createCommentLabel)
-        
-        enterLiveRoom()
-
-        if !LiveManager.shared.isMaster {
+        if (LoginTools.sharedTools.userInfo().phone!) != "8159912449" {
             // In viewer mode send offer once connection is established
             if let webRTCClient = LiveManager.shared.webRTCClient {
                 webRTCClient.offer { sdp in
@@ -146,10 +137,8 @@ class LiveViewController: BaseViewController {
                 }
             }
             // only add text input bar in viewer mode
-            view.addSubview(textInputBar)
         } else {
             // only add close button in streamer mode
-            view.addSubview(closeBtn)
         }
         if mediaServerEndPoint == nil {
             //self.joinStorageButton?.isHidden = true
@@ -177,11 +166,30 @@ class LiveViewController: BaseViewController {
         embedView(remoteRenderer, into: view)
         view.sendSubviewToBack(remoteRenderer)
         /// 如果是master隐藏对方视频内容,  如果是viewer隐藏本地视频内容
-        if LiveManager.shared.isMaster {
+        if (LoginTools.sharedTools.userInfo().phone!) == "8159912449" {
             remoteRenderer.isHidden = true
         } else {
-            localRenderer.isHidden = true
+            let twitchView = createViewer(url: "https://player.twitch.tv/?channel=ryanmillion_&parent=quest-livestream", frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight))
+            localVideoView = twitchView
         }
+        
+        view.addSubview(localVideoView)
+        
+        view.addSubview(lookBtn)
+        view.addSubview(liveBtn)
+        
+        
+        if (LoginTools.sharedTools.userInfo().phone!) != "8159912449" {
+            view.addSubview(textInputBar)
+            textInputBar.delegate = self
+        } else {
+            view.addSubview(closeBtn)
+        }
+        
+        createGiftSubscription(handler: createDareBubble)
+        createCommentSubscription(handler: createCommentLabel)
+        
+        enterLiveRoom()
     }
 
     private func embedView(_ view: UIView, into containerView: UIView) {
@@ -218,6 +226,55 @@ class LiveViewController: BaseViewController {
 //        joinStorageButton?.isHidden = true
 //    }
     
+    func createViewer(url : String, frame : CGRect) -> WKWebView {
+        // Initialize a WKWebViewConfiguration object.
+        let webViewConfiguration = WKWebViewConfiguration()
+        // Let HTML videos with a "playsinline" attribute play inline.
+        webViewConfiguration.allowsInlineMediaPlayback = true
+        // Let HTML videos with an "autoplay" attribute play automatically.
+        webViewConfiguration.mediaTypesRequiringUserActionForPlayback = []
+        
+        let url2 = URL(string: url)
+        
+        let wkwebView = WKWebView(frame: frame, configuration: webViewConfiguration)
+        let request = URLRequest(url: url2!)
+        wkwebView.load(request)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            wkwebView.evaluateJavaScript("""
+                                         {
+                                         const hideElements = (...el) => {
+                                           el.forEach((el) => {
+                                             el?.style.setProperty("display", "none", "important");
+                                           })
+                                         }
+                                         const hide = () => {
+                                           const topBar = document.querySelector(".top-bar");
+                                           const playerControls = document.querySelector(".player-controls");
+                                           const channelDisclosures = document.querySelector("#channel-player-disclosures");
+                                           hideElements(topBar, playerControls, channelDisclosures);
+                                         }
+                                         const observer = new MutationObserver(() => {
+                                           const videoOverlay = document.querySelector('.video-player__overlay');
+                                           if(!videoOverlay) return;
+                                           hide();
+                                           const videoOverlayObserver = new MutationObserver(hide);
+                                           videoOverlayObserver.observe(videoOverlay, { childList: true, subtree: true });
+                                           observer.disconnect();
+                                         });
+                                         observer.observe(document.body, { childList: true, subtree: true });
+                                         }
+                                         """) { (result, error) in
+                if error == nil {
+                    print(result)
+                } else {
+                    print(error)
+                }
+            }
+        }
+        return wkwebView
+    }
+
+    
     lazy var localVideoView: UIView = {
         // let localVideoView = UIView(frame: CGRect(x: 16, y: K_SAFEAREA_TOP_HEIGHT() + 16, width: 200, height: 200))
         let localVideoView = UIView(frame: view.bounds) // 全屏展示(full screen display)
@@ -250,13 +307,17 @@ class LiveViewController: BaseViewController {
     }()
 
     @objc func lookBtnClick() {
-        print("Switching cameras...")
-        let localRenderer = RTCMTLVideoView(frame: localVideoView.frame)
-        let remoteRenderer = RTCMTLVideoView(frame: view.frame)
-        localRenderer.videoContentMode = .scaleAspectFill
-        LiveManager.shared.webRTCClient?.startCaptureLocalVideo(renderer: localRenderer, camera: cameraPositionIsFront ? .back : .front )
-        cameraPositionIsFront = !cameraPositionIsFront
-        embedView(localRenderer, into: localVideoView)
+        if (LoginTools.sharedTools.userInfo().phone!) == "8159912449" {
+            print("Switching cameras...")
+            let localRenderer = RTCMTLVideoView(frame: localVideoView.frame)
+            let remoteRenderer = RTCMTLVideoView(frame: view.frame)
+            localRenderer.videoContentMode = .scaleAspectFill
+            LiveManager.shared.webRTCClient?.startCaptureLocalVideo(renderer: localRenderer, camera: cameraPositionIsFront ? .back : .front )
+            cameraPositionIsFront = !cameraPositionIsFront
+            embedView(localRenderer, into: localVideoView)
+        } else {
+            print("Switch not allowed in viewer mode")
+        }
     }
 
     lazy var liveBtn: UIButton = {

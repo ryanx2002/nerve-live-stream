@@ -74,10 +74,10 @@ extension NameInputViewController:UITextFieldDelegate{
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == self.FisrtNameInputText {
-            self.DescTitle.attributedText = StringUtils.TextWithBorder(font: 20, text: "What’s your last name?")
+            self.DescTitle.attributedText = StringUtils.TextWithBorder(font: 20, text: "What’s your name?")
         }
         if textField == self.LastNameInputText {
-            self.DescTitle.attributedText = StringUtils.TextWithBorder(font: 20, text: "What’s your first name?")
+            self.DescTitle.attributedText = StringUtils.TextWithBorder(font: 20, text: "What’s your name?")
         }
     }
     

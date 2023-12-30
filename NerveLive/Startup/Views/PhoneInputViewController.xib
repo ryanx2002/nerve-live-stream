@@ -26,8 +26,8 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <color key="backgroundColor" red="0.035294117649999998" green="0.035294117649999998" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
-                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYC-8a-2JM" userLabel="PhoneInput">
-                    <rect key="frame" x="120.33333333333333" y="406" width="152.66666666666669" height="40"/>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="CYC-8a-2JM" userLabel="PhoneInput">
+                    <rect key="frame" x="114.33333333333333" y="406" width="164.66666666666669" height="40"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="+1" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fvf-sl-gFd">
                             <rect key="frame" x="0.0" y="0.0" width="33.666666666666664" height="40"/>
@@ -36,7 +36,7 @@
                             <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="000000" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZkJ-Rq-hK5">
-                            <rect key="frame" x="33.666666666666671" y="0.0" width="119.00000000000001" height="40"/>
+                            <rect key="frame" x="45.666666666666671" y="0.0" width="119.00000000000001" height="40"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="32"/>
                             <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>

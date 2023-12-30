@@ -76,6 +76,7 @@ class VenmoEditConfirmationView: UIView {
         textField.keyboardType = .numberPad
         textField.textColor = .clear
         textField.addTarget(self, action: #selector(textFieldChanged(sender:)), for: .editingChanged)
+        textField.becomeFirstResponder()
         textField.delegate = self
         return textField
     }()
