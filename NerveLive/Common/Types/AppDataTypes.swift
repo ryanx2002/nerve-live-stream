@@ -32,6 +32,8 @@ struct Messages {
     // productIds
     
     static let firstPriceGiftProductId = "FirstPriceGift"
+    static let secondPriceGiftProductId = "SecondPriceGift"
+    static let thirdPriceGiftProductId = "ThirdPriceGift"
     
     // TextInputBar
     

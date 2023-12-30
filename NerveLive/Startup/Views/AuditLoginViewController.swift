@@ -18,6 +18,7 @@ class AuditLoginViewController: BaseViewController {
         super.viewDidLoad()
         view.addSubview(textLabel)
         view.addSubview(passwordTF)
+        passwordTF.delegate = self
         view.addSubview(signUpBtn)
     }
     
@@ -85,5 +86,11 @@ class AuditLoginViewController: BaseViewController {
                 SVProgressHUD.dismiss()
             }
         }
+    }
+}
+extension AuditLoginViewController:UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        signUpBtnClick()
+        return true
     }
 }

@@ -115,7 +115,7 @@ class LiveViewController: BaseViewController {
         inAppPurchasesObserver!.delegate = self
         SKPaymentQueue.default().add(inAppPurchasesObserver!)
         availableProducts = [:]
-        fetchProductInformation(productIds: [Messages.firstPriceGiftProductId])
+        fetchProductInformation(productIds: [Messages.firstPriceGiftProductId, Messages.secondPriceGiftProductId, Messages.thirdPriceGiftProductId])
     }
 
     override func viewDidLoad() {
@@ -126,6 +126,12 @@ class LiveViewController: BaseViewController {
         dareBubbles = Deque<UIView>()
         comments = Deque<UILabel>()
         
+        if (LoginTools.sharedTools.userInfo().phone!) != "+17048901338" {
+            DispatchQueue.main.async {
+                let welcomeQuest = WelcomeQuestViewController();
+                self.navigationController?.pushViewController(welcomeQuest, animated: true)
+            }
+        }
 
         if (LoginTools.sharedTools.userInfo().phone!) != "8159912449" {
             // In viewer mode send offer once connection is established
@@ -150,12 +156,12 @@ class LiveViewController: BaseViewController {
         let remoteRenderer = RTCMTLVideoView(frame: view.frame)
         localRenderer.videoContentMode = .scaleAspectFill
         remoteRenderer.videoContentMode = .scaleAspectFill
-        remoteRenderer.backgroundColor = K_VIEW_WHITECOLOR
+        remoteRenderer.backgroundColor = K_VIEW_BLACKCOLOR
         #else
         // Using OpenGLES for the rest
         let localRenderer = RTCEAGLVideoView(frame: localVideoView.frame)
         let remoteRenderer = RTCEAGLVideoView(frame: view.frame)
-        remoteRenderer.backgroundColor = K_VIEW_WHITECOLOR
+        remoteRenderer.backgroundColor = K_VIEW_BLACKCOLOR
         #endif
 
         LiveManager.shared.webRTCClient?.startCaptureLocalVideo(renderer: localRenderer, camera: .front )
@@ -170,7 +176,7 @@ class LiveViewController: BaseViewController {
         if (LoginTools.sharedTools.userInfo().phone!) == "+17048901338" {
             remoteRenderer.isHidden = true
         } else {
-            let twitchView = createViewer(url: "https://player.twitch.tv/?channel=ryanmillion_&parent=quest-livestream", frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight))
+            let twitchView = createViewer(url: "https://player.twitch.tv/?channel=ryanmillion_&parent=quest-livestream", frame: localVideoView.bounds)
             localVideoView = twitchView
         }
         
@@ -531,6 +537,7 @@ class LiveViewController: BaseViewController {
         let user = LoginTools.sharedTools.userInfo()
         debugPrint((gift ? "Gift" : "Comment") + " submitted")
         if gift {
+            print(availableProducts)
             if !inAppPurchasesObserver!.isAuthorizedForPayments {
                 liveAlert(title: ToUser.unauthorizedTitle, message: ToUser.unauthorizedMessage)
             } else if(giftValue == 3){
@@ -539,8 +546,18 @@ class LiveViewController: BaseViewController {
                 } else {
                     debugPrint("inAppPurchasesObserver closed, in-app purchases disabled.")
                 }
-            } else {
-                StreamingBackend.stream.logGift( gifterId: user.id, value: giftValue, msg: textInput, gifterName: user.firstName!)
+            } else if giftValue == 7 {
+                if inAppPurchasesObserver != nil {
+                    inAppPurchasesObserver!.buy(availableProducts![Messages.secondPriceGiftProductId]!)
+                } else {
+                    debugPrint("inAppPurchasesObserver closed, in-app purchases disabled.")
+                }
+            } else /* if giftValue == 15*/ {
+                if inAppPurchasesObserver != nil {
+                    inAppPurchasesObserver!.buy(availableProducts![Messages.thirdPriceGiftProductId]!)
+                } else {
+                    debugPrint("inAppPurchasesObserver closed, in-app purchases disabled.")
+                }
             }
         } else {
             StreamingBackend.stream.logComment(name: user.firstName! + " " + user.lastName!, msg: textInput)
@@ -695,9 +712,11 @@ extension LiveViewController: SKProductsRequestDelegate {
         }
         
         // invalidProductIdentifiers contains all product identifiers that the App Store doesn’t recognize.
-        /*if !response.invalidProductIdentifiers.isEmpty {
-            invalidProductIdentifiers = response.invalidProductIdentifiers
-        }*/
+        if !response.invalidProductIdentifiers.isEmpty {
+            for invalidProduct in response.invalidProductIdentifiers {
+                print("invalid product id:", invalidProduct)
+            }
+        }
         
         /*if !availableProducts.isEmpty {
             storeResponse.append(Section(type: .availableProducts, elements: availableProducts))

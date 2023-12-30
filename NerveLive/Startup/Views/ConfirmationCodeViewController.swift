@@ -43,7 +43,7 @@ class ConfirmationCodeViewController: BaseViewController {
         attributedString.addAttribute(.font, value: UIFont.font(ofSize: 20, type: .Regular), range: NSRange(location: 0, length: "you at ".count))
         // 添加下划线
         let underlineStyle = NSUnderlineStyle.single.rawValue
-        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: underlineStyle, range: NSRange(location: 0, length: attributedString.length))
+        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: underlineStyle, range: NSRange(location: "you at ".count, length: 13))
 
         // 将NSAttributedString赋给UILabel的attributedText属性
         self.YourPhoneTitle.attributedText = attributedString

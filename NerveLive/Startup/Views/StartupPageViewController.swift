@@ -28,7 +28,7 @@ class StartupPageViewController: BaseViewController {
 
     lazy var logoImg: UIImageView = {
         let logoImg = UIImageView(frame: CGRect(x: (K_SCREEN_WIDTH - 339) / 2.0, y: 338, width: 339, height: 79))
-        logoImg.image = UIImage(named: "icon_quest")
+        logoImg.image = UIImage(named: "quest_icon_new")
         return logoImg
     }()
 

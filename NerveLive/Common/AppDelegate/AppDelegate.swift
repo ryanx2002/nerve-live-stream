@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 rootViewController = NameInputViewController()
             } 
             // TODO(matt): send them to login page. logic to decide where 
-            else if (user.firstName ?? "") == "Ryan" && (user.lastName ?? "") == "Xie" {
+            else if (LoginTools.sharedTools.userInfo().phone!) == "+17048901338" {
                 rootViewController = GoLiveViewController()
             }
             else {
@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let navVC: UINavigationController  = UINavigationController(rootViewController: root)
             navVC.isNavigationBarHidden = true
             self.window?.rootViewController = navVC
-            self.window?.backgroundColor = .white
+            self.window?.backgroundColor = .black
             self.window?.makeKeyAndVisible()
         }
     }
