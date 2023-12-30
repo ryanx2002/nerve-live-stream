@@ -26,7 +26,7 @@
 		35AC974D2B1DDE50005E843E /* CodableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC97412B1DDE50005E843E /* CodableHelper.swift */; };
 		35AC974E2B1DDE50005E843E /* CodableString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC97422B1DDE50005E843E /* CodableString.swift */; };
 		35AC974F2B1DDE50005E843E /* CodableAny.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC97432B1DDE50005E843E /* CodableAny.swift */; };
-		35AC97502B1DDE50005E843E /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC97452B1DDE50005E843E /* Global.swift */; };
+		35AC97502B1DDE50005E843E /* Macros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC97452B1DDE50005E843E /* Macros.swift */; };
 		35AC97562B1DDEB0005E843E /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AC97522B1DDEB0005E843E /* UIFont+Ext.swift */; };
 		35AC97572B1DDEB0005E843E /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35AC97532B1DDEB0005E843E /* Inter-Bold.ttf */; };
 		35AC97582B1DDEB0005E843E /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35AC97542B1DDEB0005E843E /* Inter-Regular.ttf */; };
@@ -88,7 +88,6 @@
 		AFEE0F872F6DF53DA8095968 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A7D55A780F6296D630C8AE2 /* amplifyconfiguration.json */; };
 		B3EFEF6ABCD5C44D806A81F4 /* User+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E096ABA1FBB541FB145D91D /* User+Schema.swift */; };
 		B63F5C302B1B5361000D6642 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63F5C2F2B1B5361000D6642 /* AppDelegate.swift */; };
-		B63F5C342B1B5361000D6642 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63F5C332B1B5361000D6642 /* ViewController.swift */; };
 		B63F5C372B1B5361000D6642 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B63F5C352B1B5361000D6642 /* Main.storyboard */; };
 		B63F5C392B1B5363000D6642 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B63F5C382B1B5363000D6642 /* Assets.xcassets */; };
 		B63F5C3C2B1B5363000D6642 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B63F5C3A2B1B5363000D6642 /* LaunchScreen.storyboard */; };
@@ -125,7 +124,7 @@
 		35AC97412B1DDE50005E843E /* CodableHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableHelper.swift; sourceTree = "<group>"; };
 		35AC97422B1DDE50005E843E /* CodableString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableString.swift; sourceTree = "<group>"; };
 		35AC97432B1DDE50005E843E /* CodableAny.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableAny.swift; sourceTree = "<group>"; };
-		35AC97452B1DDE50005E843E /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		35AC97452B1DDE50005E843E /* Macros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Macros.swift; sourceTree = "<group>"; };
 		35AC97522B1DDEB0005E843E /* UIFont+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
 		35AC97532B1DDEB0005E843E /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
 		35AC97542B1DDEB0005E843E /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
@@ -182,7 +181,6 @@
 		B50F1AFE602D1BD2F3EA1ECD /* StreamView+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "StreamView+Schema.swift"; path = "amplify/generated/models/StreamView+Schema.swift"; sourceTree = "<group>"; };
 		B63F5C2C2B1B5361000D6642 /* NerveLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NerveLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63F5C2F2B1B5361000D6642 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B63F5C332B1B5361000D6642 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B63F5C362B1B5361000D6642 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B63F5C382B1B5363000D6642 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B63F5C3B2B1B5363000D6642 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -210,14 +208,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		35AC97372B1DDE4F005E843E /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				35AC97382B1DDE4F005E843E /* BaseViewController.swift */,
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
 		35AC97392B1DDE4F005E843E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,14 +234,6 @@
 			path = CodableExt;
 			sourceTree = "<group>";
 		};
-		35AC97442B1DDE50005E843E /* Macros */ = {
-			isa = PBXGroup;
-			children = (
-				35AC97452B1DDE50005E843E /* Global.swift */,
-			);
-			path = Macros;
-			sourceTree = "<group>";
-		};
 		35AC97512B1DDEB0005E843E /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,71 +243,6 @@
 				35AC97552B1DDEB0005E843E /* Inter-SemiBold.ttf */,
 			);
 			path = Font;
-			sourceTree = "<group>";
-		};
-		35AC97702B1DE1AA005E843E /* Functions */ = {
-			isa = PBXGroup;
-			children = (
-				6A3FEE402B275735006D63D0 /* Live */,
-				35AC978A2B1F29F3005E843E /* VerificationCode */,
-				35AC97712B1DE1AA005E843E /* Login */,
-			);
-			path = Functions;
-			sourceTree = "<group>";
-		};
-		35AC97712B1DE1AA005E843E /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				35BD38122B313361008D265F /* WebViewController.swift */,
-				35AC977C2B1DE299005E843E /* Tools */,
-				35AC97722B1DE1AA005E843E /* ConfirmationCodeViewController.swift */,
-				35AC97732B1DE1AA005E843E /* ConfirmationCodeViewController.xib */,
-				35AC97752B1DE1AA005E843E /* VenmoEditConfirmationView.swift */,
-				35AC977F2B1DE5FC005E843E /* NameInputViewController.swift */,
-				35AC97802B1DE5FC005E843E /* NameInputViewController.xib */,
-				35AC97742B1DE1AA005E843E /* PhoneInputViewController.swift */,
-				35AC97762B1DE1AA005E843E /* PhoneInputViewController.xib */,
-				6A87A30D2B2DEFB7006678B9 /* AuditLoginViewController.swift */,
-				35BD380E2B312F8F008D265F /* StartupPageViewController.swift */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		35AC977C2B1DE299005E843E /* Tools */ = {
-			isa = PBXGroup;
-			children = (
-				35AC97972B1F3AFE005E843E /* UserManager.swift */,
-				35AC977D2B1DE299005E843E /* RegisterCache.swift */,
-				35AC97932B1F3800005E843E /* LoginTools.swift */,
-			);
-			path = Tools;
-			sourceTree = "<group>";
-		};
-		35AC978A2B1F29F3005E843E /* VerificationCode */ = {
-			isa = PBXGroup;
-			children = (
-				35AC978B2B1F2A0B005E843E /* VerificationCodeManager.swift */,
-			);
-			path = VerificationCode;
-			sourceTree = "<group>";
-		};
-		35AC978F2B1F365B005E843E /* Backend */ = {
-			isa = PBXGroup;
-			children = (
-				97B1EB192B38DC74002EDF47 /* Streaming */,
-				35AC97902B1F365B005E843E /* Login */,
-			);
-			path = Backend;
-			sourceTree = "<group>";
-		};
-		35AC97902B1F365B005E843E /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				35AC97912B1F3678005E843E /* LoginBackend.swift */,
-				6AB59FC22B24ACF700B2F5A1 /* LoginBackend+User.swift */,
-				35AC97992B1F3D07005E843E /* GraphQLRequest+User.swift */,
-			);
-			path = Login;
 			sourceTree = "<group>";
 		};
 		424509208EB6DE2968DC448C /* Pods */ = {
@@ -344,47 +261,6 @@
 				A696D4E5E7757184017BE65F /* Pods_NerveLive.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		6A3FEE402B275735006D63D0 /* Live */ = {
-			isa = PBXGroup;
-			children = (
-				97CEF0AE2B3A8CA60078DA5F /* Payments */,
-				6AEE5E9E2B29D79100D1D084 /* Manager */,
-				6A3FEE412B275735006D63D0 /* Tool */,
-				6AEE5EAB2B29E44300D1D084 /* LiveViewController.swift */,
-				358497B72B2BF168000EF591 /* GoLiveViewController.swift */,
-				358F99C52B343D7200192445 /* ViewerGoLiveViewController.swift */,
-				358F99C92B344AFC00192445 /* MasterLiveCell.swift */,
-				358F99C72B3444C500192445 /* SettingViewController.swift */,
-			);
-			path = Live;
-			sourceTree = "<group>";
-		};
-		6A3FEE412B275735006D63D0 /* Tool */ = {
-			isa = PBXGroup;
-			children = (
-				6A3FEE4A2B2758A7006D63D0 /* Event.swift */,
-				6A3FEE462B2758A6006D63D0 /* KVSSigner.swift */,
-				6A3FEE482B2758A7006D63D0 /* Message.swift */,
-				6A3FEE472B2758A7006D63D0 /* SignalingClient.swift */,
-				6A3FEE492B2758A7006D63D0 /* WebRTCClient.swift */,
-				6A3FEE442B275822006D63D0 /* Constants.swift */,
-			);
-			path = Tool;
-			sourceTree = "<group>";
-		};
-		6AEE5E9E2B29D79100D1D084 /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				6AEE5E9F2B29D7A600D1D084 /* LiveManager.swift */,
-				6AEE5EA92B29E2D000D1D084 /* LiveManager+SignalClient.swift */,
-				6AEE5EA72B29E24F00D1D084 /* LiveManager+WebRTCClient.swift */,
-				6AEE5EA52B29DFE100D1D084 /* LiveManager+Channel.swift */,
-				6AEE5EA32B29DDF400D1D084 /* LiveManager+Connect.swift */,
-				6AEE5EA12B29DC8300D1D084 /* LiveManager+SignIn.swift */,
-			);
-			path = Manager;
 			sourceTree = "<group>";
 		};
 		7E7B8642D3EDB42A70BEF800 /* AmplifyConfig */ = {
@@ -415,21 +291,158 @@
 			name = AmplifyModels;
 			sourceTree = "<group>";
 		};
-		97B1EB192B38DC74002EDF47 /* Streaming */ = {
+		97AF27DD2B3FD61300A116DE /* Startup */ = {
 			isa = PBXGroup;
 			children = (
-				97B1EB1A2B38DCBE002EDF47 /* StreamingBackend.swift */,
+				97AF27E32B3FD81500A116DE /* Backend */,
+				97AF27E02B3FD64100A116DE /* Views */,
 			);
-			path = Streaming;
+			path = Startup;
 			sourceTree = "<group>";
 		};
-		97C446D72B3BCE7C00CC79D2 /* Common Resources */ = {
+		97AF27DE2B3FD62000A116DE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				97AF27E82B3FD8A500A116DE /* Tools */,
+				97AF27E12B3FD74900A116DE /* Types */,
+				97AF27DF2B3FD62800A116DE /* AppDelegate */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		97AF27DF2B3FD62800A116DE /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				B63F5C2F2B1B5361000D6642 /* AppDelegate.swift */,
+				6A3FEE422B27577E006D63D0 /* AppDelegate+Live.swift */,
+				358F99CD2B3528B500192445 /* AppDelegate+Push.swift */,
+				35AC978D2B1F2AF1005E843E /* AppDelegate+Amplify.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		97AF27E02B3FD64100A116DE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				35BD380E2B312F8F008D265F /* StartupPageViewController.swift */,
+				35AC97722B1DE1AA005E843E /* ConfirmationCodeViewController.swift */,
+				35AC97732B1DE1AA005E843E /* ConfirmationCodeViewController.xib */,
+				35AC977F2B1DE5FC005E843E /* NameInputViewController.swift */,
+				35AC97802B1DE5FC005E843E /* NameInputViewController.xib */,
+				35AC97742B1DE1AA005E843E /* PhoneInputViewController.swift */,
+				35AC97762B1DE1AA005E843E /* PhoneInputViewController.xib */,
+				6A87A30D2B2DEFB7006678B9 /* AuditLoginViewController.swift */,
+				35BD38122B313361008D265F /* WebViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		97AF27E12B3FD74900A116DE /* Types */ = {
 			isa = PBXGroup;
 			children = (
 				97CEF0AC2B3A6AF80078DA5F /* AppProtocols.swift */,
 				97C446D82B3BCE9400CC79D2 /* AppDataTypes.swift */,
+				35AC97382B1DDE4F005E843E /* BaseViewController.swift */,
+				35AC97452B1DDE50005E843E /* Macros.swift */,
 			);
-			path = "Common Resources";
+			path = Types;
+			sourceTree = "<group>";
+		};
+		97AF27E22B3FD7C400A116DE /* Unused */ = {
+			isa = PBXGroup;
+			children = (
+				35AC97752B1DE1AA005E843E /* VenmoEditConfirmationView.swift */,
+				35AC978B2B1F2A0B005E843E /* VerificationCodeManager.swift */,
+			);
+			path = Unused;
+			sourceTree = "<group>";
+		};
+		97AF27E32B3FD81500A116DE /* Backend */ = {
+			isa = PBXGroup;
+			children = (
+				35AC97912B1F3678005E843E /* LoginBackend.swift */,
+				6AB59FC22B24ACF700B2F5A1 /* LoginBackend+User.swift */,
+				35AC97992B1F3D07005E843E /* GraphQLRequest+User.swift */,
+			);
+			path = Backend;
+			sourceTree = "<group>";
+		};
+		97AF27E42B3FD82300A116DE /* Streaming */ = {
+			isa = PBXGroup;
+			children = (
+				97AF27EB2B3FD98600A116DE /* Tools */,
+				97AF27EA2B3FD96A00A116DE /* Manager */,
+				97AF27E62B3FD84200A116DE /* Views */,
+				97AF27E52B3FD83800A116DE /* Backend */,
+			);
+			path = Streaming;
+			sourceTree = "<group>";
+		};
+		97AF27E52B3FD83800A116DE /* Backend */ = {
+			isa = PBXGroup;
+			children = (
+				358F99C92B344AFC00192445 /* MasterLiveCell.swift */,
+				97AF27E92B3FD90500A116DE /* Payments */,
+				97B1EB1A2B38DCBE002EDF47 /* StreamingBackend.swift */,
+			);
+			path = Backend;
+			sourceTree = "<group>";
+		};
+		97AF27E62B3FD84200A116DE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6AEE5EAB2B29E44300D1D084 /* LiveViewController.swift */,
+				358497B72B2BF168000EF591 /* GoLiveViewController.swift */,
+				358F99C52B343D7200192445 /* ViewerGoLiveViewController.swift */,
+				97783C312B3E1BF8000C347B /* TwitchViewController.swift */,
+				358F99C72B3444C500192445 /* SettingViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		97AF27E82B3FD8A500A116DE /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				35AC97972B1F3AFE005E843E /* UserManager.swift */,
+				35AC977D2B1DE299005E843E /* RegisterCache.swift */,
+				35AC97932B1F3800005E843E /* LoginTools.swift */,
+				35AC97392B1DDE4F005E843E /* Utils */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		97AF27E92B3FD90500A116DE /* Payments */ = {
+			isa = PBXGroup;
+			children = (
+				97CEF0A62B3A5DC80078DA5F /* StoreObserver.swift */,
+			);
+			path = Payments;
+			sourceTree = "<group>";
+		};
+		97AF27EA2B3FD96A00A116DE /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				6AEE5E9F2B29D7A600D1D084 /* LiveManager.swift */,
+				6AEE5EA92B29E2D000D1D084 /* LiveManager+SignalClient.swift */,
+				6AEE5EA72B29E24F00D1D084 /* LiveManager+WebRTCClient.swift */,
+				6AEE5EA52B29DFE100D1D084 /* LiveManager+Channel.swift */,
+				6AEE5EA32B29DDF400D1D084 /* LiveManager+Connect.swift */,
+				6AEE5EA12B29DC8300D1D084 /* LiveManager+SignIn.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		97AF27EB2B3FD98600A116DE /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				6A3FEE4A2B2758A7006D63D0 /* Event.swift */,
+				6A3FEE462B2758A6006D63D0 /* KVSSigner.swift */,
+				6A3FEE482B2758A7006D63D0 /* Message.swift */,
+				6A3FEE472B2758A7006D63D0 /* SignalingClient.swift */,
+				6A3FEE492B2758A7006D63D0 /* WebRTCClient.swift */,
+				6A3FEE442B275822006D63D0 /* Constants.swift */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		97CEF0A92B3A61AB0078DA5F /* IInAppPurchasesTest */ = {
@@ -439,15 +452,6 @@
 				97CEF0AA2B3A62DE0078DA5F /* StoreKitTestCertificate.cer */,
 			);
 			path = IInAppPurchasesTest;
-			sourceTree = "<group>";
-		};
-		97CEF0AE2B3A8CA60078DA5F /* Payments */ = {
-			isa = PBXGroup;
-			children = (
-				97CEF0A62B3A5DC80078DA5F /* StoreObserver.swift */,
-				97783C312B3E1BF8000C347B /* TwitchViewController.swift */,
-			);
-			path = Payments;
 			sourceTree = "<group>";
 		};
 		B63F5C232B1B5361000D6642 = {
@@ -473,19 +477,12 @@
 		B63F5C2E2B1B5361000D6642 /* NerveLive */ = {
 			isa = PBXGroup;
 			children = (
+				97AF27E42B3FD82300A116DE /* Streaming */,
+				97AF27E22B3FD7C400A116DE /* Unused */,
+				97AF27DE2B3FD62000A116DE /* Common */,
+				97AF27DD2B3FD61300A116DE /* Startup */,
 				358F99CF2B352ABA00192445 /* NerveLive.entitlements */,
 				97CEF0A92B3A61AB0078DA5F /* IInAppPurchasesTest */,
-				35AC978F2B1F365B005E843E /* Backend */,
-				35AC97702B1DE1AA005E843E /* Functions */,
-				35AC97372B1DDE4F005E843E /* Base */,
-				35AC97442B1DDE50005E843E /* Macros */,
-				35AC97392B1DDE4F005E843E /* Utils */,
-				B63F5C2F2B1B5361000D6642 /* AppDelegate.swift */,
-				6A3FEE422B27577E006D63D0 /* AppDelegate+Live.swift */,
-				358F99CD2B3528B500192445 /* AppDelegate+Push.swift */,
-				97C446D72B3BCE7C00CC79D2 /* Common Resources */,
-				35AC978D2B1F2AF1005E843E /* AppDelegate+Amplify.swift */,
-				B63F5C332B1B5361000D6642 /* ViewController.swift */,
 				B63F5C352B1B5361000D6642 /* Main.storyboard */,
 				B63F5C382B1B5363000D6642 /* Assets.xcassets */,
 				B63F5C3A2B1B5363000D6642 /* LaunchScreen.storyboard */,
@@ -648,12 +645,11 @@
 				6AEE5EA42B29DDF400D1D084 /* LiveManager+Connect.swift in Sources */,
 				97B1EB1B2B38DCBE002EDF47 /* StreamingBackend.swift in Sources */,
 				358F99C62B343D7200192445 /* ViewerGoLiveViewController.swift in Sources */,
-				B63F5C342B1B5361000D6642 /* ViewController.swift in Sources */,
 				35AC97482B1DDE50005E843E /* StringUtils.swift in Sources */,
 				6A3FEE452B275822006D63D0 /* Constants.swift in Sources */,
 				B63F5C302B1B5361000D6642 /* AppDelegate.swift in Sources */,
 				6AEE5EAC2B29E44300D1D084 /* LiveViewController.swift in Sources */,
-				35AC97502B1DDE50005E843E /* Global.swift in Sources */,
+				35AC97502B1DDE50005E843E /* Macros.swift in Sources */,
 				35AC978C2B1F2A0B005E843E /* VerificationCodeManager.swift in Sources */,
 				35AC97462B1DDE50005E843E /* BaseViewController.swift in Sources */,
 				35AC97772B1DE1AA005E843E /* ConfirmationCodeViewController.swift in Sources */,
