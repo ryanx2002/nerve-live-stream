@@ -99,13 +99,14 @@
 		CDF64A410C11411053BB8C5A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D8734636905A50C181342F /* User.swift */; };
 		E35B0A11D7234EA7BE65CA7A /* StreamView+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F1AFE602D1BD2F3EA1ECD /* StreamView+Schema.swift */; };
 		E9C0B38B8048F8460C5D94FB /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22A3F34976ED692211DA968 /* Stream.swift */; };
+		EBE7237AEA420FD5D7078247 /* Pods_NerveLive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A696D4E5E7757184017BE65F /* Pods_NerveLive.framework */; };
 		EC222A95760374EE1BFBFAFB /* StreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACBC047028A129A4B0D3FE2 /* StreamView.swift */; };
-		EF174568495F950E9C812A36 /* Pods_NerveLive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C8EA7C4F32D59E105726A9C /* Pods_NerveLive.framework */; };
 		F06C7DE2A9D97BFEE88E32AF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D8734636905A50C181342F /* User.swift */; };
 		F5D1D5C940B40AC3C9D600E0 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22A3F34976ED692211DA968 /* Stream.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E9AB33487858A7AD4244356 /* Pods-NerveLive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NerveLive.debug.xcconfig"; path = "Target Support Files/Pods-NerveLive/Pods-NerveLive.debug.xcconfig"; sourceTree = "<group>"; };
 		27226C6E34F0E8C16E36C820 /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
 		2ACBC047028A129A4B0D3FE2 /* StreamView.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = StreamView.swift; path = amplify/generated/models/StreamView.swift; sourceTree = "<group>"; };
 		358497B72B2BF168000EF591 /* GoLiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoLiveViewController.swift; sourceTree = "<group>"; };
@@ -149,7 +150,6 @@
 		35BD38122B313361008D265F /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		3CDE6EA9533032D084158BDD /* Gift.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Gift.swift; path = amplify/generated/models/Gift.swift; sourceTree = "<group>"; };
 		54E299A29CD8D8C9F2D2F54C /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
-		5C8EA7C4F32D59E105726A9C /* Pods_NerveLive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NerveLive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		676E3272419CCDBBAF769D90 /* Comment.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Comment.swift; path = amplify/generated/models/Comment.swift; sourceTree = "<group>"; };
 		6A3FEE422B27577E006D63D0 /* AppDelegate+Live.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Live.swift"; sourceTree = "<group>"; };
 		6A3FEE442B275822006D63D0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -169,8 +169,6 @@
 		6AEE5EAB2B29E44300D1D084 /* LiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
 		8B23E56D7B7852B5016B611C /* Comment+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "Comment+Schema.swift"; path = "amplify/generated/models/Comment+Schema.swift"; sourceTree = "<group>"; };
 		8E096ABA1FBB541FB145D91D /* User+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "User+Schema.swift"; path = "amplify/generated/models/User+Schema.swift"; sourceTree = "<group>"; };
-		8E5AB6050A14DBCE22C9B523 /* Pods-NerveLive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NerveLive.release.xcconfig"; path = "Target Support Files/Pods-NerveLive/Pods-NerveLive.release.xcconfig"; sourceTree = "<group>"; };
-		942141DB0B4660BFE3088F17 /* Pods-NerveLive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NerveLive.debug.xcconfig"; path = "Target Support Files/Pods-NerveLive/Pods-NerveLive.debug.xcconfig"; sourceTree = "<group>"; };
 		97783C312B3E1BF8000C347B /* TwitchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitchViewController.swift; sourceTree = "<group>"; };
 		97B1EB1A2B38DCBE002EDF47 /* StreamingBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingBackend.swift; sourceTree = "<group>"; };
 		97C446D82B3BCE9400CC79D2 /* AppDataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDataTypes.swift; sourceTree = "<group>"; };
@@ -180,6 +178,7 @@
 		97CEF0AA2B3A62DE0078DA5F /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		97CEF0AC2B3A6AF80078DA5F /* AppProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppProtocols.swift; sourceTree = "<group>"; };
 		9A7D55A780F6296D630C8AE2 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		A696D4E5E7757184017BE65F /* Pods_NerveLive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NerveLive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B50F1AFE602D1BD2F3EA1ECD /* StreamView+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "StreamView+Schema.swift"; path = "amplify/generated/models/StreamView+Schema.swift"; sourceTree = "<group>"; };
 		B63F5C2C2B1B5361000D6642 /* NerveLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NerveLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63F5C2F2B1B5361000D6642 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -190,6 +189,7 @@
 		B63F5C3D2B1B5363000D6642 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9D8734636905A50C181342F /* User.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = User.swift; path = amplify/generated/models/User.swift; sourceTree = "<group>"; };
 		D60ABA62F0E29345D1600FA5 /* Stream+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "Stream+Schema.swift"; path = "amplify/generated/models/Stream+Schema.swift"; sourceTree = "<group>"; };
+		E5C033CC73C6DAE5D1D1A27F /* Pods-NerveLive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NerveLive.release.xcconfig"; path = "Target Support Files/Pods-NerveLive/Pods-NerveLive.release.xcconfig"; sourceTree = "<group>"; };
 		F22A3F34976ED692211DA968 /* Stream.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Stream.swift; path = amplify/generated/models/Stream.swift; sourceTree = "<group>"; };
 		F6364E99D7AF91EE4168C2D0 /* Gift+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "Gift+Schema.swift"; path = "amplify/generated/models/Gift+Schema.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -203,7 +203,7 @@
 				9720869C2B3A29CE008817A0 /* OrderedCollections in Frameworks */,
 				97CEF0A32B3A4D870078DA5F /* StoreKit.framework in Frameworks */,
 				9720869A2B3A29CE008817A0 /* DequeModule in Frameworks */,
-				EF174568495F950E9C812A36 /* Pods_NerveLive.framework in Frameworks */,
+				EBE7237AEA420FD5D7078247 /* Pods_NerveLive.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,8 +331,8 @@
 		424509208EB6DE2968DC448C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				942141DB0B4660BFE3088F17 /* Pods-NerveLive.debug.xcconfig */,
-				8E5AB6050A14DBCE22C9B523 /* Pods-NerveLive.release.xcconfig */,
+				0E9AB33487858A7AD4244356 /* Pods-NerveLive.debug.xcconfig */,
+				E5C033CC73C6DAE5D1D1A27F /* Pods-NerveLive.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -341,7 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				97CEF0A22B3A4D870078DA5F /* StoreKit.framework */,
-				5C8EA7C4F32D59E105726A9C /* Pods_NerveLive.framework */,
+				A696D4E5E7757184017BE65F /* Pods_NerveLive.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -501,11 +501,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B63F5C402B1B5363000D6642 /* Build configuration list for PBXNativeTarget "NerveLive" */;
 			buildPhases = (
-				02A765CDFCDE71598DA51FEB /* [CP] Check Pods Manifest.lock */,
+				E0FC54FA73AF6F41082A51CC /* [CP] Check Pods Manifest.lock */,
 				B63F5C282B1B5361000D6642 /* Sources */,
 				B63F5C292B1B5361000D6642 /* Frameworks */,
 				B63F5C2A2B1B5361000D6642 /* Resources */,
-				F89B8E8E7B1B08BB5C946861 /* [CP] Embed Pods Frameworks */,
+				59183F5C8A1C8888680E3F23 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -581,7 +581,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		02A765CDFCDE71598DA51FEB /* [CP] Check Pods Manifest.lock */ = {
+		59183F5C8A1C8888680E3F23 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NerveLive/Pods-NerveLive-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NerveLive/Pods-NerveLive-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NerveLive/Pods-NerveLive-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E0FC54FA73AF6F41082A51CC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -601,27 +618,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F89B8E8E7B1B08BB5C946861 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NerveLive/Pods-NerveLive-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NerveLive/Pods-NerveLive-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NerveLive/Pods-NerveLive-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -855,7 +851,7 @@
 		};
 		B63F5C412B1B5363000D6642 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 942141DB0B4660BFE3088F17 /* Pods-NerveLive.debug.xcconfig */;
+			baseConfigurationReference = 0E9AB33487858A7AD4244356 /* Pods-NerveLive.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -892,7 +888,7 @@
 		};
 		B63F5C422B1B5363000D6642 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8E5AB6050A14DBCE22C9B523 /* Pods-NerveLive.release.xcconfig */;
+			baseConfigurationReference = E5C033CC73C6DAE5D1D1A27F /* Pods-NerveLive.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

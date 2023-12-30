@@ -15,7 +15,7 @@ import Collections
 import StoreKit
 
 class LiveViewController: BaseViewController {
-
+    
     var mediaServerEndPoint: String?
     
     var dareBubbles: Deque<UIView>?
@@ -126,11 +126,9 @@ class LiveViewController: BaseViewController {
         comments = Deque<UILabel>()
         
         view.addSubview(localVideoView)
-        view.addSubview(closeBtn)
 
         view.addSubview(lookBtn)
         view.addSubview(liveBtn)
-        view.addSubview(textInputBar)
         textInputBar.delegate = self
         
         createGiftSubscription(handler: createDareBubble)
@@ -147,6 +145,11 @@ class LiveViewController: BaseViewController {
                     }
                 }
             }
+            // only add text input bar in viewer mode
+            view.addSubview(textInputBar)
+        } else {
+            // only add close button in streamer mode
+            view.addSubview(closeBtn)
         }
         if mediaServerEndPoint == nil {
             //self.joinStorageButton?.isHidden = true
