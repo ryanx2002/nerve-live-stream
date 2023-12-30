@@ -166,7 +166,8 @@ class LiveViewController: BaseViewController {
         embedView(remoteRenderer, into: view)
         view.sendSubviewToBack(remoteRenderer)
         /// 如果是master隐藏对方视频内容,  如果是viewer隐藏本地视频内容
-        if (LoginTools.sharedTools.userInfo().phone!) == "8159912449" {
+        print(LoginTools.sharedTools.userInfo().phone!)
+        if (LoginTools.sharedTools.userInfo().phone!) == "+17048901338" {
             remoteRenderer.isHidden = true
         } else {
             let twitchView = createViewer(url: "https://player.twitch.tv/?channel=ryanmillion_&parent=quest-livestream", frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight))
@@ -179,7 +180,7 @@ class LiveViewController: BaseViewController {
         view.addSubview(liveBtn)
         
         
-        if (LoginTools.sharedTools.userInfo().phone!) != "8159912449" {
+        if (LoginTools.sharedTools.userInfo().phone!) != "+17048901338" {
             view.addSubview(textInputBar)
             textInputBar.delegate = self
         } else {
@@ -307,7 +308,7 @@ class LiveViewController: BaseViewController {
     }()
 
     @objc func lookBtnClick() {
-        if (LoginTools.sharedTools.userInfo().phone!) == "8159912449" {
+        if (LoginTools.sharedTools.userInfo().phone!) != "+17048901338" {
             print("Switching cameras...")
             let localRenderer = RTCMTLVideoView(frame: localVideoView.frame)
             let remoteRenderer = RTCMTLVideoView(frame: view.frame)
