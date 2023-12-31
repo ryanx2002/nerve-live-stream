@@ -10,6 +10,15 @@ import UIKit
 import SwiftUI
 
 class WelcomeQuestViewController : BaseViewController {
+    /*
+    override func changeRootController(controller:UIViewController){
+        var transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: .linear)
+        transition.type = CATransitionType.reveal
+        keyWindow?.layer.add(transition, forKey: "animation")
+        keyWindow?.rootViewController = controller;
+    }*/
     
     lazy var welcomeToQuestImage: UIImageView = {
         let logoImg = UIImageView(frame: CGRect(x: (K_SCREEN_WIDTH - 339) / 2.0, y: 280, width: 339, height: 146))
@@ -21,7 +30,7 @@ class WelcomeQuestViewController : BaseViewController {
         super.viewDidLoad()
         view.addSubview(welcomeToQuestImage)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.navigationController?.popViewController(animated: true)
         }
     }

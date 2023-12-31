@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             else {
                 //rootViewController = TwitchViewController()
-                rootViewController = LiveViewController() //GoLiveViewController()
+                rootViewController = LiveViewController() //StreamerOfflineViewController()//LiveViewController() //GoLiveViewController()
             }
         }
         if let root = rootViewController {

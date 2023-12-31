@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 struct Pricing {
-    static let firstPrice = 3
-    static let secondPrice = 7
+    static let firstPrice = 5
+    static let secondPrice = 10
     static let thirdPrice = 15
 }
 
