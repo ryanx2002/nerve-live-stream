@@ -16,7 +16,7 @@ import StoreKit
 import WebKit
 
 class LiveViewController: BaseViewController {
-    
+
     var mediaServerEndPoint: String?
     
     var dareBubbles: Deque<UIView>?
@@ -150,37 +150,40 @@ class LiveViewController: BaseViewController {
             //self.joinStorageButton?.isHidden = true
         }
         
-        #if arch(arm64)
-        // Using metal (arm64 only)
-        let localRenderer = RTCMTLVideoView(frame: localVideoView.frame)
-        let remoteRenderer = RTCMTLVideoView(frame: view.frame)
-        localRenderer.videoContentMode = .scaleAspectFill
-        remoteRenderer.videoContentMode = .scaleAspectFill
-        remoteRenderer.backgroundColor = K_VIEW_BLACKCOLOR
-        #else
-        // Using OpenGLES for the rest
-        let localRenderer = RTCEAGLVideoView(frame: localVideoView.frame)
-        let remoteRenderer = RTCEAGLVideoView(frame: view.frame)
-        remoteRenderer.backgroundColor = K_VIEW_BLACKCOLOR
-        #endif
-
-        LiveManager.shared.webRTCClient?.startCaptureLocalVideo(renderer: localRenderer, camera: .front )
-        LiveManager.shared.webRTCClient?.renderRemoteVideo(to: remoteRenderer)
-
-       
-        embedView(localRenderer, into: localVideoView)
-        embedView(remoteRenderer, into: view)
-        view.sendSubviewToBack(remoteRenderer)
+        
         /// 如果是master隐藏对方视频内容,  如果是viewer隐藏本地视频内容
         print(LoginTools.sharedTools.userInfo().phone!)
         if (LoginTools.sharedTools.userInfo().phone!) == "+17048901338" {
+            #if arch(arm64)
+            // Using metal (arm64 only)
+            let localRenderer = RTCMTLVideoView(frame: localVideoView.frame)
+            let remoteRenderer = RTCMTLVideoView(frame: view.frame)
+            localRenderer.videoContentMode = .scaleAspectFill
+            remoteRenderer.videoContentMode = .scaleAspectFill
+            remoteRenderer.backgroundColor = .black
+            #else
+            // Using OpenGLES for the rest
+            let localRenderer = RTCEAGLVideoView(frame: localVideoView.frame)
+            let remoteRenderer = RTCEAGLVideoView(frame: view.frame)
+            remoteRenderer.backgroundColor = .black
+            #endif
+
+            LiveManager.shared.webRTCClient?.startCaptureLocalVideo(renderer: localRenderer, camera: .front )
+            LiveManager.shared.webRTCClient?.renderRemoteVideo(to: remoteRenderer)
+
+
+            embedView(localRenderer, into: localVideoView)
+            embedView(remoteRenderer, into: view)
+            view.sendSubviewToBack(remoteRenderer)
             remoteRenderer.isHidden = true
+            view.addSubview(localVideoView)
         } else {
-            let twitchView = createViewer(url: "https://player.twitch.tv/?channel=ryanmillion_&parent=quest-livestream", frame: localVideoView.bounds)
-            localVideoView = twitchView
+            let twitchView = createViewer(url: "https://player.twitch.tv/?channel=ryanmillion_&parent=quest-livestream", frame: CGRect(x: 0, y:0, width: K_SCREEN_WIDTH, height: K_SCREEN_HEIGHT))
+            twitchView.translatesAutoresizingMaskIntoConstraints = true
+            view.addSubview(twitchView)
         }
         
-        view.addSubview(localVideoView)
+        //view.addSubview(localVideoView)
         
         view.addSubview(lookBtn)
         view.addSubview(liveBtn)
@@ -191,12 +194,18 @@ class LiveViewController: BaseViewController {
             textInputBar.delegate = self
         } else {
             view.addSubview(closeBtn)
+            //FakeCommentBot.bot.start()
         }
         
         createGiftSubscription(handler: createDareBubble)
         createCommentSubscription(handler: createCommentLabel)
         
         enterLiveRoom()
+        /*if (LoginTools.sharedTools.userInfo().phone!) == "+17048901338" {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                FakeCommentBot.bot.start()
+            }
+        }*/
     }
 
     private func embedView(_ view: UIView, into containerView: UIView) {
@@ -223,9 +232,27 @@ class LiveViewController: BaseViewController {
         cancelGiftSubscription()
         cancelCommentSubscription()
         
+        
         SKPaymentQueue.default().remove(inAppPurchasesObserver!)
         
+        DispatchQueue.main.async {
+            self.fakeCommenting.cancel()
+        }
+        
         dismiss(animated: true)
+    }
+    
+    let fakeCommenting = DispatchWorkItem {
+        var time = Int.random(in: 3...7)
+        var fakeUser = ""
+        var fakeComment = ""
+        while true {
+            sleep(UInt32(time))
+            fakeUser = FakeComments.users[Int.random(in: 0..<FakeComments.users.count)]
+            fakeComment = FakeComments.comments[Int.random(in: 0..<FakeComments.comments.count)]
+            StreamingBackend.stream.logComment(name: fakeUser, msg: fakeComment)
+            time = Int.random(in: 3...7)
+        }
     }
     
 //    @IBAction func joinStorageSession(_: Any) {
@@ -246,7 +273,7 @@ class LiveViewController: BaseViewController {
         let wkwebView = WKWebView(frame: frame, configuration: webViewConfiguration)
         let request = URLRequest(url: url2!)
         wkwebView.load(request)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+        DispatchQueue.main.async {
             wkwebView.evaluateJavaScript("""
                                          {
                                          const hideElements = (...el) => {
@@ -280,11 +307,12 @@ class LiveViewController: BaseViewController {
         }
         return wkwebView
     }
-
+    
     
     lazy var localVideoView: UIView = {
         // let localVideoView = UIView(frame: CGRect(x: 16, y: K_SAFEAREA_TOP_HEIGHT() + 16, width: 200, height: 200))
-        let localVideoView = UIView(frame: view.bounds) // 全屏展示(full screen display)
+        //let localVideoView = UIView(frame: view.bounds) // 全屏展示(full screen display)
+        let localVideoView = UIView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight))
         return localVideoView
     }()
     
@@ -336,7 +364,7 @@ class LiveViewController: BaseViewController {
     }()
 
     @objc func liveBtnClick() {
-        debugPrint("Live button clicked")
+        DispatchQueue.global(qos: .background).async(execute: fakeCommenting)
     }
     
     var textInput = Messages.emptyString

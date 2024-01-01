@@ -12,7 +12,7 @@ class BaseViewController: UIViewController, UINavigationControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = K_VIEW_BLACKCOLOR
+        view.backgroundColor = .black
         navigationController?.delegate = self
 
         if navigationController != nil {
