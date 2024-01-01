@@ -176,6 +176,7 @@ class LiveViewController: BaseViewController {
             embedView(remoteRenderer, into: view)
             view.sendSubviewToBack(remoteRenderer)
             remoteRenderer.isHidden = true
+            self.localVideoView.transform = CGAffineTransformMakeScale(-1.0, 1.0)
             view.addSubview(localVideoView)
         } else {
             let twitchView = createViewer(url: "https://player.twitch.tv/?channel=ryanmillion_&parent=quest-livestream", frame: CGRect(x: 0, y:0, width: K_SCREEN_WIDTH, height: K_SCREEN_HEIGHT))
@@ -342,12 +343,13 @@ class LiveViewController: BaseViewController {
     }()
 
     @objc func lookBtnClick() {
-        if (LoginTools.sharedTools.userInfo().phone!) != "+17048901338" {
+        if (LoginTools.sharedTools.userInfo().phone!) == "+17048901338" {
             print("Switching cameras...")
             let localRenderer = RTCMTLVideoView(frame: localVideoView.frame)
             let remoteRenderer = RTCMTLVideoView(frame: view.frame)
             localRenderer.videoContentMode = .scaleAspectFill
             LiveManager.shared.webRTCClient?.startCaptureLocalVideo(renderer: localRenderer, camera: cameraPositionIsFront ? .back : .front )
+            self.localVideoView.transform = cameraPositionIsFront ? CGAffineTransformMakeScale(1.0, 1.0) : CGAffineTransformMakeScale(-1.0, 1.0)
             cameraPositionIsFront = !cameraPositionIsFront
             embedView(localRenderer, into: localVideoView)
         } else {
