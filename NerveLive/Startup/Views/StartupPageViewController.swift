@@ -27,14 +27,14 @@ class StartupPageViewController: BaseViewController {
     }
 
     lazy var logoImg: UIImageView = {
-        let logoImg = UIImageView(frame: CGRect(x: (K_SCREEN_WIDTH - 339) / 2.0, y: 338, width: 339, height: 79))
+        let logoImg = UIImageView(frame: CGRect(x: (K_SCREEN_WIDTH - 339) / 2.0, y: 288, width: 339, height: 79))
         logoImg.image = UIImage(named: "quest_icon_new")
         return logoImg
     }()
 
     lazy var playBtn: UIButton = {
         let playBtn = UIButton(type: .custom)
-        playBtn.frame = CGRect(x: (K_SCREEN_WIDTH - 120) / 2, y: 571 + 100, width: 120, height: 65)
+        playBtn.frame = CGRect(x: (K_SCREEN_WIDTH - 120) / 2, y: K_SCREEN_HEIGHT - 300, width: 120, height: 65)
         playBtn.backgroundColor = .clear
         playBtn.setImage(UIImage(named: "icon_play"), for: .normal)
         playBtn.addTarget(self, action: #selector(playBtnClick), for: .touchUpInside)
