@@ -16,8 +16,7 @@ class StreamingBackend : NSObject {
         
     }
     
-    func getUserById(id: String) -> User? {
-        var res : User?
+    func getUserById(id: String, handler: @escaping (User) -> Void) {
         Amplify.API.query(request: .get(User.self, byId: id)) { event in
               switch event {
               case .success(let result):
@@ -28,6 +27,7 @@ class StreamingBackend : NSObject {
                           return
                       }
                       print("Successfully retrieved User: \(res)")
+                      handler(res)
                   case .failure(let error):
                       print("Got failed result with \(error.errorDescription)")
                   }
@@ -35,7 +35,6 @@ class StreamingBackend : NSObject {
                   print("Got failed event with error \(error)")
               }
           }
-        return res
     }
     
     func createStream(streamerId : String) -> String {

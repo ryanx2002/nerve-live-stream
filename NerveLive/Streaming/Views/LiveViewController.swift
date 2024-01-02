@@ -373,7 +373,7 @@ class LiveViewController: BaseViewController {
         let lookBtn = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - 66 - 16, y: K_SAFEAREA_TOP_HEIGHT(), width: 66, height: 36))
         lookBtn.backgroundColor = UIColor.hexColorWithAlpha(color: "4E4744", alpha: 1)
         lookBtn.setImage(UIImage(named: "icon_eye"), for: .normal)
-        lookBtn.setTitle("21", for: .normal)
+        lookBtn.setTitle(String(numViewers), for: .normal)
         lookBtn.setTitleColor(.white, for: .normal)
         lookBtn.titleLabel?.font = UIFont.font(ofSize: 14, type: .Regular)
         lookBtn.addTarget(self, action: #selector(lookBtnClick), for: .touchUpInside)
@@ -394,6 +394,7 @@ class LiveViewController: BaseViewController {
             embedView(localRenderer, into: localVideoView)
         } else {
             print("Switch not allowed in viewer mode")
+            StreamingBackend.stream.startStreamView(streamId: currStreamId ?? "bad", userId: LoginTools.sharedTools.userInfo().id)
         }
     }
 
@@ -715,22 +716,22 @@ class LiveViewController: BaseViewController {
     }
     
     func createJoinerLabel(streamView: StreamView) {
-        var joinLabel = UILabel(frame: CGRect(x: 20, y: K_SCREEN_HEIGHT - 70 - 25 - (isEditing ? YOffset : 0), width: K_SCREEN_WIDTH - 40, height: 15))
-        joinLabel.textColor = .white
-        joinLabel.font = Fonts.commentDisplayFont
-        let newUser = StreamingBackend.stream.getUserById(id: streamView.userId)
-        if newUser != nil {
-            let firstName = newUser?.firstName ?? "John"
-            let lastName = newUser?.lastName ?? "Doe"
-            let fullName = firstName + " " + lastName
-            joinLabel.text =  fullName + " joined"
-        } else {
-            return
-        }
         numViewers += 1
-        print("WORKING ON IT")
-        lookBtn.titleLabel!.text = String(numViewers)
-        updateComments(newComment: joinLabel)
+        lookBtn.setTitle(String(numViewers), for: .normal)
+        StreamingBackend.stream.getUserById(id: streamView.userId, handler: createJoinerLabel)
+        
+    }
+    
+    func createJoinerLabel(user: User) {
+        DispatchQueue.main.async {
+            var joinLabel = UILabel(frame: CGRect(x: 20, y: K_SCREEN_HEIGHT - 70 - 25 - (self.isEditing ? self.YOffset : 0), width: K_SCREEN_WIDTH - 40, height: 15))
+            joinLabel.textColor = .white
+            joinLabel.font = Fonts.commentDisplayFont
+            let firstName = user.firstName ?? "John"
+            let lastName = user.lastName ?? "Doe"
+            joinLabel.text =  firstName + " " + lastName + " joined"
+            self.updateComments(newComment: joinLabel)
+        }
     }
     
     func updateComments(newComment: UILabel){
