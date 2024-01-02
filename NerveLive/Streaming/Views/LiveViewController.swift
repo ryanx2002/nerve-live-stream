@@ -28,7 +28,7 @@ class LiveViewController: BaseViewController {
     
     let bubbleBorderColor = Colors.CGWhite
     
-    var numViewers : Int = 21
+    var numViewers : Int = 20
     
     public var availableProducts : Dictionary<String,SKProduct>?
     
