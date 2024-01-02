@@ -30,8 +30,7 @@
           "Name": "nervelivestream-staging",
           "Id": "4159edc2528648868ec7dfdfa8ef8439",
           "Region": "us-east-1"
-        },
-        "nervelivestream": {}
+        }
       },
       "notifications": {
         "Pinpoint": {

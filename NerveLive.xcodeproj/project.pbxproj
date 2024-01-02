@@ -73,6 +73,8 @@
 		6AEE5EAC2B29E44300D1D084 /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE5EAB2B29E44300D1D084 /* LiveViewController.swift */; };
 		8A73AF7CA484ACD64D066B84 /* User+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E096ABA1FBB541FB145D91D /* User+Schema.swift */; };
 		8BEAD253F9D4B4A846FCE879 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 54E299A29CD8D8C9F2D2F54C /* awsconfiguration.json */; };
+		971B353E2B4364C100B5600F /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 971B353D2B4364C100B5600F /* Inter-Light.ttf */; };
+		971B35402B43845900B5600F /* GraphQLRequest+Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971B353F2B43845900B5600F /* GraphQLRequest+Stream.swift */; };
 		972086982B3A29CE008817A0 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 972086972B3A29CE008817A0 /* Collections */; };
 		9720869A2B3A29CE008817A0 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 972086992B3A29CE008817A0 /* DequeModule */; };
 		9720869C2B3A29CE008817A0 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 9720869B2B3A29CE008817A0 /* OrderedCollections */; };
@@ -171,6 +173,8 @@
 		6AEE5EAB2B29E44300D1D084 /* LiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
 		8B23E56D7B7852B5016B611C /* Comment+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "Comment+Schema.swift"; path = "amplify/generated/models/Comment+Schema.swift"; sourceTree = "<group>"; };
 		8E096ABA1FBB541FB145D91D /* User+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "User+Schema.swift"; path = "amplify/generated/models/User+Schema.swift"; sourceTree = "<group>"; };
+		971B353D2B4364C100B5600F /* Inter-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Light.ttf"; sourceTree = "<group>"; };
+		971B353F2B43845900B5600F /* GraphQLRequest+Stream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GraphQLRequest+Stream.swift"; sourceTree = "<group>"; };
 		97783C312B3E1BF8000C347B /* TwitchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitchViewController.swift; sourceTree = "<group>"; };
 		97AFACE52B40D8A800B06B47 /* WelcomeQuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeQuestViewController.swift; sourceTree = "<group>"; };
 		97AFACE72B40E67C00B06B47 /* StreamerOfflineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamerOfflineViewController.swift; sourceTree = "<group>"; };
@@ -244,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				35AC97522B1DDEB0005E843E /* UIFont+Ext.swift */,
+				971B353D2B4364C100B5600F /* Inter-Light.ttf */,
 				35AC97532B1DDEB0005E843E /* Inter-Bold.ttf */,
 				35AC97542B1DDEB0005E843E /* Inter-Regular.ttf */,
 				35AC97552B1DDEB0005E843E /* Inter-SemiBold.ttf */,
@@ -392,6 +397,7 @@
 				358F99C92B344AFC00192445 /* MasterLiveCell.swift */,
 				97AF27E92B3FD90500A116DE /* Payments */,
 				97B1EB1A2B38DCBE002EDF47 /* StreamingBackend.swift */,
+				971B353F2B43845900B5600F /* GraphQLRequest+Stream.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -578,6 +584,7 @@
 				97AFACEA2B42104D00B06B47 /* Nerve Livestream Home Screen Preview.mov in Resources */,
 				35AC97592B1DDEB0005E843E /* Inter-SemiBold.ttf in Resources */,
 				8BEAD253F9D4B4A846FCE879 /* awsconfiguration.json in Resources */,
+				971B353E2B4364C100B5600F /* Inter-Light.ttf in Resources */,
 				AFEE0F872F6DF53DA8095968 /* amplifyconfiguration.json in Resources */,
 				35AC977B2B1DE1AA005E843E /* PhoneInputViewController.xib in Resources */,
 				35AC97822B1DE5FC005E843E /* NameInputViewController.xib in Resources */,
@@ -703,6 +710,7 @@
 				B3EFEF6ABCD5C44D806A81F4 /* User+Schema.swift in Sources */,
 				CDF64A410C11411053BB8C5A /* User.swift in Sources */,
 				97AFACE82B40E67C00B06B47 /* StreamerOfflineViewController.swift in Sources */,
+				971B35402B43845900B5600F /* GraphQLRequest+Stream.swift in Sources */,
 				2F3E7D24EB46184826906C21 /* Comment+Schema.swift in Sources */,
 				CBF22679FB586D903D99881B /* Comment.swift in Sources */,
 				197071074FC5E7EEBF89A775 /* Gift+Schema.swift in Sources */,

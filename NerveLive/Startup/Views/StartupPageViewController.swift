@@ -7,6 +7,7 @@
 
 import UIKit
 import YYText
+import SwiftUI
 
 /// 启动页
 class StartupPageViewController: BaseViewController {
@@ -14,9 +15,10 @@ class StartupPageViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(logoImg)
+        //view.addSubview(nerveLogo)
         view.addSubview(playBtn)
         view.addSubview(agreeLabel)
-
+        
         LoginBackend.shared.signOut {
             print("登出成功")
         } fail: {
@@ -25,11 +27,83 @@ class StartupPageViewController: BaseViewController {
         
         getAppDelegate().mainRegisterRemote()
     }
-
+    
     lazy var logoImg: UIImageView = {
-        let logoImg = UIImageView(frame: CGRect(x: (K_SCREEN_WIDTH - 339) / 2.0, y: 288, width: 339, height: 79))
-        logoImg.image = UIImage(named: "quest_icon_new")
+        let logoImg = UIImageView(frame: CGRect(x: (K_SCREEN_WIDTH - 339) / 2.0, y: 338, width: 339, height: 79))
+        logoImg.image = UIImage(named: "nerve")
         return logoImg
+    }()
+    
+    lazy var nerveLogo: UIView = {
+        
+        let container = UIView(frame : CGRect(x: (K_SCREEN_WIDTH - 385) / 2.0, y: 338, width: 400, height: 92))
+        /*
+        let nerveLogo = UILabel(frame: CGRect(x: 0, y: 0, width: 400, height: 92))
+        //let attributedString = StringUtils.TextWithBorder(font: 76, text: "NERVE")
+        
+        
+        // 创建白色字体属性
+        let whiteColor = UIColor.white
+        let whiteFontAttribute: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.foregroundColor: whiteColor,
+            NSAttributedString.Key.font: UIFont(name: "Inter-Light", size: 92)
+
+        ]
+
+        // 创建红色描边属性
+        let redColor = UIColor.red
+        let redStrokeAttribute: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.strokeColor: UIColor(red: 1, green: 0, blue: 0.898, alpha: 0.5).cgColor,
+            NSAttributedString.Key.strokeWidth: -4.0, // 负值表示描边
+            NSAttributedString.Key.foregroundColor: whiteColor, // 设置字体颜色，可以和白色保持一致
+            NSAttributedString.Key.font : UIFont(name: "Inter-Light", size: 92)
+        ]
+
+        // 创建富文本字符串
+        let attributedText = NSMutableAttributedString(string: "NERVE", attributes: whiteFontAttribute)
+
+        // 应用描边属性
+        attributedText.addAttributes(redStrokeAttribute, range: NSRange(location: 0, length: 5))
+        
+        attributedText.addAttributes([NSAttributedString.Key.kern: 19], range: NSRange(location: 0, length: 5))
+        nerveLogo.attributedText = attributedText
+        container.addSubview(nerveLogo)
+         */
+        /*
+        nerveLogo.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        nerveLogo.font = UIFont(name: "Inter-Light", size: 76)
+        // Line height: 91.98 pt
+        nerveLogo.textAlignment = .center
+        nerveLogo.attributedText = NSMutableAttributedString(string: "NERVE", attributes: [NSAttributedString.Key.kern: 19])
+        container.addSubview(nerveLogo)
+        
+        nerveLogo.layer.shadowColor = UIColor(red: 1, green: 0, blue: 0.898, alpha: 0.5).cgColor
+        nerveLogo.layer.shadowRadius = 8
+        nerveLogo.layer.shadowOpacity = 1
+        nerveLogo.layer.shadowOffset = CGSize(width: 0, height: 10)
+        nerveLogo.layer.masksToBounds = false
+        nerveLogo.translatesAutoresizingMaskIntoConstraints = false
+        */
+         
+        //let shadowPath0 = UIBezierPath(roundedRect: container.bounds, cornerRadius: 0)
+        //nerveLogo.layer.shadowPath = shadowPath0.cgPath
+
+        
+        /*
+        var shadows = UIView(frame: nerveLogo.frame)
+        shadows.clipsToBounds = false
+        nerveLogo.addSubview(shadows)
+        
+        
+        layer0.shadowColor = UIColor(red: 1, green: 0, blue: 0.898, alpha: 0.5).cgColor
+        layer0.shadowOpacity = 1
+        layer0.shadowRadius = 8
+        layer0.shadowOffset = CGSize(width: 0, height: 8)
+        layer0.bounds = shadows.bounds
+        layer0.position = shadows.center
+        shadows.layer.addSublayer(layer0)
+        */
+        return container
     }()
 
     lazy var playBtn: UIButton = {
@@ -85,4 +159,23 @@ class StartupPageViewController: BaseViewController {
         UIViewSetFrameCenterX(view: label, x: K_SCREEN_WIDTH / 2.0)
         return label
     }()
+}
+
+
+// preview stuff. note Amplify functions cause preview to crash
+
+struct StartupView: UIViewControllerRepresentable {
+    typealias UIViewControllerType = StartupPageViewController
+    func makeUIViewController(context: Context) -> StartupPageViewController {
+            let vc = StartupPageViewController()
+            return vc
+        }
+    func updateUIViewController(_ uiViewController: StartupPageViewController, context: Context) {
+        }
+    }
+
+struct StartupViewControllerPreview: PreviewProvider {
+    static var previews: some View {
+        return StartupView()
+    }
 }

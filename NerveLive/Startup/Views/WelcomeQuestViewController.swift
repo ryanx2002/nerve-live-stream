@@ -22,7 +22,7 @@ class WelcomeQuestViewController : BaseViewController {
     
     lazy var welcomeToQuestImage: UIImageView = {
         let logoImg = UIImageView(frame: CGRect(x: (K_SCREEN_WIDTH - 339) / 2.0, y: 280, width: 339, height: 146))
-        logoImg.image = UIImage(named: "welcome_quest")
+        logoImg.image = UIImage(named: "welcome_nerve")
         return logoImg
     }()
     

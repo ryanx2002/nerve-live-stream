@@ -19,12 +19,16 @@ class LiveViewController: BaseViewController {
 
     var mediaServerEndPoint: String?
     
+    var currStreamId : String?
+    
     var dareBubbles: Deque<UIView>?
     var comments: Deque<UILabel>?
     
     var cameraPositionIsFront = true
     
     let bubbleBorderColor = Colors.CGWhite
+    
+    var numViewers : Int = 21
     
     public var availableProducts : Dictionary<String,SKProduct>?
     
@@ -109,6 +113,38 @@ class LiveViewController: BaseViewController {
         commentSubscription?.cancel()
     }
     
+    var streamViewSubscription : GraphQLSubscriptionOperation<StreamView>?
+    
+    func createStreamViewSubscription(handler: @escaping (StreamView) -> Any) {
+        streamViewSubscription = Amplify.API.subscribe(request: .subscription(of: StreamView.self, type: .onCreate), valueListener: { (subscriptionEvent) in
+            switch subscriptionEvent {
+            case .connection(let subscriptionConnectionState):
+                print("StreamView subscription connect state is \(subscriptionConnectionState)")
+            case .data(let result):
+                switch result {
+                case .success(let createdStreamView):
+                    print("Successfully got StreamView from subscription: \(createdStreamView)")
+                    DispatchQueue.main.async{
+                        handler(createdStreamView)
+                    }
+                case .failure(let error):
+                    print("Got failed result with \(error.errorDescription)")
+                }
+            }
+        }) { result in
+            switch result {
+            case .success:
+                print("Subscription has been closed successfully")
+            case .failure(let apiError):
+                print("Subscription has terminated with \(apiError)")
+            }
+        }
+    }
+    
+    func cancelStreamViewSubscription() {
+        streamViewSubscription?.cancel()
+    }
+    
     // get products
     func initializeInAppPurchases() {
         inAppPurchasesObserver = StoreObserver()
@@ -125,6 +161,7 @@ class LiveViewController: BaseViewController {
         
         dareBubbles = Deque<UIView>()
         comments = Deque<UILabel>()
+        createStreamViewSubscription(handler: createJoinerLabel)
         
         if (LoginTools.sharedTools.userInfo().phone!) != "+17048901338" {
             DispatchQueue.main.async {
@@ -193,20 +230,26 @@ class LiveViewController: BaseViewController {
         if (LoginTools.sharedTools.userInfo().phone!) != "+17048901338" {
             view.addSubview(textInputBar)
             textInputBar.delegate = self
+            StreamingBackend.stream.getCurrentStreamId2() {
+                streams in for stream in streams {
+                    if (stream.endTime == nil) {
+                        print("found id: " + stream.id)
+                        self.currStreamId = stream.id
+                        break
+                    }
+                }
+            }
+            StreamingBackend.stream.startStreamView(streamId: currStreamId ?? "bad", userId: LoginTools.sharedTools.userInfo().id)
         } else {
             view.addSubview(closeBtn)
-            //FakeCommentBot.bot.start()
+            currStreamId = StreamingBackend.stream.createStream(streamerId: LoginTools.sharedTools.userInfo().id)
+            print("currStreamId: " + currStreamId!)
         }
         
         createGiftSubscription(handler: createDareBubble)
         createCommentSubscription(handler: createCommentLabel)
         
         enterLiveRoom()
-        /*if (LoginTools.sharedTools.userInfo().phone!) == "+17048901338" {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                FakeCommentBot.bot.start()
-            }
-        }*/
     }
 
     private func embedView(_ view: UIView, into containerView: UIView) {
@@ -239,6 +282,7 @@ class LiveViewController: BaseViewController {
         DispatchQueue.main.async {
             self.fakeCommenting.cancel()
         }
+        StreamingBackend.stream.finishStream(currStreamId: currStreamId!, streamerId: LoginTools.sharedTools.userInfo().id)
         
         dismiss(animated: true)
     }
@@ -329,11 +373,7 @@ class LiveViewController: BaseViewController {
         let lookBtn = UIButton(frame: CGRect(x: K_SCREEN_WIDTH - 66 - 16, y: K_SAFEAREA_TOP_HEIGHT(), width: 66, height: 36))
         lookBtn.backgroundColor = UIColor.hexColorWithAlpha(color: "4E4744", alpha: 1)
         lookBtn.setImage(UIImage(named: "icon_eye"), for: .normal)
-        if LoginTools.sharedTools.userInfo().isMaster ?? false {
-            lookBtn.setTitle("0", for: .normal)
-        } else {
-            lookBtn.setTitle("22", for: .normal)
-        }
+        lookBtn.setTitle("21", for: .normal)
         lookBtn.setTitleColor(.white, for: .normal)
         lookBtn.titleLabel?.font = UIFont.font(ofSize: 14, type: .Regular)
         lookBtn.addTarget(self, action: #selector(lookBtnClick), for: .touchUpInside)
@@ -672,6 +712,25 @@ class LiveViewController: BaseViewController {
         commentLabel.font = Fonts.commentDisplayFont
         commentLabel.text = comment.commenterFullName! + ": " +  comment.commentText!
         updateComments(newComment: commentLabel)
+    }
+    
+    func createJoinerLabel(streamView: StreamView) {
+        var joinLabel = UILabel(frame: CGRect(x: 20, y: K_SCREEN_HEIGHT - 70 - 25 - (isEditing ? YOffset : 0), width: K_SCREEN_WIDTH - 40, height: 15))
+        joinLabel.textColor = .white
+        joinLabel.font = Fonts.commentDisplayFont
+        let newUser = StreamingBackend.stream.getUserById(id: streamView.userId)
+        if newUser != nil {
+            let firstName = newUser?.firstName ?? "John"
+            let lastName = newUser?.lastName ?? "Doe"
+            let fullName = firstName + " " + lastName
+            joinLabel.text =  fullName + " joined"
+        } else {
+            return
+        }
+        numViewers += 1
+        print("WORKING ON IT")
+        lookBtn.titleLabel!.text = String(numViewers)
+        updateComments(newComment: joinLabel)
     }
     
     func updateComments(newComment: UILabel){
