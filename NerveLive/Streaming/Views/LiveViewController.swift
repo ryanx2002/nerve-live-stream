@@ -38,7 +38,7 @@ class LiveViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
     }
-
+    
     /// 进入直播间
     func enterLiveRoom() {
         LiveManager.shared.enterLiveRoom()
@@ -771,6 +771,12 @@ extension LiveViewController : UITextFieldDelegate {
         resizeTextUpward(textField)
         debugPrint("Text editing began")
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        resizeTextDownward(textField)
+        print("ended")
+    }
+    
 }
 
 extension LiveViewController: StoreObserverDelegate {
