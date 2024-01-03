@@ -611,13 +611,13 @@ class LiveViewController: BaseViewController {
             print(availableProducts)
             if !inAppPurchasesObserver!.isAuthorizedForPayments {
                 liveAlert(title: ToUser.unauthorizedTitle, message: ToUser.unauthorizedMessage)
-            } else if(giftValue == 3){
+            } else if(giftValue == Pricing.firstPrice){
                 if inAppPurchasesObserver != nil {
                     inAppPurchasesObserver!.buy(availableProducts![Messages.firstPriceGiftProductId]!)
                 } else {
                     debugPrint("inAppPurchasesObserver closed, in-app purchases disabled.")
                 }
-            } else if giftValue == 7 {
+            } else if giftValue == Pricing.secondPrice {
                 if inAppPurchasesObserver != nil {
                     inAppPurchasesObserver!.buy(availableProducts![Messages.secondPriceGiftProductId]!)
                 } else {

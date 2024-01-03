@@ -5,18 +5,48 @@
   ],
   "products" : [
     {
-      "displayPrice" : "2.99",
+      "displayPrice" : "4.99",
       "familyShareable" : false,
       "internalID" : "6474981293",
       "localizations" : [
         {
-          "description" : "Small gift to streamer to perform request",
-          "displayName" : "$3 Gift",
+          "description" : "Donation to streamer with a custom note",
+          "displayName" : "$5 Gift",
           "locale" : "en_US"
         }
       ],
       "productID" : "FirstPriceGift",
-      "referenceName" : "$3 Gift",
+      "referenceName" : "$5 Gift",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "9.99",
+      "familyShareable" : false,
+      "internalID" : "CA0BC5AF",
+      "localizations" : [
+        {
+          "description" : "Donation to streamer with a custom note",
+          "displayName" : "$10 Gift",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "SecondPriceGift",
+      "referenceName" : "$10 Gift",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "14.99",
+      "familyShareable" : false,
+      "internalID" : "2992BFD6",
+      "localizations" : [
+        {
+          "description" : "Donation to streamer with a custom note",
+          "displayName" : "$15 Gift",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "ThirdPriceGift",
+      "referenceName" : "$15 Gift",
       "type" : "Consumable"
     }
   ],
