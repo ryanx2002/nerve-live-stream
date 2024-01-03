@@ -225,10 +225,9 @@ extension PhoneInputViewController:UITextFieldDelegate{
     }
     
     func showFail() {
-        let alert = UIAlertController(title: "Tips", message: "Failed to send the verification code.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Error", message: "Failed to send the verification code.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-            let vc = ConfirmationCodeViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
+            alert.dismiss(animated: true)
         }))
         alert.addAction(UIAlertAction(title: "Resend", style: .default, handler: { _ in
             alert.dismiss(animated: true)

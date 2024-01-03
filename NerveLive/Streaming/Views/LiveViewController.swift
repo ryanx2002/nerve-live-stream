@@ -217,8 +217,9 @@ class LiveViewController: BaseViewController {
             view.addSubview(localVideoView)
         } else {
             let twitchView = createViewer(url: "https://player.twitch.tv/?channel=ryanmillion_&parent=quest-livestream", frame: CGRect(x: 0, y:0, width: K_SCREEN_WIDTH, height: K_SCREEN_HEIGHT))
-            twitchView.translatesAutoresizingMaskIntoConstraints = true
-            view.addSubview(twitchView)
+            twitchView!.translatesAutoresizingMaskIntoConstraints = true
+            print("twitch view loading")
+            view.addSubview(twitchView!)
         }
         
         //view.addSubview(localVideoView)
@@ -305,7 +306,7 @@ class LiveViewController: BaseViewController {
 //        joinStorageButton?.isHidden = true
 //    }
     
-    func createViewer(url : String, frame : CGRect) -> WKWebView {
+    func createViewer(url : String, frame : CGRect) -> WKWebView? {
         // Initialize a WKWebViewConfiguration object.
         let webViewConfiguration = WKWebViewConfiguration()
         // Let HTML videos with a "playsinline" attribute play inline.
@@ -344,9 +345,45 @@ class LiveViewController: BaseViewController {
                                          }
                                          """) { (result, error) in
                 if error == nil {
-                    print(result)
+                    print("webview result", result)
                 } else {
-                    print(error)
+                    print("webview error", error)
+                    /*
+                    DispatchQueue.main.async {
+                        var bubble = UIView(frame: CGRect(x: 200, y: K_SAFEAREA_TOP_HEIGHT() + 36 + 12, width: 173, height: 47))
+                        bubble.layer.cornerRadius = 20
+                        bubble.layer.borderColor = CGColor(red: 1, green: 1, blue: 1, alpha: 1)
+                        //bubble.layer.borderWidth = 0.5
+                        
+                        let layer0 = CAGradientLayer()
+                        layer0.colors = [
+                            UIColor(red: 148/255, green: 0/255, blue: 211/255, alpha: 1).cgColor,
+                        UIColor(red: 148/255, green: 0/255, blue: 211/255, alpha: 0.3).cgColor
+                        ]
+                        layer0.locations = [0, 1]
+                        layer0.startPoint = CGPoint(x: 0.25, y: 0.5)
+                        layer0.endPoint = CGPoint(x: 0.75, y: 0.5)
+                        layer0.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: 192/K_SCREEN_WIDTH, b: 0, c: 0, d: 410/K_SCREEN_HEIGHT, tx: 87, ty: 23))
+                        layer0.bounds = bubble.bounds.insetBy(dx: -0.5*bubble.bounds.size.width, dy: -0.5*bubble.bounds.size.height)
+                        layer0.cornerRadius = 40
+                        bubble.layer.addSublayer(layer0)
+                        
+                        var msgLabel = UILabel(frame: CGRect(x: 10, y: 3, width: 114, height: 36))
+                        msgLabel.textColor = .white
+                        msgLabel.font = UIFont(name: "Inter-Bold", size: 11)
+                        msgLabel.lineBreakMode = .byWordWrapping
+                        msgLabel.numberOfLines = 0
+                        msgLabel.text = "LOADING FAILED"
+                        bubble.addSubview(msgLabel)
+                        
+                        var priceLabel = UILabel(frame: CGRect(x: 10 + 114 + 3, y: 0, width: 41, height: 46))
+                        priceLabel.textColor = Colors.darePriceLabel
+                        priceLabel.font = UIFont(name: "Inter-Bold", size: 22)
+                        priceLabel.text = "$NA"
+                        bubble.addSubview(priceLabel)
+                        self.updateDareBubbles(newBubble: bubble)
+                    }
+                     */
                 }
             }
         }
@@ -830,6 +867,10 @@ extension StoreManager: SKRequestDelegate {
     }
 }
 */
+
+extension LiveViewController : WKNavigationDelegate {
+    
+}
 
 // preview stuff. note Amplify functions cause preview to crash
 

@@ -9,6 +9,7 @@ import UIKit
 import AWSPinpoint
 import Amplify
 import AmplifyPlugins
+import Network
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,10 +17,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var orientationLock = UIInterfaceOrientationMask.all
     var pinpoint: AWSPinpoint?
+    var monitor: NWPathMonitor?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         addAmplify()
         addLive()
+        monitor = NWPathMonitor()
+        monitor?.pathUpdateHandler = { path in
+            if path.status == .satisfied {
+                print("Connection OK")
+                /*
+                DispatchQueue.main.async {
+                    if self.window?.rootViewController.self === StreamerOfflineViewController.self {
+                        self.changeRootViewController()
+                    }
+                }
+                 */
+            } else {
+                DispatchQueue.main.async {
+                    let root = StreamerOfflineViewController()
+                    root.wifiBad = true
+                    let navVC: UINavigationController  = UINavigationController(rootViewController: root)
+                    navVC.isNavigationBarHidden = true
+                    self.window?.rootViewController = navVC
+                    self.window?.backgroundColor = .black
+                    self.window?.makeKeyAndVisible()
+                }
+            }
+        }
+        monitor?.start(queue: DispatchQueue(label: "NetworkMonitor"))
+        
         changeRootViewController()
         
         return true
