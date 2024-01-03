@@ -112,6 +112,41 @@ class StreamingBackend : NSObject {
         }
     }
     
+    func getCurrentStreamViews(suc: @escaping (_ streams: [StreamView]) -> Void) {
+        Amplify.API.query(request: .queryStreamViewList()) { event in
+            switch event {
+            case .success(let result):
+                switch result {
+                case .success(let data):
+                    guard let postData = try? JSONEncoder().encode(data) else {
+                        print("Failed 1")
+                        return
+                    }
+                    guard  let d = try? JSONSerialization.jsonObject(with: postData, options: .mutableContainers) else {
+                        print("Failed 2")
+                        return
+                    }
+                    let dic = d as! NSDictionary
+                    if let subDic = dic["listStreamViews"] as? NSDictionary {
+                        if let items: NSArray = subDic.object(forKey: "items") as? NSArray {
+                            let list = [StreamView].deserialize(from: items) ?? []
+                            suc(list)
+                        } else {
+                            print("Failed 3")
+                        }
+                    } else {
+                        print("Failed 4")
+                    }
+                case .failure(let error):
+                    print("Got failed result with \(error.errorDescription)")
+                    print("\(error.errorDescription)")
+                }
+            case .failure(let error):
+                print("epic fail: \(error)")
+            }
+        }
+    }
+    
     func finishStream(currStreamId : String, streamerId : String) {
         let stream = Stream(id: currStreamId, endTime: .now(), userStreamsId: streamerId)
         Amplify.API.mutate(request: .update(stream)){

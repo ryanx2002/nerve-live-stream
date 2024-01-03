@@ -78,6 +78,7 @@
 		972086982B3A29CE008817A0 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 972086972B3A29CE008817A0 /* Collections */; };
 		9720869A2B3A29CE008817A0 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 972086992B3A29CE008817A0 /* DequeModule */; };
 		9720869C2B3A29CE008817A0 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 9720869B2B3A29CE008817A0 /* OrderedCollections */; };
+		974168D42B4542D800580256 /* GraphQLRequest+StreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974168D32B4542D800580256 /* GraphQLRequest+StreamView.swift */; };
 		97783C322B3E1BF8000C347B /* TwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97783C312B3E1BF8000C347B /* TwitchViewController.swift */; };
 		97AFACE62B40D8A800B06B47 /* WelcomeQuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AFACE52B40D8A800B06B47 /* WelcomeQuestViewController.swift */; };
 		97AFACE82B40E67C00B06B47 /* StreamerOfflineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AFACE72B40E67C00B06B47 /* StreamerOfflineViewController.swift */; };
@@ -175,6 +176,7 @@
 		8E096ABA1FBB541FB145D91D /* User+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "User+Schema.swift"; path = "amplify/generated/models/User+Schema.swift"; sourceTree = "<group>"; };
 		971B353D2B4364C100B5600F /* Inter-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Light.ttf"; sourceTree = "<group>"; };
 		971B353F2B43845900B5600F /* GraphQLRequest+Stream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GraphQLRequest+Stream.swift"; sourceTree = "<group>"; };
+		974168D32B4542D800580256 /* GraphQLRequest+StreamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GraphQLRequest+StreamView.swift"; sourceTree = "<group>"; };
 		97783C312B3E1BF8000C347B /* TwitchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitchViewController.swift; sourceTree = "<group>"; };
 		97AFACE52B40D8A800B06B47 /* WelcomeQuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeQuestViewController.swift; sourceTree = "<group>"; };
 		97AFACE72B40E67C00B06B47 /* StreamerOfflineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamerOfflineViewController.swift; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 				97AF27E92B3FD90500A116DE /* Payments */,
 				97B1EB1A2B38DCBE002EDF47 /* StreamingBackend.swift */,
 				971B353F2B43845900B5600F /* GraphQLRequest+Stream.swift */,
+				974168D32B4542D800580256 /* GraphQLRequest+StreamView.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -668,6 +671,7 @@
 				B63F5C302B1B5361000D6642 /* AppDelegate.swift in Sources */,
 				6AEE5EAC2B29E44300D1D084 /* LiveViewController.swift in Sources */,
 				35AC97502B1DDE50005E843E /* Macros.swift in Sources */,
+				974168D42B4542D800580256 /* GraphQLRequest+StreamView.swift in Sources */,
 				35AC978C2B1F2A0B005E843E /* VerificationCodeManager.swift in Sources */,
 				35AC97462B1DDE50005E843E /* BaseViewController.swift in Sources */,
 				35AC97772B1DE1AA005E843E /* ConfirmationCodeViewController.swift in Sources */,
