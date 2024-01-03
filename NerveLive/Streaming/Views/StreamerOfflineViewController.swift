@@ -15,24 +15,44 @@ class StreamerOfflineViewController : BaseViewController {
     
     var wifiBad = false
     
+    func makeVideoAppear() {
+        addChild(video)
+        video.view.frame = CGRect(x: 38 + 40 + 8, y: 60 + 3 + 17 + 3 + 17 + 17 + 5 + 17 + 38, width: 257, height: 257*352/199)
+        view.addSubview(video.view)
+        video.didMove(toParent: self)
+        try! AVAudioSession.sharedInstance().setCategory(.playback)
+        video.player!.play()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if !wifiBad {
+            StreamingBackend.stream.getCurrentStreamViews() {
+                streamViews in 
+                print("hey this works")
+                for streamView in streamViews {
+                    if (streamView.streamId == "show") {
+                        print("found SHOW")
+                        DispatchQueue.main.async {
+                            self.makeVideoAppear()
+                        }
+                        break
+                    } else {
+                        print("found other:", streamView.streamId)
+                    }
+                }
+                print("finished searching")
+            }
+            
+        } else {
+            view.addSubview(reconnectButton)
+        }
         view.addSubview(ryanFace)
         view.addSubview(titleLabel)
         view.addSubview(subtitleOne)
         //view.addSubview(subtitleTwo)
         view.addSubview(subtitleThree)
-        
-        if !wifiBad {
-            addChild(video)
-            video.view.frame = CGRect(x: 38 + 40 + 8, y: 60 + 3 + 17 + 3 + 17 + 17 + 5 + 17 + 38, width: 257, height: 257*352/199)
-            view.addSubview(video.view)
-            video.didMove(toParent: self)
-            try! AVAudioSession.sharedInstance().setCategory(.playback)
-            video.player!.play()
-        } else {
-            view.addSubview(reconnectButton)
-        }
     }
     lazy var reconnectButton: UIButton = {
         let playBtn = UIButton(type: .custom)
