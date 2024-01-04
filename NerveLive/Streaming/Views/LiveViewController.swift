@@ -26,6 +26,8 @@ class LiveViewController: BaseViewController {
     
     var cameraPositionIsFront = true
     
+    var fakeCommentingEnabled = false
+    
     let bubbleBorderColor = Colors.CGWhite
     
     var numViewers : Int = 20
@@ -73,6 +75,7 @@ class LiveViewController: BaseViewController {
                 print("Subscription has been closed successfully")
             case .failure(let apiError):
                 print("Subscription has terminated with \(apiError)")
+                self.createGiftSubscription(handler: handler)
             }
         }
     }
@@ -105,6 +108,7 @@ class LiveViewController: BaseViewController {
                 print("Subscription has been closed successfully")
             case .failure(let apiError):
                 print("Subscription has terminated with \(apiError)")
+                self.createCommentSubscription(handler: handler)
             }
         }
     }
@@ -129,6 +133,7 @@ class LiveViewController: BaseViewController {
                     }
                 case .failure(let error):
                     print("Got failed result with \(error.errorDescription)")
+                    self.createStreamViewSubscription(handler: handler)
                 }
             }
         }) { result in
@@ -137,6 +142,7 @@ class LiveViewController: BaseViewController {
                 print("Subscription has been closed successfully")
             case .failure(let apiError):
                 print("Subscription has terminated with \(apiError)")
+                self.createStreamViewSubscription(handler: handler)
             }
         }
     }
@@ -215,6 +221,8 @@ class LiveViewController: BaseViewController {
             remoteRenderer.isHidden = true
             self.localVideoView.transform = CGAffineTransformMakeScale(-1.0, 1.0)
             view.addSubview(localVideoView)
+            view.addSubview(lookBtn)
+            view.addSubview(liveBtn)
         } else {
             let twitchView = createViewer(url: "https://player.twitch.tv/?channel=ryanmillion_&parent=quest-livestream", frame: CGRect(x: 0, y:0, width: K_SCREEN_WIDTH, height: K_SCREEN_HEIGHT))
             twitchView!.translatesAutoresizingMaskIntoConstraints = true
@@ -224,11 +232,10 @@ class LiveViewController: BaseViewController {
         
         //view.addSubview(localVideoView)
         
-        view.addSubview(lookBtn)
-        view.addSubview(liveBtn)
         
         
-        if (LoginTools.sharedTools.userInfo().phone!) != "+17048901338" {
+        
+        if (LoginTools.sharedTools.userInfo().phone!) != "+17048901338" /* if user is not Ryan */ {
             view.addSubview(textInputBar)
             textInputBar.delegate = self
             StreamingBackend.stream.getCurrentStreamId2() {
@@ -241,14 +248,18 @@ class LiveViewController: BaseViewController {
                 }
             }
             StreamingBackend.stream.startStreamView(streamId: currStreamId ?? "bad", userId: LoginTools.sharedTools.userInfo().id)
-        } else {
+        } else { // when user is Ryan
             view.addSubview(closeBtn)
             currStreamId = StreamingBackend.stream.createStream(streamerId: LoginTools.sharedTools.userInfo().id)
+            
+            //since using Twitch screenshare stream of Nerve streamer page, only add comment and gift subscription on Ryan's screen
+            createGiftSubscription(handler: createDareBubble)
+            createCommentSubscription(handler: createCommentLabel)
             print("currStreamId: " + currStreamId!)
+            
+            //view.addSubview(textInputBar)
+            //textInputBar.delegate = self
         }
-        
-        createGiftSubscription(handler: createDareBubble)
-        createCommentSubscription(handler: createCommentLabel)
         
         enterLiveRoom()
     }
@@ -280,8 +291,10 @@ class LiveViewController: BaseViewController {
         
         SKPaymentQueue.default().remove(inAppPurchasesObserver!)
         
-        DispatchQueue.main.async {
-            self.fakeCommenting.cancel()
+        if fakeCommentingEnabled {
+            DispatchQueue.main.async {
+                self.fakeCommenting.cancel()
+            }
         }
         StreamingBackend.stream.finishStream(currStreamId: currStreamId!, streamerId: LoginTools.sharedTools.userInfo().id)
         
@@ -431,7 +444,7 @@ class LiveViewController: BaseViewController {
             embedView(localRenderer, into: localVideoView)
         } else {
             print("Switch not allowed in viewer mode")
-            StreamingBackend.stream.startStreamView(streamId: currStreamId ?? "bad", userId: LoginTools.sharedTools.userInfo().id)
+            //StreamingBackend.stream.startStreamView(streamId: currStreamId ?? "bad", userId: LoginTools.sharedTools.userInfo().id)
         }
     }
 
@@ -444,7 +457,13 @@ class LiveViewController: BaseViewController {
     }()
 
     @objc func liveBtnClick() {
-        DispatchQueue.global(qos: .background).async(execute: fakeCommenting)
+        if fakeCommentingEnabled {
+            DispatchQueue.global(qos: .background).async(execute: fakeCommenting)
+        } else {
+            DispatchQueue.main.async {
+                self.fakeCommenting.cancel()
+            }
+        }
     }
     
     var textInput = Messages.emptyString
