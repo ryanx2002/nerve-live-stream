@@ -224,7 +224,7 @@ class LiveViewController: BaseViewController {
             view.addSubview(lookBtn)
             view.addSubview(liveBtn)
         } else {
-            let twitchView = createViewer(url: "https://player.twitch.tv/?channel=ryanmillion_&parent=quest-livestream", frame: CGRect(x: 0, y:0, width: K_SCREEN_WIDTH, height: K_SCREEN_HEIGHT))
+            let twitchView = createViewer(url: "https://player.twitch.tv/?channel=ryanmillion_&parent=quest-livestream", frame: CGRect(x: -K_SCREEN_HEIGHT*0.76, y: -K_SCREEN_HEIGHT*0.05, width: K_SCREEN_HEIGHT*1.98, height: K_SCREEN_HEIGHT*1.1))
             twitchView!.translatesAutoresizingMaskIntoConstraints = true
             print("twitch view loading")
             view.addSubview(twitchView!)
