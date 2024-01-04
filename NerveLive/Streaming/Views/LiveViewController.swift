@@ -167,7 +167,6 @@ class LiveViewController: BaseViewController {
         
         dareBubbles = Deque<UIView>()
         comments = Deque<UILabel>()
-        createStreamViewSubscription(handler: createJoinerLabel)
         
         if (LoginTools.sharedTools.userInfo().phone!) != "+17048901338" {
             DispatchQueue.main.async {
@@ -210,7 +209,9 @@ class LiveViewController: BaseViewController {
             let remoteRenderer = RTCEAGLVideoView(frame: view.frame)
             remoteRenderer.backgroundColor = .black
             #endif
-
+            
+            createStreamViewSubscription(handler: createJoinerLabel)
+            
             LiveManager.shared.webRTCClient?.startCaptureLocalVideo(renderer: localRenderer, camera: .front )
             LiveManager.shared.webRTCClient?.renderRemoteVideo(to: remoteRenderer)
 
@@ -457,11 +458,15 @@ class LiveViewController: BaseViewController {
     }()
 
     @objc func liveBtnClick() {
-        if fakeCommentingEnabled {
+        if !fakeCommentingEnabled {
             DispatchQueue.global(qos: .background).async(execute: fakeCommenting)
+            DispatchQueue.main.async {
+                self.fakeCommentingEnabled = true
+            }
         } else {
             DispatchQueue.main.async {
                 self.fakeCommenting.cancel()
+                self.fakeCommentingEnabled = false
             }
         }
     }

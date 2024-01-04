@@ -79,7 +79,6 @@
 		9720869A2B3A29CE008817A0 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 972086992B3A29CE008817A0 /* DequeModule */; };
 		9720869C2B3A29CE008817A0 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 9720869B2B3A29CE008817A0 /* OrderedCollections */; };
 		974168D42B4542D800580256 /* GraphQLRequest+StreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974168D32B4542D800580256 /* GraphQLRequest+StreamView.swift */; };
-		97783C322B3E1BF8000C347B /* TwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97783C312B3E1BF8000C347B /* TwitchViewController.swift */; };
 		97AFACE62B40D8A800B06B47 /* WelcomeQuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AFACE52B40D8A800B06B47 /* WelcomeQuestViewController.swift */; };
 		97AFACE82B40E67C00B06B47 /* StreamerOfflineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AFACE72B40E67C00B06B47 /* StreamerOfflineViewController.swift */; };
 		97B1EB1B2B38DCBE002EDF47 /* StreamingBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B1EB1A2B38DCBE002EDF47 /* StreamingBackend.swift */; };
@@ -177,7 +176,6 @@
 		971B353D2B4364C100B5600F /* Inter-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Light.ttf"; sourceTree = "<group>"; };
 		971B353F2B43845900B5600F /* GraphQLRequest+Stream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GraphQLRequest+Stream.swift"; sourceTree = "<group>"; };
 		974168D32B4542D800580256 /* GraphQLRequest+StreamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GraphQLRequest+StreamView.swift"; sourceTree = "<group>"; };
-		97783C312B3E1BF8000C347B /* TwitchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitchViewController.swift; sourceTree = "<group>"; };
 		97AFACE52B40D8A800B06B47 /* WelcomeQuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeQuestViewController.swift; sourceTree = "<group>"; };
 		97AFACE72B40E67C00B06B47 /* StreamerOfflineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamerOfflineViewController.swift; sourceTree = "<group>"; };
 		97B1EB1A2B38DCBE002EDF47 /* StreamingBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingBackend.swift; sourceTree = "<group>"; };
@@ -411,7 +409,6 @@
 				6AEE5EAB2B29E44300D1D084 /* LiveViewController.swift */,
 				358497B72B2BF168000EF591 /* GoLiveViewController.swift */,
 				358F99C52B343D7200192445 /* ViewerGoLiveViewController.swift */,
-				97783C312B3E1BF8000C347B /* TwitchViewController.swift */,
 				358F99C72B3444C500192445 /* SettingViewController.swift */,
 				97AFACE72B40E67C00B06B47 /* StreamerOfflineViewController.swift */,
 			);
@@ -700,7 +697,6 @@
 				97CEF0A72B3A5DC80078DA5F /* StoreObserver.swift in Sources */,
 				5325919CE5D7F0AEAF06CF07 /* User.swift in Sources */,
 				C0C1986B9FCBCFE8A3987CC8 /* Gift.swift in Sources */,
-				97783C322B3E1BF8000C347B /* TwitchViewController.swift in Sources */,
 				CC5B71175A23101F522C68FA /* Stream.swift in Sources */,
 				A8A2B0A7D4BC25600870BC96 /* StreamView.swift in Sources */,
 				97C446D92B3BCE9400CC79D2 /* AppDataTypes.swift in Sources */,
@@ -895,7 +891,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.NerveLive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -932,7 +928,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.NerveLive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
