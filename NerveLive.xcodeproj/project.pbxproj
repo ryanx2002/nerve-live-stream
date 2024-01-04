@@ -82,7 +82,6 @@
 		97783C322B3E1BF8000C347B /* TwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97783C312B3E1BF8000C347B /* TwitchViewController.swift */; };
 		97AFACE62B40D8A800B06B47 /* WelcomeQuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AFACE52B40D8A800B06B47 /* WelcomeQuestViewController.swift */; };
 		97AFACE82B40E67C00B06B47 /* StreamerOfflineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AFACE72B40E67C00B06B47 /* StreamerOfflineViewController.swift */; };
-		97AFACEA2B42104D00B06B47 /* Nerve Livestream Home Screen Preview.mov in Resources */ = {isa = PBXBuildFile; fileRef = 97AFACE92B42104D00B06B47 /* Nerve Livestream Home Screen Preview.mov */; };
 		97B1EB1B2B38DCBE002EDF47 /* StreamingBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B1EB1A2B38DCBE002EDF47 /* StreamingBackend.swift */; };
 		97C446D92B3BCE9400CC79D2 /* AppDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C446D82B3BCE9400CC79D2 /* AppDataTypes.swift */; };
 		97CEF0A32B3A4D870078DA5F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CEF0A22B3A4D870078DA5F /* StoreKit.framework */; };
@@ -102,6 +101,7 @@
 		CBF22679FB586D903D99881B /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676E3272419CCDBBAF769D90 /* Comment.swift */; };
 		CC5B71175A23101F522C68FA /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22A3F34976ED692211DA968 /* Stream.swift */; };
 		CDF64A410C11411053BB8C5A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D8734636905A50C181342F /* User.swift */; };
+		CFF369422B469BE400E485C9 /* Nerve Livestream Home Screen Preview.mov in Resources */ = {isa = PBXBuildFile; fileRef = CFF369412B469BE400E485C9 /* Nerve Livestream Home Screen Preview.mov */; };
 		E35B0A11D7234EA7BE65CA7A /* StreamView+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F1AFE602D1BD2F3EA1ECD /* StreamView+Schema.swift */; };
 		E9C0B38B8048F8460C5D94FB /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22A3F34976ED692211DA968 /* Stream.swift */; };
 		EBE7237AEA420FD5D7078247 /* Pods_NerveLive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A696D4E5E7757184017BE65F /* Pods_NerveLive.framework */; };
@@ -180,7 +180,6 @@
 		97783C312B3E1BF8000C347B /* TwitchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitchViewController.swift; sourceTree = "<group>"; };
 		97AFACE52B40D8A800B06B47 /* WelcomeQuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeQuestViewController.swift; sourceTree = "<group>"; };
 		97AFACE72B40E67C00B06B47 /* StreamerOfflineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamerOfflineViewController.swift; sourceTree = "<group>"; };
-		97AFACE92B42104D00B06B47 /* Nerve Livestream Home Screen Preview.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = "Nerve Livestream Home Screen Preview.mov"; path = "../../../../Library/Messages/Attachments/52/02/0E205C08-8F35-445E-8D03-FAFFC241CCDE/Nerve Livestream Home Screen Preview.mov"; sourceTree = "<group>"; };
 		97B1EB1A2B38DCBE002EDF47 /* StreamingBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingBackend.swift; sourceTree = "<group>"; };
 		97C446D82B3BCE9400CC79D2 /* AppDataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDataTypes.swift; sourceTree = "<group>"; };
 		97CEF0A22B3A4D870078DA5F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -198,6 +197,7 @@
 		B63F5C3B2B1B5363000D6642 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B63F5C3D2B1B5363000D6642 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9D8734636905A50C181342F /* User.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = User.swift; path = amplify/generated/models/User.swift; sourceTree = "<group>"; };
+		CFF369412B469BE400E485C9 /* Nerve Livestream Home Screen Preview.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Nerve Livestream Home Screen Preview.mov"; sourceTree = "<group>"; };
 		D60ABA62F0E29345D1600FA5 /* Stream+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "Stream+Schema.swift"; path = "amplify/generated/models/Stream+Schema.swift"; sourceTree = "<group>"; };
 		E5C033CC73C6DAE5D1D1A27F /* Pods-NerveLive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NerveLive.release.xcconfig"; path = "Target Support Files/Pods-NerveLive/Pods-NerveLive.release.xcconfig"; sourceTree = "<group>"; };
 		F22A3F34976ED692211DA968 /* Stream.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Stream.swift; path = amplify/generated/models/Stream.swift; sourceTree = "<group>"; };
@@ -384,7 +384,7 @@
 		97AF27E42B3FD82300A116DE /* Streaming */ = {
 			isa = PBXGroup;
 			children = (
-				97AFACE92B42104D00B06B47 /* Nerve Livestream Home Screen Preview.mov */,
+				CFF369412B469BE400E485C9 /* Nerve Livestream Home Screen Preview.mov */,
 				97AF27EB2B3FD98600A116DE /* Tools */,
 				97AF27EA2B3FD96A00A116DE /* Manager */,
 				97AF27E62B3FD84200A116DE /* Views */,
@@ -584,7 +584,6 @@
 				B63F5C392B1B5363000D6642 /* Assets.xcassets in Resources */,
 				35AC97962B1F3AA6005E843E /* schema.graphql in Resources */,
 				B63F5C372B1B5361000D6642 /* Main.storyboard in Resources */,
-				97AFACEA2B42104D00B06B47 /* Nerve Livestream Home Screen Preview.mov in Resources */,
 				35AC97592B1DDEB0005E843E /* Inter-SemiBold.ttf in Resources */,
 				8BEAD253F9D4B4A846FCE879 /* awsconfiguration.json in Resources */,
 				971B353E2B4364C100B5600F /* Inter-Light.ttf in Resources */,
@@ -592,6 +591,7 @@
 				35AC977B2B1DE1AA005E843E /* PhoneInputViewController.xib in Resources */,
 				35AC97822B1DE5FC005E843E /* NameInputViewController.xib in Resources */,
 				35AC97582B1DDEB0005E843E /* Inter-Regular.ttf in Resources */,
+				CFF369422B469BE400E485C9 /* Nerve Livestream Home Screen Preview.mov in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
