@@ -882,7 +882,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NerveLive/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Quest;
+				INFOPLIST_KEY_CFBundleDisplayName = Nerve;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Quest uses your device's camera to Live streaming.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Quest uses your device's microphone to Live streaming.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -919,7 +919,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NerveLive/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Quest;
+				INFOPLIST_KEY_CFBundleDisplayName = Nerve;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Quest uses your device's camera to Live streaming.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Quest uses your device's microphone to Live streaming.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
