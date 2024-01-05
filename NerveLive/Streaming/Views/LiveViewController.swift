@@ -226,9 +226,11 @@ class LiveViewController: BaseViewController {
             view.addSubview(liveBtn)
         } else {
             let twitchView = createViewer(url: "https://player.twitch.tv/?channel=ryanmillion_&parent=quest-livestream", frame: CGRect(x: -K_SCREEN_HEIGHT*0.76, y: -K_SCREEN_HEIGHT*0.05, width: K_SCREEN_HEIGHT*1.98, height: K_SCREEN_HEIGHT*1.1))
-            twitchView!.translatesAutoresizingMaskIntoConstraints = true
+            twitchView.translatesAutoresizingMaskIntoConstraints = true
+            //twitchView.gestureRecognizers = []
             print("twitch view loading")
-            view.addSubview(twitchView!)
+            view.addSubview(twitchView)
+            twitchView.isUserInteractionEnabled = false
         }
         
         //view.addSubview(localVideoView)
@@ -320,7 +322,7 @@ class LiveViewController: BaseViewController {
 //        joinStorageButton?.isHidden = true
 //    }
     
-    func createViewer(url : String, frame : CGRect) -> WKWebView? {
+    func createViewer(url : String, frame : CGRect) -> WKWebView {
         // Initialize a WKWebViewConfiguration object.
         let webViewConfiguration = WKWebViewConfiguration()
         // Let HTML videos with a "playsinline" attribute play inline.
