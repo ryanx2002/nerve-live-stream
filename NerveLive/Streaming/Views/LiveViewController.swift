@@ -28,6 +28,8 @@ class LiveViewController: BaseViewController {
     
     var fakeCommentingEnabled = false
     
+    var fresh = true
+    
     let bubbleBorderColor = Colors.CGWhite
     
     var numViewers : Int = 20
@@ -151,6 +153,49 @@ class LiveViewController: BaseViewController {
         streamViewSubscription?.cancel()
     }
     
+    var streamSubscription : GraphQLSubscriptionOperation<Stream>?
+    
+    func createStreamSubscription(handler: @escaping (Stream) -> Any) {
+        streamSubscription = Amplify.API.subscribe(request: .subscription(of: Stream.self, type: .onUpdate), valueListener: { (subscriptionEvent) in
+            switch subscriptionEvent {
+            case .connection(let subscriptionConnectionState):
+                print("StreamView subscription connect state is \(subscriptionConnectionState)")
+            case .data(let result):
+                switch result {
+                case .success(let createdStream):
+                    print("Successfully got updated Stream from subscription: \(createdStream)")
+                    DispatchQueue.main.async{
+                        handler(createdStream)
+                    }
+                case .failure(let error):
+                    print("Got failed result with \(error.errorDescription)")
+                    self.createStreamSubscription(handler: handler)
+                }
+            }
+        }) { result in
+            switch result {
+            case .success:
+                print("Subscription has been closed successfully")
+            case .failure(let apiError):
+                print("Subscription has terminated with \(apiError)")
+                self.createStreamSubscription(handler: handler)
+            }
+        }
+    }
+    
+    func cancelStreamSubscription() {
+        streamSubscription?.cancel()
+    }
+    
+    func streamUpdated(stream : Stream) {
+        if stream.endTime != nil {
+            print("STREAM ENDED")
+            getAppDelegate().isStream = false
+            getAppDelegate().changeRootViewController()
+        }
+    }
+    
+    
     // get products
     func initializeInAppPurchases() {
         inAppPurchasesObserver = StoreObserver()
@@ -169,9 +214,32 @@ class LiveViewController: BaseViewController {
         comments = Deque<UILabel>()
         
         if (LoginTools.sharedTools.userInfo().phone!) != "+17048901338" {
-            DispatchQueue.main.async {
-                let welcomeQuest = WelcomeQuestViewController();
-                self.navigationController?.pushViewController(welcomeQuest, animated: true)
+            StreamingBackend.stream.getCurrentStreamId2() {
+                streams in 
+                var found = false
+                for stream in streams {
+                    if (stream.endTime == nil) {
+                        print("found id: " + stream.id)
+                        self.currStreamId = stream.id
+                        found = true
+                        self.createStreamSubscription(handler: self.streamUpdated)
+                        break
+                    }
+                }
+                
+                if !found {
+                    print("NO STREAM FOUND")
+                    DispatchQueue.main.async {
+                        getAppDelegate().isStream = false
+                        getAppDelegate().changeRootViewController()
+                    }
+                }
+            }
+            if fresh {
+                DispatchQueue.main.async {
+                    let welcomeQuest = WelcomeQuestViewController();
+                    self.navigationController?.pushViewController(welcomeQuest, animated: true)
+                }
             }
         }
 
@@ -241,15 +309,6 @@ class LiveViewController: BaseViewController {
         if (LoginTools.sharedTools.userInfo().phone!) != "+17048901338" /* if user is not Ryan */ {
             view.addSubview(textInputBar)
             textInputBar.delegate = self
-            StreamingBackend.stream.getCurrentStreamId2() {
-                streams in for stream in streams {
-                    if (stream.endTime == nil) {
-                        print("found id: " + stream.id)
-                        self.currStreamId = stream.id
-                        break
-                    }
-                }
-            }
             StreamingBackend.stream.startStreamView(streamId: currStreamId ?? "bad", userId: LoginTools.sharedTools.userInfo().id)
         } else { // when user is Ryan
             view.addSubview(closeBtn)
@@ -292,6 +351,7 @@ class LiveViewController: BaseViewController {
         cancelCommentSubscription()
         
         
+        
         SKPaymentQueue.default().remove(inAppPurchasesObserver!)
         
         if fakeCommentingEnabled {
@@ -300,7 +360,11 @@ class LiveViewController: BaseViewController {
             }
         }
         StreamingBackend.stream.finishStream(currStreamId: currStreamId!, streamerId: LoginTools.sharedTools.userInfo().id)
-        
+        if (LoginTools.sharedTools.userInfo().phone!) == "+17048901338" {
+            cancelStreamViewSubscription()
+        } else {
+            cancelStreamSubscription()
+        }
         dismiss(animated: true)
     }
     

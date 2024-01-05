@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var orientationLock = UIInterfaceOrientationMask.all
     var pinpoint: AWSPinpoint?
     var monitor: NWPathMonitor?
+    var isStream = true
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         addAmplify()
@@ -51,6 +52,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    
+    func changeToViewController(root : UIViewController) {
+        let navVC: UINavigationController  = UINavigationController(rootViewController: root)
+        navVC.isNavigationBarHidden = true
+        self.window?.rootViewController = navVC
+        self.window?.backgroundColor = .black
+        self.window?.makeKeyAndVisible()
+    }
 
     func changeRootViewController() {
         let user = LoginTools.sharedTools.userInfo()
@@ -67,10 +76,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             else if (LoginTools.sharedTools.userInfo().phone!) == "+17048901338" {
                 rootViewController = GoLiveViewController()
             }
-            else {
+            else if isStream {
                 //rootViewController = TwitchViewController()
                 rootViewController = LiveViewController() //StreamerOfflineViewController()//LiveViewController() //GoLiveViewController()
                 //rootViewController = StreamerOfflineViewController()
+            } else {
+                rootViewController = StreamerOfflineViewController()
             }
         }
         if let root = rootViewController {
