@@ -291,22 +291,27 @@ class LiveViewController: BaseViewController {
             AppDelegate.AppUtility.lockOrientation(.landscapeLeft, andRotateTo: .landscapeLeft)
             view.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
         } else {
-            let midX = K_SCREEN_WIDTH/2
-            let midY = K_SCREEN_HEIGHT/2
+            let screenMidX = K_SCREEN_WIDTH/2
+            let screenMidY = K_SCREEN_HEIGHT/2
             
-            let twitchView = createViewer(url: "https://player.twitch.tv/?channel=ryanmillion_&parent=quest-livestream", frame: CGRect(x: midX - K_SCREEN_HEIGHT/2, y: midY - K_SCREEN_WIDTH/2, width: K_SCREEN_HEIGHT, height: K_SCREEN_WIDTH))
+            //this is so stupid, but the twitch embedding changes its behavior at different sizes
+            let viewerWidth = K_SCREEN_HEIGHT
+            let viewerHeight = K_SCREEN_HEIGHT
+            
+            /*let viewerWidth = K_SCREEN_WIDTH*(926/428)/(1920/1080)
+             let viewerHeight = K_SCREEN_WIDTH*(926/428)
+             */
+            
+            //Pre-transform coordinates
+            let twitchView = createViewer(url: "https://player.twitch.tv/?channel=ryanmillion_&parent=quest-livestream", frame: CGRect(x: screenMidX - viewerHeight/2, y: screenMidY - viewerWidth/2, width: viewerHeight, height: viewerWidth))
+            
             twitchView.translatesAutoresizingMaskIntoConstraints = true
+            
             twitchView.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
-            //twitchView.gestureRecognizers = []
             print("twitch view loading")
             view.addSubview(twitchView)
             twitchView.isUserInteractionEnabled = false
         }
-        
-        
-        
-        
-        
         
         if (LoginTools.sharedTools.userInfo().phone!) != "+17048901338" /* if user is not Ryan */ {
             view.addSubview(textInputBar)
@@ -327,7 +332,7 @@ class LiveViewController: BaseViewController {
         
         enterLiveRoom()
     }
-
+    
     private func embedView(_ view: UIView, into containerView: UIView) {
         containerView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
