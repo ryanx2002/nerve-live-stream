@@ -15,7 +15,7 @@ import Network
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var orientationLock = UIInterfaceOrientationMask.all
+    var orientationLock: UIInterfaceOrientationMask = .portrait
     var pinpoint: AWSPinpoint?
     var monitor: NWPathMonitor?
     var isStream = true

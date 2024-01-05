@@ -38,10 +38,6 @@ class LiveViewController: BaseViewController {
     
     fileprivate var productRequest: SKProductsRequest!
     var inAppPurchasesObserver : StoreObserver?
-
-    override func viewWillAppear(_ animated: Bool) {
-        AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
-    }
     
     /// 进入直播间
     func enterLiveRoom() {
@@ -292,16 +288,22 @@ class LiveViewController: BaseViewController {
             view.addSubview(localVideoView)
             view.addSubview(lookBtn)
             view.addSubview(liveBtn)
+            AppDelegate.AppUtility.lockOrientation(.landscapeLeft, andRotateTo: .landscapeLeft)
+            view.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
         } else {
-            let twitchView = createViewer(url: "https://player.twitch.tv/?channel=ryanmillion_&parent=quest-livestream", frame: CGRect(x: -K_SCREEN_HEIGHT*0.76, y: -K_SCREEN_HEIGHT*0.05, width: K_SCREEN_HEIGHT*1.98, height: K_SCREEN_HEIGHT*1.1))
+            let midX = K_SCREEN_WIDTH/2
+            let midY = K_SCREEN_HEIGHT/2
+            
+            let twitchView = createViewer(url: "https://player.twitch.tv/?channel=ryanmillion_&parent=quest-livestream", frame: CGRect(x: midX - K_SCREEN_HEIGHT/2, y: midY - K_SCREEN_WIDTH/2, width: K_SCREEN_HEIGHT, height: K_SCREEN_WIDTH))
             twitchView.translatesAutoresizingMaskIntoConstraints = true
+            twitchView.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
             //twitchView.gestureRecognizers = []
             print("twitch view loading")
             view.addSubview(twitchView)
             twitchView.isUserInteractionEnabled = false
         }
         
-        //view.addSubview(localVideoView)
+        
         
         
         
@@ -349,6 +351,7 @@ class LiveViewController: BaseViewController {
         debugPrint("Live closed for user " + username)
         cancelGiftSubscription()
         cancelCommentSubscription()
+       
         
         
         
@@ -365,6 +368,7 @@ class LiveViewController: BaseViewController {
         } else {
             cancelStreamSubscription()
         }
+        AppDelegate.AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
         dismiss(animated: true)
     }
     
