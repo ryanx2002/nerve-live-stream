@@ -48,6 +48,126 @@
       "productID" : "ThirdPriceGift",
       "referenceName" : "$15 Gift",
       "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "C416E02B",
+      "localizations" : [
+        {
+          "description" : "Donation to streamer with a custom note",
+          "displayName" : "$1 Gift",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "OneDollarGift",
+      "referenceName" : "$1 Gift",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "1.99",
+      "familyShareable" : false,
+      "internalID" : "A4CED416",
+      "localizations" : [
+        {
+          "description" : "Donation to streamer with a custom note",
+          "displayName" : "$2 Gift",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "TwoDollarGift",
+      "referenceName" : "$2 Gift",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "2.99",
+      "familyShareable" : false,
+      "internalID" : "10848D69",
+      "localizations" : [
+        {
+          "description" : "Donation to streamer with a custom note",
+          "displayName" : "$3 Gift",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "ThreeDollarGift",
+      "referenceName" : "$3 Gift",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "3.99",
+      "familyShareable" : false,
+      "internalID" : "22EBA7FE",
+      "localizations" : [
+        {
+          "description" : "Donation to streamer with a custom note",
+          "displayName" : "$4 Gift",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "FourDollarGift",
+      "referenceName" : "$4 Gift",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "5.99",
+      "familyShareable" : false,
+      "internalID" : "E3C9E5D7",
+      "localizations" : [
+        {
+          "description" : "Donation to streamer with a custom note",
+          "displayName" : "$6 Gift",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "SixDollarGift",
+      "referenceName" : "$6 Gift",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "6.99",
+      "familyShareable" : false,
+      "internalID" : "C0884DFE",
+      "localizations" : [
+        {
+          "description" : "Donation to streamer with a custom note",
+          "displayName" : "$7 Gift",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "SevenDollarGift",
+      "referenceName" : "$7 Gift",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "7.99",
+      "familyShareable" : false,
+      "internalID" : "F02051AA",
+      "localizations" : [
+        {
+          "description" : "Donation to streamer with a custom note",
+          "displayName" : "$8 Gift",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "EightDollarGift",
+      "referenceName" : "$8 Gift",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "8.99",
+      "familyShareable" : false,
+      "internalID" : "4DEC00D3",
+      "localizations" : [
+        {
+          "description" : "Donation to streamer with a custom note",
+          "displayName" : "$9 Gift",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "NineDollarGift",
+      "referenceName" : "$9 Gift",
+      "type" : "Consumable"
     }
   ],
   "settings" : {

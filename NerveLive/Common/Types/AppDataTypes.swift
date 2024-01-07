@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 struct Pricing {
+    static let testing = 2
     static let firstPrice = 5
     static let secondPrice = 10
     static let thirdPrice = 15
@@ -30,7 +31,7 @@ struct Messages {
     static let commentButtonText = "Comment"
     
     // productIds
-    
+    static let testingProductId = "NineDollarGift"
     static let firstPriceGiftProductId = "FirstPriceGift"
     static let secondPriceGiftProductId = "SecondPriceGift"
     static let thirdPriceGiftProductId = "ThirdPriceGift"

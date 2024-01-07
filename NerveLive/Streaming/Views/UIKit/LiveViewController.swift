@@ -34,6 +34,8 @@ class LiveViewController: BaseViewController {
     
     var numViewers : Int = 20
     
+    var newUiEnabled = false
+    
     public var availableProducts : Dictionary<String,SKProduct>?
     
     fileprivate var productRequest: SKProductsRequest!
@@ -314,8 +316,13 @@ class LiveViewController: BaseViewController {
         }
         
         if (LoginTools.sharedTools.userInfo().phone!) != "+17048901338" /* if user is not Ryan */ {
-            view.addSubview(textInputBar)
-            textInputBar.delegate = self
+            if (!newUiEnabled){
+                view.addSubview(textInputBar)
+                textInputBar.delegate = self
+            } else {
+                view.addSubview(newCommentButton)
+                view.addSubview(newDareButton)
+            }
             StreamingBackend.stream.startStreamView(streamId: currStreamId ?? "bad", userId: LoginTools.sharedTools.userInfo().id)
         } else { // when user is Ryan
             view.addSubview(closeBtn)
@@ -485,6 +492,22 @@ class LiveViewController: BaseViewController {
         //let localVideoView = UIView(frame: view.bounds) // 全屏展示(full screen display)
         let localVideoView = UIView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight))
         return localVideoView
+    }()
+    
+    lazy var newCommentButton : UIButton = {
+        let commentButton = UIButton(frame: CGRect(x: 20, y: K_SCREEN_HEIGHT - 44 - 35, width: (kScreenWidth - 40 - 8)/2, height: 44))
+        commentButton.layer.backgroundColor = UIColor(red: 0.251, green: 0.251, blue: 0.251, alpha: 1).cgColor
+        commentButton.layer.cornerRadius = 25
+        commentButton.layer.masksToBounds = true
+        return commentButton
+    }()
+    
+    lazy var newDareButton : UIButton = {
+        let dareButton = UIButton(frame: CGRect(x: 20 + (kScreenWidth - 40 - 8)/2 + 8, y: K_SCREEN_HEIGHT - 44 - 35, width: (kScreenWidth - 40 - 8)/2, height: 44))
+        dareButton.layer.backgroundColor = UIColor(red: 0.597, green: 0, blue: 0.538, alpha: 1).cgColor
+        dareButton.layer.cornerRadius = 25
+        dareButton.layer.masksToBounds = true
+        return dareButton
     }()
     
     lazy var closeBtn: UIButton = {
@@ -969,22 +992,4 @@ extension StoreManager: SKRequestDelegate {
 
 extension LiveViewController : WKNavigationDelegate {
     
-}
-
-// preview stuff. note Amplify functions cause preview to crash
-
-struct LiveView: UIViewControllerRepresentable {
-    typealias UIViewControllerType = LiveViewController
-    func makeUIViewController(context: Context) -> LiveViewController {
-            let vc = LiveViewController()
-            return vc
-        }
-    func updateUIViewController(_ uiViewController: LiveViewController, context: Context) {
-        }
-    }
-
-struct ViewControllerPreview: PreviewProvider {
-    static var previews: some View {
-        return LiveView()
-    }
 }
